@@ -52,8 +52,10 @@ class RgbtRecording:
         if not np.allclose(rig.Wir, rig.rig @ rig.W, rtol=0, atol=1e-9):
             raise ValueError('Thermal pose differs from the calibrated synchronized pose')
         ir = np.rint(rig.ir * 255).astype(np.uint8)
-        if ir.shape != rgb.shape or receipt['frame_id'] != self.count:
+        if self.count==0:self.first_frame_id=receipt['frame_id']
+        if ir.shape != rgb.shape or receipt['frame_id']-self.first_frame_id != self.count:
             raise ValueError('Missing or misaligned image pair')
+        self.wh = [rgb.shape[1],rgb.shape[0]]
         frames = {'rgb_fpv': rgb, 'thermal_fpv': ir, 'rgb_thermal_fpv': np.concatenate((rgb, ir), axis=1)}
         for name, frame in frames.items():
             if self.count == 0:
@@ -62,7 +64,7 @@ class RgbtRecording:
                 self.writers[name] = writer
             self.writers[name].write(frame)
         transforms = dict(rgb_w2c=rig.W.tolist(), thermal_w2c=rig.Wir.tolist())
-        print(json.dumps(dict(frame=self.count, t=receipt['sim_time'], step=receipt['step_id'],
+        print(json.dumps(dict(frame=self.count, receipt_frame=receipt['frame_id'], t=receipt['sim_time'], step=receipt['step_id'],
                               rgb_sha256=hashlib.sha256(rgb).hexdigest(),
                               thermal_sha256=hashlib.sha256(ir).hexdigest(), **transforms)),file=self.index)
         self.count += 1
@@ -74,7 +76,7 @@ class RgbtRecording:
                 self.index.close()
                 checks = {name: verify_video(self.stage/(name+'.mp4'), self.count)
                           for name in self.writers}
-                metadata = dict(fps=1/CONTROL_DT, frames=self.count, streams=checks,
+                metadata = dict(fps=1/CONTROL_DT, frames=self.count, rgb_wh=self.wh, thermal_wh=self.wh, streams=checks,
                                 thermal_source=f'{self.scene_name}/models/thermal.ply',
                                 thermal_pose='W_thermal = rgb_to_thermal @ W_rgb',
                                 montage='left RGB, right thermal', policy_input='RGB only')

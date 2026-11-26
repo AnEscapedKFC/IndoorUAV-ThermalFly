@@ -56,9 +56,26 @@ def deny_expert_reads():
     raise AssertionError('Expert isolation probe failed')
 
 
+def flight_tasks():
+    from copy import deepcopy
+    from scipy.spatial.transform import Rotation
+    import numpy as np
+    tasks=json.loads(MANIFEST.read_text())
+    # Additional starts fixed before reviewing depth-assisted flight outcomes.
+    for name,source,offset,turn in [('sofa_h3','sofa_1',(.22,-.16),6.),('scan_h3','scan_2',(-.18,.14),-5.)]:
+        task=deepcopy(tasks[source]); initial=task['initial']
+        q=np.asarray(initial['q_w_from_b_wxyz'])[[1,2,3,0]]
+        rot=Rotation.from_quat(q)
+        initial['position_w_m']=(np.asarray(initial['position_w_m'])+rot.apply([*offset,0.])).tolist()
+        initial['q_w_from_b_wxyz']=(Rotation.from_euler('z',turn,degrees=True)*rot).as_quat()[[3,0,1,2]].tolist()
+        tasks[name]=task
+    return tasks
+
+
 def main(argv):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--prepare', action='store_true')
+    parser.add_argument('--mode',choices=['rgb','depth'],default='depth')
     parser.add_argument('--cases', nargs='+')
     args = parser.parse_args(argv)
     if args.prepare:
@@ -68,13 +85,13 @@ def main(argv):
     from metric_flight.experiment import execute
     from detector import Detector
     detector = Detector(use_cache=False)
-    tasks = json.loads(MANIFEST.read_text())
+    tasks = flight_tasks()
     for name in args.cases or tasks:
         task = tasks[name]
         if set(task) != {'instruction','target','initial'} or set(task['initial']) != set(INITIAL):
             raise ValueError('unexpected task input')
-        folder = RESULTS/name
+        folder = HERE/'results/furniture_640'/args.mode/name
         folder.mkdir(parents=True, exist_ok=True)
         with (folder/'.flight.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
-            execute(name, 'auto', True, detector, record_rgbt='furniture', furniture_task=task)
+            execute(name, 'auto', True, detector, record_rgbt='furniture', furniture_task=task, furniture_mode=args.mode)

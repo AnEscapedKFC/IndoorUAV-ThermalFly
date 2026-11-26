@@ -1,4 +1,5 @@
 """Offline scoring of close furniture observations and ordered sofa mosaics."""
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -178,6 +179,14 @@ def score(folder,task,ref,atlas):
     poses=[json.loads(s) for s in (folder/'video_frames.jsonl').read_text().splitlines()]
     rec=read(folder/'recording.json')
     assert len(poses)==len(f)==rec['frames'] and all(v['passed'] for v in rec['streams'].values())
+    if e.get('render_wh')==[640,480]:
+        for stream,wh in [('rgb_fpv',(640,480)),('thermal_fpv',(640,480)),('rgb_thermal_fpv',(1280,480))]:
+            video=cv2.VideoCapture(str(folder/(stream+'.mp4')))
+            try:
+                assert video.isOpened()
+                assert (round(video.get(cv2.CAP_PROP_FRAME_WIDTH)),round(video.get(cv2.CAP_PROP_FRAME_HEIGHT)))==wh
+                assert round(video.get(cv2.CAP_PROP_FRAME_COUNT))==len(f)
+            finally:video.release()
     assert len(e['hold']) in range(42) and all(not row['objects'] for row in f)
     xyz=np.array([row['xyz'] for row in f]); times=np.array([row['t'] for row in f])
     target=np.array(ref[task['target']]); distance=np.linalg.norm(xyz-target,axis=1)
@@ -234,16 +243,23 @@ def score(folder,task,ref,atlas):
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--mode',choices=['rgb','depth','historical'],default='depth')
+    parser.add_argument('--cases',nargs='+')
+    args=parser.parse_args()
+    root=RESULTS if args.mode=='historical' else HERE/'results/furniture_640'/args.mode
     deny_expert_reads()
-    ref,atlas=reference(RESULTS)
-    tasks=read(MANIFEST)
+    ref,atlas=reference(root)
+    from metric_flight.furniture import flight_tasks
+    tasks=read(MANIFEST) if args.mode=='historical' else flight_tasks()
     result={}
-    for n,task in tasks.items():
-        folder=RESULTS/n
+    for n in args.cases or tasks:
+        task=tasks[n]
+        folder=root/n
         if not (folder/'recording.json').exists():raise FileNotFoundError(f'Incomplete flight: {n}')
         result[n]=score(folder,task,ref,atlas)
         dump(folder/'metrics.json',result[n])
-    dump(RESULTS/'metrics.json',result)
+    if not args.cases:dump(root/'metrics.json',result)
     for n,row in result.items():
         print(n,row['reason'],round(row['end_range_m'],2),row['strict'],row['approximate'])
 if __name__=='__main__':main()

@@ -38,7 +38,7 @@ def score(folder):
         if path.exists():
             landmarks.update(load(path))
     center = landmarks[target]['center_w_m']
-    wh = np.array(task['observation_config']['rgb_wh'])
+    wh = np.array(episode.get('render_wh',task['observation_config']['rgb_wh']))
     xyz = np.array([f['xyz'] for f in frames])
     distance = np.linalg.norm(xyz - center, axis=1)
     in_range = distance_mask(distance, STRICT_RANGE_M)

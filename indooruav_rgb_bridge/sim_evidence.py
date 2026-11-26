@@ -42,6 +42,8 @@ def score(dataset, episode, output):
     refpos = np.array([f['position_w_m'] for f in expert])
     times = np.array([f['t_s'] for f in expert])
     positions = np.array([f['position_w_m'] for f in flown])
+    meta_path=output/'summary.json'
+    flown_wh=np.array(json.loads(meta_path.read_text()).get('render_wh',wh)) if meta_path.exists() else wh
     inspections = []
     cursor = 0
     for stage in stages:
@@ -58,7 +60,7 @@ def score(dataset, episode, output):
         for j,frame in enumerate(flown):
             v = frame['landmark_projections'][obj]
             point = v['uv']
-            if v['in_image'] and np.all(np.asarray(point)>=0.1*wh) and np.all(np.asarray(point)<=.9*wh):
+            if v['in_image'] and np.all(np.asarray(point)>=0.1*flown_wh) and np.all(np.asarray(point)<=.9*flown_wh):
                 dist = float(np.linalg.norm(positions[j]-center))
                 seen.append(dist)
                 if j>=cursor and bound is not None and dist<=bound:

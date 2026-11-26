@@ -53,7 +53,7 @@ def upright(p,yaw):
     return q,state
 def run(name,new,arm,mode,detector,waypoint_check='auto'):
     case=('new_' if new else '')+name
-    folder=OUT/'scoped_checks'/waypoint_check/mode/arm/case
+    folder=OUT/'scoped_checks_640'/waypoint_check/mode/arm/case
     if (folder/'episode.json').exists():return
     folder.mkdir(parents=True,exist_ok=True)
     ep=DATA/'episodes'/name;meta=read(ep/'episode.json');f0=line(ep/'frames.jsonl')
@@ -73,7 +73,7 @@ def run(name,new,arm,mode,detector,waypoint_check='auto'):
     # Landmarks enter telemetry only, never the policy.
     landmarks=link_targets(meta,DATA)
     with PolicyFlightSimulator(scene/'models/rgb.ply',point_cloud=scene/'collision/rgb_surface_m.ply',
-            config={'limits':{'max_steps':1500}},seed=meta['seed'],spawn=xyz.tolist(),yaw=yaw0,resolution=.5,
+            config={'limits':{'max_steps':1500}},seed=meta['seed'],spawn=xyz.tolist(),yaw=yaw0,resolution=1.0,
             spawn_velocity_w_mps=f0['velocity_w_mps'],scene_factory=rgb_factory(rig,f0['rig_pitch_deg'])) as sim:
         r=sim.last_receipt;st=r['state']
         pos=xyz.copy();yaw=yaw0;vel=np.array(f0['velocity_w_mps']);q,body=upright(pos,yaw)
@@ -137,7 +137,7 @@ def run(name,new,arm,mode,detector,waypoint_check='auto'):
         Image.fromarray(np.rint(image*255).astype(np.uint8)).save(folder/'end.png')
         dump(folder/'frames.json',frames);dump(folder/'decisions.json',decisions)
         dump(folder/'episode.json',dict(case=case,source=name,new=new,mode=mode,arm=arm,instruction=ins,spawn=xyz.tolist(),spawn_yaw=yaw0,
-            reason=reason,hold=hold,num_decisions=len(decisions),end=pos.tolist(),end_yaw=yaw,duration=t))
+            reason=reason,hold=hold,num_decisions=len(decisions),end=pos.tolist(),end_yaw=yaw,render_wh=[sim.scene.width,sim.scene.height],duration=t))
         print(mode,arm,case,reason,len(decisions),flush=True)
 if __name__=='__main__':
     if sys.argv[1:3] == ['flight','furniture']:

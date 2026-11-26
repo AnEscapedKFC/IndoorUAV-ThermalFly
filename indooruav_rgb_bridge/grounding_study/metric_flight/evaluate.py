@@ -32,7 +32,7 @@ def measure(folder,room):
     center=np.array(load(DATA/'scenes/room65_selected_anchored/landmarks.json')['ac']['center_w_m'])
     dist=np.linalg.norm(xyz-center,axis=1);gap=float(np.linalg.norm(xyz[-1]-spec['goal_w_m']))
     threshold=load(base/'summary.json')['task_evidence']['ordered_inspections'][0]['reference_range_plus_20cm_m']
-    uv=np.array([r['objects']['ac']['uv'] or [-1.e6,-1.e6] for r in f])/np.array([320,240])
+    uv=np.array([r['objects']['ac']['uv'] or [-1.e6,-1.e6] for r in f])/np.array(e.get('render_wh',[320,240]))
     visible=np.array([r['objects']['ac']['in_image'] for r in f]);central=visible & np.all((uv>=.1)&(uv<=.9),axis=1)
     tight=visible & np.all((uv>=.3)&(uv<=.7),axis=1)
     close=central & (dist<=threshold);hit=np.flatnonzero(close);start=hit[0] if len(hit) else len(f)

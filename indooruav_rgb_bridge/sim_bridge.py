@@ -194,7 +194,7 @@ def run(args):
     with ExitStack() as stack:
         sim = stack.enter_context(PolicyFlightSimulator(folder/'models/rgb.ply',
             point_cloud=folder/'collision/rgb_surface_m.ply', config=config,seed=meta['seed'],
-            spawn=initial['position_w_m'], yaw=initial_yaw, resolution=.5,
+            spawn=initial['position_w_m'], yaw=initial_yaw, resolution=getattr(args,'render_width',640)/640,
             spawn_velocity_w_mps=initial['velocity_w_mps'],scene_factory=rgb_factory(rig, initial['rig_pitch_deg'])))
         frames = stack.enter_context((out/'frames.jsonl').open('x'))
         decisions = stack.enter_context((out/'decisions.jsonl').open('x'))
@@ -248,6 +248,8 @@ def run(args):
             if r['frame_id']==0:
                 rgb = np.rint(sim.last_rgb*255).astype(np.uint8)
                 recorded = np.asarray(Image.open(episode_dir/initial['rgb_path']).convert('RGB'), dtype=np.int16)
+                if rgb.shape[:2]!=recorded.shape[:2]:
+                    rgb=np.asarray(Image.fromarray(rgb).resize(recorded.shape[1::-1],Image.Resampling.LANCZOS))
                 initial_image_delta = float(np.abs(rgb.astype(np.int16)-recorded).mean())
         record()
         if args.mode == 'replay':
@@ -332,7 +334,7 @@ def run(args):
         hold_drift = float(np.max(np.linalg.norm(np.asarray(hold_positions)-hold_start,axis=1))) if hold_positions else None
         hold_final_speed = max(hold_speeds[-10:]) if hold_speeds else None
         stable = bool(hold_drift is not None and hold_drift <= thresholds['position_tol_m'] and hold_final_speed <= thresholds['speed_tol_mps'])
-        summary = dict(episode=args.episode, split=next((k for k,ids in get_json(args.dataset/'splits.json')['splits'].items() if args.episode in ids),None),
+        summary = dict(render_wh=[sim.scene.width,sim.scene.height],episode=args.episode, split=next((k for k,ids in get_json(args.dataset/'splits.json')['splits'].items() if args.episode in ids),None),
             mode=args.mode, scene=source, instruction=actual_instruction,outcome=outcome,duration_s=r['sim_time'],
             frames=frame_count,inferences=n_infers if args.mode=='model' else 0,decisions=n_infers,subinstructions=subinstructions,final_stage_index=stage,spawn_w_m=initial['position_w_m'],end_w_m=st['position'],
             goal_w_m=thresholds['goal_w_m'],terminal_position_error_m=dist,closest_goal_distance_m=closest_goal,
@@ -363,6 +365,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--dataset',type=Path,default=SIM/'outputs/expert_rgbt_20261123')
     parser.add_argument('--episode',required=True)
+    parser.add_argument('--render-width',type=int,choices=[320,640],default=640)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--mode',choices=['model','replay','oracle'],default='model')
     parser.add_argument('--gimbal',choices=['auto','learned','fixed','recorded'],

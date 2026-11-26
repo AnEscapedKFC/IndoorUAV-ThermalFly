@@ -35,7 +35,7 @@ def speed_results(room, distance, group, mode, case):
 
 
 def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgbt=None,
-            waypoint_speed="through",corridor_distance=13.,furniture_task=None):
+            waypoint_speed="through",corridor_distance=13.,furniture_task=None,furniture_mode='depth'):
     room='room_' in case;source=case.removeprefix('fresh_').removeprefix('holdout_').removeprefix('reverse_').removeprefix('new_')
     if furniture_task is not None:
         room=True
@@ -47,7 +47,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
         final_object=next((stage['landmark'] for stage in reversed(stages) if 'landmark' in stage), None)
     standoff=room and final_object=='ac' and room_goal=='standoff'
     if furniture_task is not None:
-        out=OUT/'furniture'/case
+        out=OUT/'furniture_640'/furniture_mode/case
     else:
         out=OUT/(RESULT_FOLDER if standoff else 'room' if room else 'corridor')/(('visual' if inspect else 'hint') if room else switch)/case
         if record_rgbt:
@@ -60,6 +60,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             if room and not standoff:out=out/'reference'
             if not room and switch!='auto':out=out/switch
         if room and switch!='auto':out=out/switch
+    if furniture_task is None:out=OUT/'640x480'/out.relative_to(OUT)
     if seed!=42:out=out/str(seed)
     if (out/'episode.json').exists() and (not record_rgbt or (out/'recording.json').exists()):
         if standoff:
@@ -82,23 +83,33 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     policy=Policy(text);servo=StandoffInspection(text) if standoff else Inspection(text);odo=Odometer(xyz,yaw0)
     if furniture_task is not None:
         from metric_flight.furniture_control import FurnitureInspection
-        servo=FurnitureInspection(final_object,text)
+        servo=FurnitureInspection(final_object,text,use_depth=furniture_mode=='depth')
     rig,known=(RoomRig,RoomSpace()) if room else (CorridorRig,CorridorSpace())
     scene=SIM/'scenes'/meta['scene_version']
     landmarks=link_targets(meta,DATA) if room and furniture_task is None else {}
     course=VisualCourse(odo.axis) if active and length is not None else None
     frames=[];ds=[];hold=[];hold_rgb=[];reason=None
     previous_exit_velocity=None
+    pitch_setpoint=init['rig_pitch_deg']
     camera_factory=rgb_factory(rig,init['rig_pitch_deg'],render_thermal=bool(record_rgbt))
+    depth_enabled=furniture_task is not None and furniture_mode=='depth'
+    guard=None
+    if depth_enabled:
+        from metric_flight.depth_guard import DepthGuard,preflight,survey_rig
+        camera_factory=survey_rig(camera_factory)
     with (RgbtRecording(out,meta['scene_version']) if record_rgbt else nullcontext()) as video, PolicyFlightSimulator(scene/'models/rgb.ply',point_cloud=scene/'collision/rgb_surface_m.ply',config={'limits':{'max_steps':1500}},
-        seed=meta['seed'],spawn=xyz.tolist(),yaw=yaw0,resolution=.5,spawn_velocity_w_mps=init['velocity_w_mps'],scene_factory=camera_factory) as sim:
+        seed=meta['seed'],spawn=xyz.tolist(),yaw=yaw0,resolution=1.0,spawn_velocity_w_mps=init['velocity_w_mps'],scene_factory=camera_factory) as sim:
+        if depth_enabled:
+            guard=DepthGuard(xyz,sim.obstacles.safety_half_size)
+            common.dump(out/'depth_preflight.json',preflight(sim,guard))
         r=sim.last_receipt
         def record():
+            if guard is not None and r['step_id']%4==0:guard.observe(sim.last_depth,sim.scene)
             if video is not None:video.frame(sim,r)
             st=r['state'];p=np.asarray(st['position']);q=np.array(st['quaternion_wxyz'])
             inside=bool(known.contains_box(p,Rotation.from_quat(q[[1,2,3,0]]).as_matrix(),sim.obstacles.safety_half_size))
             odo.tick(p);frames.append(dict(t=r['sim_time'],xyz=p.tolist(),yaw=st['euler_deg'][2],v=st['velocity'],
-                     inside=inside,collision=r['collision']['event'] is not None,objects={k:projection(sim,v) for k,v in landmarks.items()},
+                     rig_pitch_deg=float(sim.scene.pitch_deg),inside=inside,collision=r['collision']['event'] is not None,objects={k:projection(sim,v) for k,v in landmarks.items()},
                      cumulative_m=odo.path,forward_m=odo.forward))
             return inside
         assert record() and sim.obstacles.distance(xyz,r['state']['quaternion_wxyz'])['safety_clearance']>0
@@ -126,17 +137,46 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                     stop=False
                 info=dict(remaining_m=length-odo.path,course=course_info if active else None)
             elif inspect:
-                seconds=.5;target,stop,info=servo.step(p,yaw,v,target,det,sim.scene,seconds,sim.last_rgb)
-                if servo.lost>=4:reason='target_lost'
+                seconds=.5
+                extra={'depth':sim.last_depth} if depth_enabled else {}
+                target,stop,info=servo.step(p,yaw,v,target,det,sim.scene,seconds,sim.last_rgb,**extra)
+                if depth_enabled:
+                    # Detection may disappear briefly on purpose at the edge of a sofa scan.
+                    if servo.lost>=8 and info.get('phase') not in {'scan_left','scan_right'}:reason='target_lost'
+                elif servo.lost>=4:reason='target_lost'
                 if furniture_task is not None and i==0 and not det['boxes']:reason='initial_target_missing'
             ds.append(dict(n=i+1,t=r['sim_time'],raw_world=mapping.to_world(raw).tolist(),world_target=target.tolist(),raw_stop=raw_stop,stopping=stop,
                            prompt=prompt,gate=active,info=info,detection=det))
             if reason:break
-            if stop:
-                target=np.r_[p,yaw];seconds=2.;hold=[dict(xyz=p.tolist(),speed=st['speed'])]
             legacy_hold=stop or (room and inspect)
             holding_phase=info.get('phase') in {'terminal_hold','observation_lost','settle'}
             passing=waypoint_speed=='through' and not stop and not holding_phase
+            if guard is not None:
+                proposed=target.copy()
+                goal=np.r_[p,yaw] if stop else target
+                observation=info.get('anchor') or {}
+                anchor=observation.get('world') if observation.get('confirmed') else None
+                target,safety=guard.select(st,goal,2. if stop else seconds,passing,previous_exit_velocity,
+                                           rig=sim.scene,anchor=anchor)
+                # When a lower observation would move the body near a surface, keep
+                # the safety envelope and re-aim the sensor from the reachable pose.
+                if observation.get('confirmed') and info.get('range_est_m',np.inf)<1.30:
+                    vertical=observation['uv'][1]
+                    if abs(vertical-.5)>.09:
+                        error=np.rad2deg(np.arctan((vertical-.5)*sim.scene.height/sim.scene.ks['rgb'][1,1]))
+                        pitch_setpoint=float(np.clip(sim.scene.pitch_deg-error,-65.,15.))
+                    else:pitch_setpoint=sim.scene.pitch_deg
+                info['gimbal_setpoint_deg']=float(pitch_setpoint)
+                info['depth_guard']=safety
+                ds[-1]['proposed_world']=proposed.tolist()
+                ds[-1]['world_target']=target.tolist()
+                if safety['choice']=='brake':
+                    stop=passing=False
+                    ds[-1]['stopping']=False
+                if guard.stalled>=8:
+                    reason='depth_path_unconfirmed';break
+            if stop:
+                target=np.r_[p,yaw];seconds=2.;hold=[dict(xyz=p.tolist(),speed=st['speed'])]
             start_velocity=previous_exit_velocity if passing else None
             end_velocity=(target[:3]-p)/seconds if passing else None
             sample=guided_curve(st,target,seconds,legacy_hold,
@@ -147,6 +187,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             previous_exit_velocity=end_velocity
             for k in range(round(seconds/CONTROL_DT)):
                 u,_=controller(sim,r,None,(k+.5)*CONTROL_DT,sample=sample)
+                if guard is not None:
+                    sim.scene.pitch_deg+=float(np.clip(pitch_setpoint-sim.scene.pitch_deg,-12*CONTROL_DT,12*CONTROL_DT))
                 r=sim.step(u,format='body_rates_thrust');inside=record()
                 if stop:
                     hold.append(dict(xyz=r['state']['position'],speed=r['state']['speed']))
@@ -168,7 +210,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
         Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(out/'end.png')
         for filename,obj in [('frames',frames),('decisions',ds),('episode',dict(case=case,source=source,mode='flight',instruction=text,gate=active,
                 switch=switch,inspection=inspect,seed=seed,spawn=xyz.tolist(),spawn_yaw=yaw0,end=frames[-1]['xyz'],end_yaw=frames[-1]['yaw'],hold=hold,
-                waypoint_speed=waypoint_speed,recording_group=record_rgbt, fixed_pitch_deg=init['rig_pitch_deg'],
+                waypoint_speed=waypoint_speed,render_wh=[sim.scene.width,sim.scene.height],furniture_mode=furniture_mode if furniture_task else None,recording_group=record_rgbt, fixed_pitch_deg=None if depth_enabled else init['rig_pitch_deg'],
+                initial_pitch_deg=init['rig_pitch_deg'],
                 room_goal='furniture' if furniture_task is not None else ('standoff' if standoff else 'reference') if room else None,hold_rgb=hold_rgb,
                 object_distance_range_m=[MIN_RANGE_M,MAX_RANGE_M] if standoff else None,
                 reason=reason or 'limit',duration=frames[-1]['t'],distance_setpoint=length,altitude_setpoint=height))]:
@@ -204,6 +247,7 @@ def main(argv=None):
         if args.record_rgbt:
             folder=(OUT/'room_ac_rgbt'/args.record_rgbt/n if args.scene=='room' and args.waypoint_speed=='legacy'
                     else speed_results(args.scene=='room',args.corridor_distance,args.record_rgbt,args.waypoint_speed,n))
+            folder=OUT/'640x480'/folder.relative_to(OUT)
             folder.mkdir(parents=True,exist_ok=True)
             lock=(folder/'.record.lock').open('a')
         with lock as handle:
