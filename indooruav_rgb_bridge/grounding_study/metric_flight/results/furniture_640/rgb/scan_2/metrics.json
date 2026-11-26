@@ -1,0 +1,76 @@
+{
+  "case": "scan_2",
+  "target": "sofa",
+  "reason": "stop",
+  "initial_detected": true,
+  "end_range_m": 1.055435805098356,
+  "initial_range_m": 3.4526183705607663,
+  "minimum_range_m": 1.0415048265597822,
+  "end_in_rough_band": true,
+  "stable_hover": true,
+  "hold_in_strict": false,
+  "hold_in_rough": true,
+  "terminal_observation_ok": true,
+  "height_drop_m": 0.8263435696295837,
+  "collision_events": 0,
+  "outside_samples": 0,
+  "strict": false,
+  "approximate": false,
+  "duration_s": 27.500000000000256,
+  "video_frames": 551,
+  "sweep": {
+    "coverage": 0.803479223014507,
+    "per_part": {
+      "backrest": 0.964216962971351,
+      "left_arm": 1.0,
+      "right_arm": 0.830393487109905,
+      "seat": 0.8131868131868132,
+      "front_panel": 0.0,
+      "right_side": 0.09339622641509433,
+      "left": 0.9777306468716861,
+      "middle": 0.9452029175238451,
+      "right": 0.6055392362568192
+    },
+    "frames": 137,
+    "start_s": 14.250000000000068,
+    "end_s": 21.050000000000164,
+    "best_single_frame": 0.47866978116547826,
+    "left_middle_right_times_s": [
+      14.250000000000068,
+      17.35000000000011,
+      19.30000000000014
+    ],
+    "surface_pass": false,
+    "ordered_full_front": false,
+    "reverse_order_check": false,
+    "stationary_order_check": false,
+    "best_single_frame_any_segment": 0.7455741332677649
+  },
+  "all_history_diagnostic": {
+    "coverage": 0.9743668551758052,
+    "per_part": {
+      "backrest": 0.9979617257388744,
+      "left_arm": 1.0,
+      "right_arm": 0.9993215739484396,
+      "seat": 1.0,
+      "front_panel": 0.6666666666666666,
+      "right_side": 1.0,
+      "left": 1.0,
+      "middle": 0.9721339068636619,
+      "right": 0.9625122394740523
+    },
+    "frames": 429,
+    "start_s": 0.0,
+    "end_s": 21.40000000000017,
+    "best_single_frame": 0.9721539218096877,
+    "left_middle_right_times_s": [
+      11.800000000000033,
+      17.35000000000011,
+      19.30000000000014
+    ],
+    "surface_pass": false,
+    "ordered_full_front": false,
+    "best_single_frame_any_segment": 0.9721539218096877
+  },
+  "scan_started": true
+}

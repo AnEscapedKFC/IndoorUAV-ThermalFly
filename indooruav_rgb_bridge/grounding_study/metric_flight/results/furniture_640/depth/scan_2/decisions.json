@@ -1,0 +1,3019 @@
+[
+  {
+    "n": 1,
+    "t": 0.0,
+    "raw_world": [
+      -0.9993287960146695,
+      0.39055197029240885,
+      2.9556207075640937,
+      84.6106589993579
+    ],
+    "world_target": [
+      -1.1015865439772419,
+      -0.24254309949436073,
+      1.6517919769731726,
+      79.77092801736084
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 3.469833968947046,
+      "anchor": {
+        "world": [
+          -0.5379705683054133,
+          2.880808897308361,
+          0.6879491159982791
+        ],
+        "uv": [
+          0.5238322417059844,
+          0.49674186004877696
+        ],
+        "error_m": 0.04872529029846191,
+        "views": 1,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5238322417059844,
+      "cy": 0.49674186004877696,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9343435168266296,
+          "label": "sofa",
+          "xyxy": [
+            0.30023014545440674,
+            0.4103872617085775,
+            0.7591629028320312,
+            0.7307675043741862
+          ],
+          "x": 0.529696524143219,
+          "area": 0.1470329881758403,
+          "side": "center"
+        }
+      ],
+      "image_sha": "5cc03917c3397f35f92274e6f29787b794df573699556ebc21ef896d4d347988",
+      "bearing_right_deg": 2.329939236530862,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -1.1015865439772419,
+      -0.24254309949436073,
+      1.6517919769731726,
+      79.77092801736084
+    ],
+    "reference_velocity_in": [
+      -0.028658,
+      0.185256,
+      -0.024289
+    ],
+    "reference_velocity_out": [
+      0.05682691204551604,
+      0.3149138010112785,
+      0.003583953946345364
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 2,
+    "t": 0.49999999999999994,
+    "raw_world": [
+      -1.0211963982013517,
+      0.6527386580149424,
+      2.761788786690272,
+      80.90174472799907
+    ],
+    "world_target": [
+      -1.0808034990415751,
+      -0.09672725833564322,
+      1.6463351655428777,
+      79.71699125782177
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 3.327268461553342,
+      "anchor": {
+        "world": [
+          -0.5410307774055318,
+          2.87846525064006,
+          0.6857526648915688
+        ],
+        "uv": [
+          0.5078998328901357,
+          0.5110082196958158
+        ],
+        "error_m": 0.05329404776733567,
+        "views": 2,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5078998328901357,
+      "cy": 0.5110082196958158,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9335498213768005,
+          "label": "sofa",
+          "xyxy": [
+            0.2720921516418457,
+            0.42071654001871744,
+            0.7532386302947998,
+            0.7635055541992187
+          ],
+          "x": 0.5126653909683228,
+          "area": 0.16493172709386572,
+          "side": "center"
+        }
+      ],
+      "image_sha": "f7589ddfff5cc3d08ebfd1cfbe106d6db3349ecc6374ab849b26604ffaaeaa23",
+      "bearing_right_deg": 0.9976515573648044,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -1.0808034990415751,
+      -0.09672725833564322,
+      1.6463351655428777,
+      79.71699125782177
+    ],
+    "reference_velocity_in": [
+      0.05682691204551604,
+      0.3149138010112786,
+      0.003583953946345364
+    ],
+    "reference_velocity_out": [
+      0.057123338499832865,
+      0.31486016610335704,
+      -0.012109041665397502
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 3,
+    "t": 1.0000000000000002,
+    "raw_world": [
+      -1.079086937850321,
+      -0.041175916652708755,
+      2.100707553153638,
+      77.39389124302306
+    ],
+    "world_target": [
+      -1.0526548408691847,
+      0.004824407080759319,
+      1.6205300098038677,
+      79.96060267879544
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 3.146457047989606,
+      "anchor": {
+        "world": [
+          -0.5440909865056505,
+          2.8774813038347142,
+          0.6879491159982791
+        ],
+        "uv": [
+          0.503151718240172,
+          0.544755371457586
+        ],
+        "error_m": 0.05494941115249838,
+        "views": 3,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.503151718240172,
+      "cy": 0.544755371457586,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9320887923240662,
+          "label": "sofa",
+          "xyxy": [
+            0.24993295669555665,
+            0.44868946075439453,
+            0.7667105674743653,
+            0.7978659947713216
+          ],
+          "x": 0.5083217620849609,
+          "area": 0.18044661498929299,
+          "side": "center"
+        }
+      ],
+      "image_sha": "72ce6412341db104e489245f2b5e2378fb79e7c2bfda0b55ce7a299056585f96",
+      "bearing_right_deg": 0.8228846898408051,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -1.0526548408691847,
+      0.004824407080759319,
+      1.6205300098038677,
+      79.96060267879544
+    ],
+    "reference_velocity_in": [
+      0.057123338499832865,
+      0.314860166103357,
+      -0.012109041665397502
+    ],
+    "reference_velocity_out": [
+      0.027892048503603828,
+      0.1575500987948678,
+      -0.04923090860334467
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 4,
+    "t": 1.5000000000000007,
+    "raw_world": [
+      -0.5960120048974702,
+      1.1879147851300944,
+      2.1650625458178174,
+      78.28130538454047
+    ],
+    "world_target": [
+      -1.0245182972797442,
+      0.17453640043554738,
+      1.6032954948321172,
+      79.94859722104607
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 3.051871712013129,
+      "anchor": {
+        "world": [
+          -0.5453038585892325,
+          2.878110877800684,
+          0.6862194397264728
+        ],
+        "uv": [
+          0.5090389040630273,
+          0.5291875300768667
+        ],
+        "error_m": 0.05632909748657384,
+        "views": 4,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5090389040630273,
+      "cy": 0.5291875300768667,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9201346635818481,
+          "label": "sofa",
+          "xyxy": [
+            0.24632692337036133,
+            0.42998046875,
+            0.7833139896392822,
+            0.788352902730306
+          ],
+          "x": 0.5148204565048218,
+          "area": 0.19244136195473704,
+          "side": "center"
+        }
+      ],
+      "image_sha": "dbed4bf0b3a7405b746682438bd9498fb2a8e1fe80c31a69c26b269cdad84275",
+      "bearing_right_deg": 1.1426344363178487,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -1.0245182972797442,
+      0.17453640043554738,
+      1.6032954948321172,
+      79.94859722104607
+    ],
+    "reference_velocity_in": [
+      0.027892048503603828,
+      0.1575500987948678,
+      -0.04923090860334467
+    ],
+    "reference_velocity_out": [
+      0.05585012022827751,
+      0.31508850196490346,
+      -0.03210628308455332
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 5,
+    "t": 2.000000000000001,
+    "raw_world": [
+      -1.0195513808841463,
+      0.22209847580686254,
+      2.0159964763367086,
+      81.62376121611061
+    ],
+    "world_target": [
+      -1.016868416726148,
+      0.22162087356333554,
+      1.5915460166693876,
+      79.90634348047895
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.934065893654093,
+      "anchor": {
+        "world": [
+          -0.5440909865056505,
+          2.8774813038347142,
+          0.6845229005342748
+        ],
+        "uv": [
+          0.509342946936833,
+          0.5197739293010738
+        ],
+        "error_m": 0.0564985229412765,
+        "views": 5,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.509342946936833,
+      "cy": 0.5197739293010738,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8431187272071838,
+          "label": "sofa",
+          "xyxy": [
+            0.23427515029907225,
+            0.41493959426879884,
+            0.79497389793396,
+            0.797360610961914
+          ],
+          "x": 0.5146245241165162,
+          "area": 0.21442298512909017,
+          "side": "center"
+        }
+      ],
+      "image_sha": "b4c667a83c9ccc52ed900daeb10cc19601d7a760cd6d585c7f4c8bab1b6cdd9d",
+      "bearing_right_deg": 1.1583840044525573,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -1.016868416726148,
+      0.22162087356333554,
+      1.5915460166693876,
+      79.90634348047895
+    ],
+    "reference_velocity_in": [
+      0.05585012022827751,
+      0.31508850196490346,
+      -0.03210628308455332
+    ],
+    "reference_velocity_out": [
+      0.031258473980476875,
+      0.1755966737174776,
+      -0.02175132223118137
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 6,
+    "t": 2.499999999999999,
+    "raw_world": [
+      -0.9275996463620375,
+      0.9302194939502682,
+      2.5314786314474547,
+      79.83870062366668
+    ],
+    "world_target": [
+      -0.9801255249651717,
+      0.4256380143603528,
+      1.5477719721336378,
+      79.88485456141164
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.8001276490890725,
+      "anchor": {
+        "world": [
+          -0.5427637834411321,
+          2.8772190964756823,
+          0.686236008266277
+        ],
+        "uv": [
+          0.5093025563573673,
+          0.5766758229227318
+        ],
+        "error_m": 0.059001370092231054,
+        "views": 6,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5093025563573673,
+      "cy": 0.5766758229227318,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9167384505271912,
+          "label": "sofa",
+          "xyxy": [
+            0.2131507635116577,
+            0.4676245053609212,
+            0.8127613067626953,
+            0.8663167953491211
+          ],
+          "x": 0.5129560351371765,
+          "area": 0.23906010058982474,
+          "side": "center"
+        }
+      ],
+      "image_sha": "22f721a33d106f424aa4fd8cd871504c9dc16150c72439c1936fa037a8af3fd4",
+      "bearing_right_deg": 1.0443530854341248,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.9801255249651717,
+      0.4256380143603528,
+      1.5477719721336378,
+      79.88485456141164
+    ],
+    "reference_velocity_in": [
+      0.031258473980476875,
+      0.1755966737174776,
+      -0.02175132223118137
+    ],
+    "reference_velocity_out": [
+      0.05620062762793809,
+      0.31502617264955285,
+      -0.08434340521500516
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 7,
+    "t": 2.9999999999999973,
+    "raw_world": [
+      -0.967107285983904,
+      0.34557644021884204,
+      2.3744187990716723,
+      81.93666783401136
+    ],
+    "world_target": [
+      -0.972348548101648,
+      0.46884457084504016,
+      1.5264621158820528,
+      79.8569273518397
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.668114659884233,
+      "anchor": {
+        "world": [
+          -0.5414365803766136,
+          2.8774813038347142,
+          0.6879491159982791
+        ],
+        "uv": [
+          0.5099387239099262,
+          0.5328383642599678
+        ],
+        "error_m": 0.05979003001093644,
+        "views": 7,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5099387239099262,
+      "cy": 0.5328383642599678,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8787299394607544,
+          "label": "sofa",
+          "xyxy": [
+            0.1954563856124878,
+            0.41909402211507163,
+            0.829852294921875,
+            0.8341211954752604
+          ],
+          "x": 0.5126543402671814,
+          "area": 0.26329154103194163,
+          "side": "center"
+        }
+      ],
+      "image_sha": "db531169c75e1b5425aab09a46698f28836de0b8343204a113981a36d9223d9a",
+      "bearing_right_deg": 1.0191736160099367,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.972348548101648,
+      0.46884457084504016,
+      1.5264621158820528,
+      79.8569273518397
+    ],
+    "reference_velocity_in": [
+      0.05620062762793809,
+      0.3150261726495528,
+      -0.08434340521500516
+    ],
+    "reference_velocity_out": [
+      0.028177085778325894,
+      0.15749937090998445,
+      -0.0361222006859645
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 8,
+    "t": 3.4999999999999956,
+    "raw_world": [
+      -0.8916007293806046,
+      1.1051134141175203,
+      2.292867792821184,
+      76.91571542673864
+    ],
+    "world_target": [
+      -0.9362874434293978,
+      0.6701634916047272,
+      1.4799483516342158,
+      79.81730885432071
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.5450478091206366,
+      "anchor": {
+        "world": [
+          -0.5397035743410135,
+          2.878110877800684,
+          0.6881347169756065
+        ],
+        "uv": [
+          0.5106077051214671,
+          0.583176507868035
+        ],
+        "error_m": 0.10005368987911337,
+        "views": 8,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5106077051214671,
+      "cy": 0.583176507868035,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8489698171615601,
+          "label": "sofa",
+          "xyxy": [
+            0.1724006175994873,
+            0.4636882464090983,
+            0.8504694938659668,
+            0.9027678807576497
+          ],
+          "x": 0.5114350557327271,
+          "area": 0.29772623425421896,
+          "side": "center"
+        }
+      ],
+      "image_sha": "917141a418e770d8d1d699e94ae9e21ec96b49f4f03b9f34e1ea0c7728cab163",
+      "bearing_right_deg": 0.9202038966960515,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.9362874434293978,
+      0.6701634916047272,
+      1.4799483516342158,
+      79.81730885432071
+    ],
+    "reference_velocity_in": [
+      0.028177085778325894,
+      0.15749937090998445,
+      -0.0361222006859645
+    ],
+    "reference_velocity_out": [
+      0.05657197126315561,
+      0.3149596991162531,
+      -0.09149415865483856
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 9,
+    "t": 3.999999999999994,
+    "raw_world": [
+      -0.9461203019220437,
+      0.8518042508809176,
+      2.2993031162038253,
+      79.42922073947307
+    ],
+    "world_target": [
+      -0.9147788565994964,
+      0.7890969317151942,
+      1.4543271709242516,
+      79.7781679387543
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.4156351012179815,
+      "anchor": {
+        "world": [
+          -0.5379705683054133,
+          2.8787404517666544,
+          0.6883203179529337
+        ],
+        "uv": [
+          0.5111436843323187,
+          0.5407764030304479
+        ],
+        "error_m": 0.1314730102949661,
+        "views": 9,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5111436843323187,
+      "cy": 0.5407764030304479,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8912690877914429,
+          "label": "sofa",
+          "xyxy": [
+            0.14953532218933105,
+            0.4150453885396322,
+            0.8700146675109863,
+            0.8758765538533528
+          ],
+          "x": 0.5097749948501586,
+          "area": 0.33201933628904495,
+          "side": "center"
+        }
+      ],
+      "image_sha": "55fae04f1faa447926645d1c9c9086a137521d9b841f3707226bcf7e8545b906",
+      "bearing_right_deg": 0.7927379436611943,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.9147788565994964,
+      0.7890969317151942,
+      1.4543271709242516,
+      79.7781679387543
+    ],
+    "reference_velocity_in": [
+      0.05657197126315561,
+      0.3149596991162531,
+      -0.09149415865483856
+    ],
+    "reference_velocity_out": [
+      0.056787118937331016,
+      0.31492097917223205,
+      -0.044854043333492744
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 10,
+    "t": 4.499999999999992,
+    "raw_world": [
+      -0.8725178911453708,
+      1.114277102846096,
+      2.4218557968032504,
+      78.84909339681735
+    ],
+    "world_target": [
+      -0.8803032566429227,
+      0.9788534340289335,
+      1.3950732785508704,
+      79.6843588307731
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.2271281387440305,
+      "anchor": {
+        "world": [
+          -0.5343429906576211,
+          2.879600131182174,
+          0.6892223588644937
+        ],
+        "uv": [
+          0.5128848914785896,
+          0.6057795114321343
+        ],
+        "error_m": 0.14119296102876047,
+        "views": 10,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5128848914785896,
+      "cy": 0.6057795114321343,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.5339112281799316,
+          "label": "sofa",
+          "xyxy": [
+            0.10251030921936036,
+            0.4676056861877441,
+            0.9119842529296875,
+            0.9913971583048503
+          ],
+          "x": 0.507247281074524,
+          "area": 0.4239955486164719,
+          "side": "center"
+        }
+      ],
+      "image_sha": "a0ce73dea4266ade8caf009eafacdd1fe1ae88103a5b4feeccfb1f85692a0ebb",
+      "bearing_right_deg": 0.591596376839334,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.8803032566429227,
+      0.9788534340289335,
+      1.3950732785508704,
+      79.6843588307731
+    ],
+    "reference_velocity_in": [
+      0.056787118937331016,
+      0.31492097917223205,
+      -0.044854043333492744
+    ],
+    "reference_velocity_out": [
+      0.057302655721756635,
+      0.31482758082358964,
+      -0.11635746257534763
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 11,
+    "t": 4.99999999999999,
+    "raw_world": [
+      -0.8289509435704066,
+      2.145934420164701,
+      2.9441669417477554,
+      78.9131500500485
+    ],
+    "world_target": [
+      -0.8514129229440212,
+      1.1359811736698422,
+      1.347321562394516,
+      79.57324375333384
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.0557962876184175,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5141082082084256,
+          0.5824836514236815
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "backrest_plane_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5141082082084256,
+      "cy": 0.5824836514236815,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8806154727935791,
+          "label": "sofa",
+          "xyxy": [
+            0.047956109046936035,
+            0.43363746007283527,
+            0.9508054733276368,
+            0.9974474589029948
+          ],
+          "x": 0.4993807911872864,
+          "area": 0.5090354990189121,
+          "side": "center"
+        }
+      ],
+      "image_sha": "153769fbb84239af3fa1b1798b7cb8dd5e20b19a49f0cad2ec08abcb25553e5c",
+      "bearing_right_deg": -0.050503226892828934,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.8514129229440212,
+      1.1359811736698422,
+      1.347321562394516,
+      79.57324375333384
+    ],
+    "reference_velocity_in": [
+      0.057302655721756635,
+      0.31482758082358964,
+      -0.11635746257534763
+    ],
+    "reference_velocity_out": [
+      0.057913100249669336,
+      0.3147158604510927,
+      -0.0907320165660499
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 12,
+    "t": 5.4999999999999885,
+    "raw_world": [
+      -0.8142307121534296,
+      1.53767708678406,
+      1.9961659649989385,
+      78.03441114108375
+    ],
+    "world_target": [
+      -0.8224283912119033,
+      1.2933434659872436,
+      1.2957024522483587,
+      79.5741938225213
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.8898195380775153,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5137493630248449,
+          0.5931418904426607
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5137493630248449,
+      "cy": 0.5931418904426607,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9239240884780884,
+          "label": "sofa",
+          "xyxy": [
+            0.00017368793487548828,
+            0.430330499013265,
+            0.9997986793518067,
+            1.0
+          ],
+          "x": 0.4999861836433411,
+          "area": 0.5694558700343524,
+          "side": "center"
+        }
+      ],
+      "image_sha": "d5d90748af9064f03e1178cafacea27fc59e1e04394a4721fe553cbc8ea6f2e3",
+      "bearing_right_deg": 0.0006276014932211638,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.8224283912119033,
+      1.2933434659872436,
+      1.2957024522483587,
+      79.5741938225213
+    ],
+    "reference_velocity_in": [
+      0.057913100249669336,
+      0.3147158604510927,
+      -0.0907320165660499
+    ],
+    "reference_velocity_out": [
+      0.05790788167509864,
+      0.3147168207133242,
+      -0.10245607948692692
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 13,
+    "t": 5.999999999999987,
+    "raw_world": [
+      -0.7381227676564728,
+      1.6163960782220204,
+      1.6866610345001336,
+      79.97447654572477
+    ],
+    "world_target": [
+      -0.792767072173687,
+      1.454154809774862,
+      1.23686955058389,
+      79.57699630670291
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.7183402250371815,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5153281936176936,
+          0.605071427808131
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5153281936176936,
+      "cy": 0.605071427808131,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9311889410018921,
+          "label": "sofa",
+          "xyxy": [
+            8.249282836914062e-05,
+            0.4253728230794271,
+            1.0,
+            0.9998490651448567
+          ],
+          "x": 0.5000412464141846,
+          "area": 0.5744288518953908,
+          "side": "center"
+        }
+      ],
+      "image_sha": "52fb821cca75609b414474198d91be738fd0c17ae51fae454eeb7abfdfd942bb",
+      "bearing_right_deg": 0.004956700965124128,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.792767072173687,
+      1.454154809774862,
+      1.23686955058389,
+      79.57699630670291
+    ],
+    "reference_velocity_in": [
+      0.05790788167509864,
+      0.3147168207133242,
+      -0.10245607948692692
+    ],
+    "reference_velocity_out": [
+      0.0578924879953584,
+      0.31471965276052805,
+      -0.11557857058894383
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 14,
+    "t": 6.499999999999985,
+    "raw_world": [
+      -0.7392573255767905,
+      1.5848189540871311,
+      1.8026049148898822,
+      69.36674405085486
+    ],
+    "world_target": [
+      -0.767789907679876,
+      1.5900680363229698,
+      1.174459967842518,
+      79.57596457501077
+    ],
+    "raw_stop": true,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.545230003850373,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5172934681248348,
+          0.611280315426391
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5172934681248348,
+      "cy": 0.611280315426391,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9251999855041504,
+          "label": "sofa",
+          "xyxy": [
+            4.965066909790039e-05,
+            0.41043240229288735,
+            1.0,
+            0.9999003092447917
+          ],
+          "x": 0.500024825334549,
+          "area": 0.5894386394759125,
+          "side": "center"
+        }
+      ],
+      "image_sha": "c5c88335a5baeb6d425e6771bc0b151d01ae524e651857390657a43dddd032e0",
+      "bearing_right_deg": 0.001460783029273216,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.767789907679876,
+      1.5900680363229698,
+      1.174459967842518,
+      79.57596457501077
+    ],
+    "reference_velocity_in": [
+      0.0578924879953584,
+      0.31471965276052805,
+      -0.11557857058894383
+    ],
+    "reference_velocity_out": [
+      0.0490062482870981,
+      0.2663846249671944,
+      -0.12240834696903002
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 15,
+    "t": 6.999999999999983,
+    "raw_world": [
+      -0.7946212385321533,
+      1.6689121730645657,
+      2.36161333614381,
+      79.76968317076785
+    ],
+    "world_target": [
+      -0.7520666786061188,
+      1.6755652139464017,
+      1.1124427484736408,
+      79.57571048983598
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.3900433373126475,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5194159020224577,
+          0.6106421143298096
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5194159020224577,
+      "cy": 0.6106421143298096,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9252283573150635,
+          "label": "sofa",
+          "xyxy": [
+            2.580881118774414e-05,
+            0.38300285339355467,
+            1.0,
+            0.9998807907104492
+          ],
+          "x": 0.5000129044055939,
+          "area": 0.6168620164306845,
+          "side": "center"
+        }
+      ],
+      "image_sha": "2acd02b27862f9dcb897974689b384a7817ee9fb298c586eb60263dcfc39bf7e",
+      "bearing_right_deg": 0.0009585744149092079,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.7520666786061188,
+      1.6755652139464017,
+      1.1124427484736408,
+      79.57571048983598
+    ],
+    "reference_velocity_in": [
+      0.0490062482870981,
+      0.2663846249671944,
+      -0.12240834696903002
+    ],
+    "reference_velocity_out": [
+      0.028949775418370294,
+      0.15735917673661737,
+      -0.12170632576279061
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 16,
+    "t": 7.499999999999981,
+    "raw_world": [
+      -0.7539223317752052,
+      1.789502302082066,
+      1.76705173830537,
+      76.51542739990384
+    ],
+    "world_target": [
+      -0.7318480113254047,
+      1.7854413225117767,
+      1.065315278490126,
+      79.57593732705296
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.2897276772928414,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5210780197615109,
+          0.5835575561450967
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5210780197615109,
+      "cy": 0.5835575561450967,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.9073882102966309,
+          "label": "sofa",
+          "xyxy": [
+            8.034706115722656e-05,
+            0.3360466003417969,
+            1.0,
+            0.9996213912963867
+          ],
+          "x": 0.5000401735305786,
+          "area": 0.6635214746702786,
+          "side": "center"
+        }
+      ],
+      "image_sha": "bbdf15a219c9b17c8bad9715a9c73a0c30ce5b31e1afc3ac3b62357f67774427",
+      "bearing_right_deg": 0.003350440565810686,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.7318480113254047,
+      1.7854413225117767,
+      1.065315278490126,
+      79.57593732705296
+    ],
+    "reference_velocity_in": [
+      0.028949775418370294,
+      0.15735917673661737,
+      -0.12170632576279061
+    ],
+    "reference_velocity_out": [
+      0.03885808658769174,
+      0.2112214160539887,
+      -0.09191331175960649
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 17,
+    "t": 7.99999999999998,
+    "raw_world": [
+      -0.6665375379766809,
+      1.9003399704551156,
+      1.935362087778096,
+      55.76370342598233
+    ],
+    "world_target": [
+      -0.7092645705448208,
+      1.9082004145132516,
+      1.0282648056538792,
+      79.57591648751932
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.1918526181187634,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5230388200505963,
+          0.5662700491347132
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5230388200505963,
+      "cy": 0.5662700491347132,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -25.25266,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.801720917224884,
+          "label": "sofa",
+          "xyxy": [
+            2.3663043975830078e-05,
+            0.29541826248168945,
+            1.0,
+            0.9991302490234375
+          ],
+          "x": 0.5000118315219879,
+          "area": 0.7036953345740642,
+          "side": "center"
+        }
+      ],
+      "image_sha": "c5189b940f6367aacc7d0c602660a19182e1fc3420667fd47a68bf8488aa289d",
+      "bearing_right_deg": 0.0009469921201059606,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.7092645705448208,
+      1.9082004145132516,
+      1.0282648056538792,
+      79.57591648751932
+    ],
+    "reference_velocity_in": [
+      0.03885808658769174,
+      0.2112214160539887,
+      -0.09191331175960649
+    ],
+    "reference_velocity_out": [
+      0.05233664505589686,
+      0.2844864133974614,
+      -0.07289705404818436
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 18,
+    "t": 8.499999999999986,
+    "raw_world": [
+      -0.5981973951972648,
+      2.6259435638600706,
+      1.0235036624676244,
+      76.67218817891057
+    ],
+    "world_target": [
+      -0.6788795418237159,
+      2.0733672132377463,
+      0.9650463497602506,
+      79.57588062131778
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.035478209316523,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.527093297002006,
+          0.6140094305446938
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.527093297002006,
+      "cy": 0.6140094305446938,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.50516791928418,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8224371671676636,
+          "label": "sofa",
+          "xyxy": [
+            6.031990051269531e-05,
+            0.30672121047973633,
+            1.0,
+            0.9995719273885091
+          ],
+          "x": 0.5000301599502563,
+          "area": 0.6928089242224587,
+          "side": "center"
+        }
+      ],
+      "image_sha": "e845ec85602677bbdbc7d76ee6957c6140318d279d855e93d4fd9a72e1b26a4c",
+      "bearing_right_deg": 0.0024084612957153695,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6788795418237159,
+      2.0733672132377463,
+      0.9650463497602506,
+      79.57588062131778
+    ],
+    "reference_velocity_in": [
+      0.05233664505589686,
+      0.2844864133974614,
+      -0.07289705404818436
+    ],
+    "reference_velocity_out": [
+      0.05789861632612037,
+      0.31471852539614,
+      -0.12541037359916318
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 19,
+    "t": 8.999999999999993,
+    "raw_world": [
+      -0.6811583666381424,
+      2.0749255234357156,
+      0.9632699081923739,
+      77.45880118261209
+    ],
+    "world_target": [
+      -0.6624753818165521,
+      2.1625342092743614,
+      0.955847155911169,
+      79.57589226461165
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.8530154459021436,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5338004900959861,
+          0.5128257041543468
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5338004900959861,
+      "cy": 0.5128257041543468,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.5005295276641846,
+          "label": "sofa",
+          "xyxy": [
+            0.0,
+            0.12908157507578533,
+            0.9999388694763184,
+            0.9988620122273763
+          ],
+          "x": 0.4999694347381592,
+          "area": 0.8697272670179799,
+          "side": "center"
+        }
+      ],
+      "image_sha": "0cf6e88e9e8053efa469a5ad08db39e51139c9af827b46f91a43cb16ce0b4e3c",
+      "bearing_right_deg": -0.002495753028171066,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6624753818165521,
+      2.1625342092743614,
+      0.955847155911169,
+      79.57589226461165
+    ],
+    "reference_velocity_in": [
+      0.05789861632612037,
+      0.31471852539614,
+      -0.12541037359916318
+    ],
+    "reference_velocity_out": [
+      0.028949276185483708,
+      0.15735926858096594,
+      -0.014108274569781587
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 20,
+    "t": 9.5,
+    "raw_world": [
+      -0.6311884997272099,
+      2.337543729754324,
+      0.9605427592905214,
+      77.84217792780743
+    ],
+    "world_target": [
+      -0.6498698006943117,
+      2.2310538923448737,
+      0.922322164253413,
+      79.5758975913652
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.7572699160403915,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.538921696955298,
+          0.5644487599997247
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.538921696955298,
+      "cy": 0.5644487599997247,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8365933895111084,
+          "label": "sofa",
+          "xyxy": [
+            2.866983413696289e-05,
+            0.12434136867523193,
+            1.0,
+            0.9995731353759766
+          ],
+          "x": 0.5000143349170685,
+          "area": 0.8752066739511619,
+          "side": "center"
+        }
+      ],
+      "image_sha": "10a0a055bdd53fed5a7687cae538bd5bad483e488eb6f3267bb3c82deb87e8b9",
+      "bearing_right_deg": 0.0011754049197065797,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6498698006943117,
+      2.2310538923448737,
+      0.922322164253413,
+      79.5758975913652
+    ],
+    "reference_velocity_in": [
+      0.028949276185483708,
+      0.15735926858096594,
+      -0.014108274569781587
+    ],
+    "reference_velocity_out": [
+      0.018035286570480258,
+      0.09803426406714966,
+      -0.07089363599969722
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 21,
+    "t": 10.000000000000007,
+    "raw_world": [
+      -0.6587431605949217,
+      2.20791862788364,
+      0.9141951327149063,
+      78.55672887166912
+    ],
+    "world_target": [
+      -0.6474029347569896,
+      2.2444631988097474,
+      0.9154921097494251,
+      79.5758946518717
+    ],
+    "raw_stop": true,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.7145551227814316,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.54196822477202,
+          0.5079934661518107
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.54196822477202,
+      "cy": 0.5079934661518107,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7145459651947021,
+          "label": "sofa",
+          "xyxy": [
+            1.895427703857422e-05,
+            0.03354066610336304,
+            1.0,
+            0.998859723409017
+          ],
+          "x": 0.5000094771385193,
+          "area": 0.9653007603808111,
+          "side": "center"
+        }
+      ],
+      "image_sha": "9d1f6b2dc77506945cea6afdbeb8032f518046a2b63698a284b816e3654432c7",
+      "bearing_right_deg": 0.0007669015581086569,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6474029347569896,
+      2.2444631988097474,
+      0.9154921097494251,
+      79.5758946518717
+    ],
+    "reference_velocity_in": [
+      0.018035286570480258,
+      0.09803426406714966,
+      -0.07089363599969722
+    ],
+    "reference_velocity_out": [
+      0.011466055618005733,
+      0.06232592954881877,
+      -0.008792812766991842
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 22,
+    "t": 10.500000000000014,
+    "raw_world": [
+      -0.5408904015712278,
+      2.6270204026241353,
+      0.8929144128324777,
+      75.33319104205864
+    ],
+    "world_target": [
+      -0.6440825465443165,
+      2.262511801115538,
+      0.8923551560850754,
+      79.57589465757479
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.6836003033640179,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5442352086746394,
+          0.5435357081466475
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5442352086746394,
+      "cy": 0.5435357081466475,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.795910120010376,
+          "label": "sofa",
+          "xyxy": [
+            9.119510650634766e-06,
+            0.04322785139083862,
+            1.0,
+            0.9994677861531576
+          ],
+          "x": 0.5000045597553253,
+          "area": 0.9562312143220493,
+          "side": "center"
+        }
+      ],
+      "image_sha": "0866985d41af5a1eacbbc58fa46028df5bcf2c5b9536ca25ea6ae540dd2670e9",
+      "bearing_right_deg": 0.0003678940313420753,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6440825465443165,
+      2.262511801115538,
+      0.8923551560850754,
+      79.57589465757479
+    ],
+    "reference_velocity_in": [
+      0.011466055618005733,
+      0.06232592954881877,
+      -0.008792812766991842
+    ],
+    "reference_velocity_out": [
+      0.006705421229455499,
+      0.03644859446867521,
+      -0.04788927896131234
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 23,
+    "t": 11.000000000000021,
+    "raw_world": [
+      -0.666208038415125,
+      2.2128221903296645,
+      1.551610899524662,
+      78.17362647330782
+    ],
+    "world_target": [
+      -0.6439312453202426,
+      2.2633342037976574,
+      0.8912525419389967,
+      79.57589505426236
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "terminal_hold",
+      "range_est_m": 0.6572634207796257,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5465875975914419,
+          0.5170477876797881
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5465875975914419,
+      "cy": 0.5170477876797881,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7954120635986328,
+          "label": "sofa",
+          "xyxy": [
+            0.0,
+            0.0,
+            0.9999872207641601,
+            0.9999184290568034
+          ],
+          "x": 0.49999361038208007,
+          "area": 0.9999056508633778,
+          "side": "center"
+        }
+      ],
+      "image_sha": "0f13dd03ed48e6bb4ab7e16a54257a1fbbfd440d1dd541a933ac957a3443708d",
+      "bearing_right_deg": -0.0005105409746875011,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6439312453202426,
+      2.2633342037976574,
+      0.8912525419389967,
+      79.57589505426236
+    ],
+    "reference_velocity_in": [
+      0.004354993769856535,
+      0.023672395328966613,
+      -0.04899836503656951
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 24,
+    "t": 11.500000000000028,
+    "raw_world": [
+      -0.6496515171424007,
+      2.2603105739042837,
+      0.8932618737677543,
+      78.79246818764989
+    ],
+    "world_target": [
+      -0.6433742473391547,
+      2.266361878984468,
+      0.892297492658365,
+      79.57589494712069
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "terminal_hold",
+      "range_est_m": 0.6546552442628024,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5467965817568059,
+          0.5236196063123352
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5467965817568059,
+      "cy": 0.5236196063123352,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7864749431610107,
+          "label": "sofa",
+          "xyxy": [
+            0.0,
+            1.537799835205078e-05,
+            0.9999905586242676,
+            0.9999662399291992
+          ],
+          "x": 0.4999952793121338,
+          "area": 0.9999414210190457,
+          "side": "center"
+        }
+      ],
+      "image_sha": "7659e312006010902d13a303063a5b345489cfd89da1c7b8e15fd55ca7e9c799",
+      "bearing_right_deg": -0.0003770067307868885,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6433742473391547,
+      2.266361878984468,
+      0.892297492658365,
+      79.57589494712069
+    ],
+    "reference_velocity_in": [
+      -0.00211019784822129,
+      -0.01147037030362389,
+      0.0002224572304831557
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 25,
+    "t": 12.000000000000036,
+    "raw_world": [
+      -0.6410585390587951,
+      2.2586819032585037,
+      0.892849641592513,
+      78.15555946379209
+    ],
+    "world_target": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      79.57589496401431
+    ],
+    "raw_stop": true,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "terminal_hold",
+      "range_est_m": 0.6556872946459367,
+      "anchor": {
+        "world": [
+          -0.5307154130098288,
+          2.8787404517666544,
+          0.6901243997760538
+        ],
+        "uv": [
+          0.5467093254698537,
+          0.5220224002596868
+        ],
+        "error_m": 0.14130028149068818,
+        "views": 11,
+        "source": "reprojected",
+        "confirmed": true,
+        "cropped": true
+      },
+      "cx": 0.5467093254698537,
+      "cy": 0.5220224002596868,
+      "clipped": true,
+      "centered": true,
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7716119885444641,
+          "label": "sofa",
+          "xyxy": [
+            0.0,
+            4.971027374267578e-05,
+            0.9999958038330078,
+            0.9999468485514323
+          ],
+          "x": 0.4999979019165039,
+          "area": 0.9998929425423224,
+          "side": "center"
+        }
+      ],
+      "image_sha": "a6bc1da992985e2545ca612f4b09f7bb02736cca21ca22d34e344830e25dfefd",
+      "bearing_right_deg": -0.00016758063003408097,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      79.57589496401431
+    ],
+    "reference_velocity_in": [
+      0.0011735194705824459,
+      0.006378878441364258,
+      -2.4420957297965314e-05
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 26,
+    "t": 12.500000000000043,
+    "raw_world": [
+      -0.588314854313705,
+      2.5373833797150467,
+      0.8917061638319481,
+      77.0369762300848
+    ],
+    "world_target": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      86.57589496573961
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7726094126701355,
+          "label": "sofa",
+          "xyxy": [
+            7.748603820800781e-07,
+            1.1265277862548828e-05,
+            1.0,
+            0.9999523798624674
+          ],
+          "x": 0.500000387430191,
+          "area": 0.9999403397698508,
+          "side": "center"
+        }
+      ],
+      "image_sha": "1c0788452681fd625330905d82eff9a3eeb652f1fd1df341e47e15afd5c38c3c",
+      "bearing_right_deg": 3.094462024932909e-05,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      86.57589496573961
+    ],
+    "reference_velocity_in": [
+      -0.0006816433137072342,
+      -0.0037051952129488817,
+      -6.967566090236273e-06
+    ],
+    "reference_velocity_out": [
+      -0.00018155211893677858,
+      -0.000986860754749408,
+      -6.960337834982511e-07
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 27,
+    "t": 13.00000000000005,
+    "raw_world": [
+      -0.6504724830175939,
+      2.310748749429924,
+      1.2774084204042522,
+      85.05346610503148
+    ],
+    "world_target": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      93.97589602294167
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7848584055900574,
+          "label": "sofa",
+          "xyxy": [
+            0.0,
+            0.0,
+            0.9999857902526855,
+            0.9999356587727865
+          ],
+          "x": 0.49999289512634276,
+          "area": 0.9999214499397445,
+          "side": "center"
+        }
+      ],
+      "image_sha": "edb09b647ad2fd81257b7c357f9d792c751d2722a8b3685896c05b946356c6cc",
+      "bearing_right_deg": -0.00023285741565359785,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      93.97589602294167
+    ],
+    "reference_velocity_in": [
+      -0.00018155211893677858,
+      -0.000986860754749408,
+      -6.960337834982511e-07
+    ],
+    "reference_velocity_out": [
+      0.00012393286567746742,
+      0.0003316591426019144,
+      -1.944190863856221e-07
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 28,
+    "t": 13.500000000000057,
+    "raw_world": [
+      -0.5958799220326059,
+      2.6796735845378636,
+      0.887615935678403,
+      93.68714353456892
+    ],
+    "world_target": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      101.36409830008182
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7816570997238159,
+          "label": "sofa",
+          "xyxy": [
+            1.2099742889404297e-05,
+            4.6253204345703125e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000060498714447,
+          "area": 0.9999416476124168,
+          "side": "center"
+        }
+      ],
+      "image_sha": "ff88853b3cb500c6e73cc0aee69826d30080890490892bb55f993d25091dde83",
+      "bearing_right_deg": 0.001500438763287093,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      101.36409830008182
+    ],
+    "reference_velocity_in": [
+      0.00012393286567746742,
+      0.0003316591426019144,
+      -1.944190863856221e-07
+    ],
+    "reference_velocity_out": [
+      -3.8256567735928115e-06,
+      -0.0006723992215897923,
+      5.587307583265755e-07
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 29,
+    "t": 14.000000000000064,
+    "raw_world": [
+      -0.6533270092324663,
+      2.2646197319534096,
+      0.8937685882863924,
+      99.43894476333293
+    ],
+    "world_target": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      108.7533896476089
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8479554653167725,
+          "label": "sofa",
+          "xyxy": [
+            1.728534698486328e-05,
+            7.009506225585938e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000086426734924,
+          "area": 0.9999126208023768,
+          "side": "center"
+        }
+      ],
+      "image_sha": "517686a2d11c3fd329c0cfeffd743895e6fc3ab596843b9bcc4b387be29fdbde",
+      "bearing_right_deg": 0.0015010901839218604,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      108.7533896476089
+    ],
+    "reference_velocity_in": [
+      -3.8256567735928115e-06,
+      -0.0006723992215897923,
+      5.587307583265755e-07
+    ],
+    "reference_velocity_out": [
+      -0.0001254671045494149,
+      -0.000396358279182607,
+      7.33525618024089e-09
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 30,
+    "t": 14.500000000000071,
+    "raw_world": [
+      -0.6526248507401453,
+      2.2647894386715075,
+      1.2793800020281614,
+      113.09590634877196
+    ],
+    "world_target": [
+      -0.6435719233152785,
+      2.265021368944334,
+      0.8922918133255906,
+      109.14257949858454
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8578708171844482,
+          "label": "sofa",
+          "xyxy": [
+            3.594160079956055e-05,
+            3.6835670471191406e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000179708003998,
+          "area": 0.9999272240526622,
+          "side": "center"
+        }
+      ],
+      "image_sha": "e5db5f37a6a6c5b8389abe33e990371a49efc420238a7b594f7058dd07b0a0f3",
+      "bearing_right_deg": 0.00018388758536502792,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.14257949858454
+    ],
+    "reference_velocity_in": [
+      -0.00024038114163573161,
+      -0.00035423094380145553,
+      -6.372139668084631e-08
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 31,
+    "t": 15.000000000000078,
+    "raw_world": [
+      -1.082117145242234,
+      2.528543055586395,
+      0.8913346645586099,
+      108.1466121157431
+    ],
+    "world_target": [
+      -0.6435933610962336,
+      2.265054654535222,
+      0.8922918115204401,
+      109.13177899503866
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8595254421234131,
+          "label": "sofa",
+          "xyxy": [
+            3.314018249511719e-05,
+            2.568960189819336e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000165700912476,
+          "area": 0.9999411710669648,
+          "side": "center"
+        }
+      ],
+      "image_sha": "187d7cf88bfafcb62e67ce3c5aaf6eb4869a939c061cb4a8bd89429fafbfba03",
+      "bearing_right_deg": 0.0016877064318805424,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.13177899503866
+    ],
+    "reference_velocity_in": [
+      0.0001352269633864467,
+      0.00030061512405398156,
+      -3.402114353509834e-08
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 32,
+    "t": 15.500000000000085,
+    "raw_world": [
+      -0.6592272220342781,
+      2.254737176652038,
+      0.8910473242846471,
+      108.8222952954074
+    ],
+    "world_target": [
+      -0.6435831840168963,
+      2.265059330205394,
+      0.8922918118988341,
+      109.13277677656899
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8592691421508789,
+          "label": "sofa",
+          "xyxy": [
+            2.968311309814453e-05,
+            3.0517578125e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000148415565491,
+          "area": 0.9999398002146336,
+          "side": "center"
+        }
+      ],
+      "image_sha": "b31af1f37187a8d175a98cafc753e757227af6d37c93689345087e8971abc5c3",
+      "bearing_right_deg": 0.0010276970879772307,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.13277677656899
+    ],
+    "reference_velocity_in": [
+      -7.91543805672429e-05,
+      -0.00020389887946970455,
+      -1.8701802335072014e-08
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 33,
+    "t": 16.000000000000092,
+    "raw_world": [
+      -0.6476869095601818,
+      2.2592966472662455,
+      0.8924252127736997,
+      108.59188862166724
+    ],
+    "world_target": [
+      -0.6435885989399771,
+      2.265050086212669,
+      0.8922918121788174,
+      109.13268473829672
+    ],
+    "raw_stop": true,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8580175042152405,
+          "label": "sofa",
+          "xyxy": [
+            3.5881996154785156e-05,
+            3.594160079956055e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000179409980774,
+          "area": 0.999928177692702,
+          "side": "center"
+        }
+      ],
+      "image_sha": "2dfc14ca46eb95144fb503751f049d8a2a6e40278283fc544592b2f671936689",
+      "bearing_right_deg": 0.0015120893257289936,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.13268473829672
+    ],
+    "reference_velocity_in": [
+      4.720449716351169e-05,
+      0.00012874187936131272,
+      -8.082963398023267e-09
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 34,
+    "t": 16.5000000000001,
+    "raw_world": [
+      -0.7469496693080462,
+      2.295274695111191,
+      1.2718572422307333,
+      109.8892692382667
+    ],
+    "world_target": [
+      -0.6435855114640223,
+      2.265057312336182,
+      0.8922918122998844,
+      109.13269328327735
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8591223359107971,
+          "label": "sofa",
+          "xyxy": [
+            2.9385089874267578e-05,
+            3.153085708618164e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000146925449371,
+          "area": 0.9999390849795766,
+          "side": "center"
+        }
+      ],
+      "image_sha": "24fad3f694581d873bd478f75fa9145ec67137273b41ba4c78f4fb55e7b117cf",
+      "bearing_right_deg": 0.0011300493786166044,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.13269328327735
+    ],
+    "reference_velocity_in": [
+      -2.8375283097763637e-05,
+      -7.910294545717964e-05,
+      -3.1583738085731866e-09
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 35,
+    "t": 17.000000000000107,
+    "raw_world": [
+      -0.6053989331951315,
+      2.3240888990454267,
+      1.0479439841384819,
+      107.35398993869978
+    ],
+    "world_target": [
+      -0.6435873301717037,
+      2.265052530422017,
+      0.8922918123467178,
+      109.13269251096455
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8587000370025635,
+          "label": "sofa",
+          "xyxy": [
+            2.759695053100586e-05,
+            3.11732292175293e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000137984752655,
+          "area": 0.9999412306805375,
+          "side": "center"
+        }
+      ],
+      "image_sha": "c2f4afc3fb8cef36243df8b3444d325e444d65d15185f5565c564f31324be9d0",
+      "bearing_right_deg": 0.0011273794374346835,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.13269251096455
+    ],
+    "reference_velocity_in": [
+      1.7115895355202985e-05,
+      4.806549019921927e-05,
+      -1.1837126362184007e-09
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 36,
+    "t": 17.500000000000114,
+    "raw_world": [
+      -0.5129829576035235,
+      2.305872000188791,
+      0.8943535297613328,
+      108.65401818298449
+    ],
+    "world_target": [
+      -0.6435862427633143,
+      2.2650555225280424,
+      0.89229181236417,
+      109.13269258852138
+    ],
+    "raw_stop": true,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8592893481254578,
+          "label": "sofa",
+          "xyxy": [
+            3.510713577270508e-05,
+            3.1828880310058594e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000175535678864,
+          "area": 0.9999330651013381,
+          "side": "center"
+        }
+      ],
+      "image_sha": "1725eaef351846229c2547015559c9072e2be27642fa1fd0a35b9496cc828242",
+      "bearing_right_deg": 0.0013871725614080788,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.13269258852138
+    ],
+    "reference_velocity_in": [
+      -1.0339522613596839e-05,
+      -2.9070179698757534e-05,
+      -4.359370703059668e-10
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 37,
+    "t": 18.00000000000012,
+    "raw_world": [
+      -0.6513055793839161,
+      2.2882439106128034,
+      1.634658438815786,
+      95.0166691631386
+    ],
+    "world_target": [
+      -0.6435868971705726,
+      2.265053690785872,
+      0.8922918123705798,
+      109.1326925836391
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds. The sofa is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "scan_left",
+      "gimbal_setpoint_deg": -31.252660000000013,
+      "depth_guard": {
+        "choice": "brake",
+        "rejected": {
+          "proposed": "surface"
+        },
+        "braking_envelope": "free"
+      }
+    },
+    "detection": {
+      "object": "sofa",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8585264682769775,
+          "label": "sofa",
+          "xyxy": [
+            3.0934810638427734e-05,
+            3.0338764190673828e-05,
+            1.0,
+            1.0
+          ],
+          "x": 0.5000154674053192,
+          "area": 0.9999387273636948,
+          "side": "center"
+        }
+      ],
+      "image_sha": "644707c387cdab68b84d06eea59dd0725870d5105d1e4fe7b75a8c651493c783",
+      "bearing_right_deg": 0.0012444284096773117,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.6435708877670826,
+      2.265293001431854,
+      0.8922918943323123,
+      116.1326925836391
+    ]
+  }
+]

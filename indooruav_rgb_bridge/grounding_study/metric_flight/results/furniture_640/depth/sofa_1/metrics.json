@@ -1,0 +1,21 @@
+{
+  "case": "sofa_1",
+  "target": "sofa",
+  "reason": "stop",
+  "initial_detected": true,
+  "end_range_m": 0.753574670706346,
+  "initial_range_m": 2.8007488173322685,
+  "minimum_range_m": 0.7330281209926326,
+  "end_in_rough_band": true,
+  "stable_hover": true,
+  "hold_in_strict": true,
+  "hold_in_rough": true,
+  "terminal_observation_ok": true,
+  "height_drop_m": 0.5143278532816232,
+  "collision_events": 0,
+  "outside_samples": 0,
+  "strict": true,
+  "approximate": true,
+  "duration_s": 12.500000000000043,
+  "video_frames": 251
+}

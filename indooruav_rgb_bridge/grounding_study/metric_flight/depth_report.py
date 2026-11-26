@@ -4,7 +4,7 @@ from collections import Counter
 from pathlib import Path
 import json
 import numpy as np
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+sys.path[:0]=[str(p) for p in Path(__file__).resolve().parents[1:3]]
 from metric_flight.furniture import flight_tasks, deny_expert_reads, HERE
 
 
@@ -19,11 +19,35 @@ def group(rows):
                 outside=sum(r['outside_samples']>0 for r in rows))
 
 
+def preflight_evidence(survey,episode,room):
+    from scipy.spatial.transform import Rotation
+    known,half,scene_rotation,mount=room
+    outside=0
+    offsets=[]
+    for r in survey['samples']:
+        pan=Rotation.from_euler('y',r['pan_deg'],degrees=True).as_matrix()
+        pitch=Rotation.from_euler('x',r['pitch_deg'],degrees=True).as_matrix()
+        camera_to_body=mount@pan@pitch@np.diag([1.,-1.,-1.])
+        body=scene_rotation@np.array(r['w2c'])[:3,:3].T@camera_to_body.T
+        p=np.array(r['position'])
+        outside+=not known.contains_box(p,body,half)
+        offsets.append(np.linalg.norm(p-episode['spawn']))
+    return dict(samples=len(offsets),outside_samples=outside,max_hover_excursion_m=float(max(offsets)))
+
+
 def main():
     deny_expert_reads()
     base=HERE/'results/furniture_640'
     tasks=flight_tasks()
     reference=read(base/'rgb/reference.json')
+    from sim_bridge import SIM,RoomSpace
+    from cameras import fpv_camera
+    from pointcloud import DEFAULT_DRONE_SIZE
+    neutral=np.zeros(13);neutral[6]=1.
+    room=(RoomSpace(),np.array(DEFAULT_DRONE_SIZE)/2+.05,
+          np.array(read(SIM/'scenes/room65_selected_anchored/inputs/frame.json')['rotation']),
+          fpv_camera(neutral).numpy()[:3,:3])
+    checks={}
     result={}
     summaries={}
     for mode in ('rgb','depth'):
@@ -59,7 +83,14 @@ def main():
                 if estimated is None and last_anchor is not None:
                     estimated=float(np.linalg.norm(p-last_anchor))
             survey=read(folder/'depth_preflight.json') if mode=='depth' else {}
-            rows[name]=dict(case=name,reason=m['reason'],end_m=m['end_range_m'],strict=m['strict'],
+            if survey:checks[name]=preflight_evidence(survey,e,room)
+            last_estimate=next((d for d in reversed(ds) if 'range_est_m' in d['info']),None)
+            final_comparison=None
+            if last_estimate:
+                position=frames[round(last_estimate['t']*20)]['xyz']
+                final_comparison=dict(t=last_estimate['t'],estimate=last_estimate['info']['range_est_m'],
+                                      reference=float(np.linalg.norm(geom-position)))
+            rows[name]=dict(last_range_sample=final_comparison,case=name,reason=m['reason'],end_m=m['end_range_m'],strict=m['strict'],
                             approximate=m['approximate'],collision_events=m['collision_events'],
                             outside_samples=m['outside_samples'],stable=m['stable_hover'],
                             coverage=m.get('sweep',{}).get('coverage'),ordered_times=m.get('sweep',{}).get('left_middle_right_times_s'),
@@ -77,6 +108,7 @@ def main():
     output=dict(groups=summaries,episodes=result,
                 sim_time_includes_preflight=False,matching_first_frames_and_camera_poses=True,
                 external_depth='RGB 3DGS expected optical Z in meters',backbone='frozen RGB IndoorUAV-Agent 29999')
+    (base/'preflight_checks.json').write_text(json.dumps(checks,indent=2)+'\n')
     (base/'comparison.json').write_text(json.dumps(output,indent=2)+'\n')
     print(json.dumps(summaries,indent=2))
 

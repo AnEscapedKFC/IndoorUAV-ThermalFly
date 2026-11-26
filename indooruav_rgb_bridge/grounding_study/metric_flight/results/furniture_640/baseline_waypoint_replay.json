@@ -1,0 +1,326 @@
+{
+  "scan_1": [
+    {
+      "n": 1,
+      "t": 0.0,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 2,
+      "t": 0.49999999999999994,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 3,
+      "t": 1.0000000000000002,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 4,
+      "t": 1.5000000000000007,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 5,
+      "t": 2.000000000000001,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 6,
+      "t": 2.499999999999999,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 7,
+      "t": 2.9999999999999973,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 8,
+      "t": 3.4999999999999956,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 9,
+      "t": 3.999999999999994,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 10,
+      "t": 4.499999999999992,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 11,
+      "t": 4.99999999999999,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 12,
+      "t": 5.4999999999999885,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": false
+    }
+  ],
+  "sofa_1": [
+    {
+      "n": 1,
+      "t": 0.0,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 2,
+      "t": 0.49999999999999994,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 3,
+      "t": 1.0000000000000002,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 4,
+      "t": 1.5000000000000007,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 5,
+      "t": 2.000000000000001,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 6,
+      "t": 2.499999999999999,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 7,
+      "t": 2.9999999999999973,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 8,
+      "t": 3.4999999999999956,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 9,
+      "t": 3.999999999999994,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 10,
+      "t": 4.499999999999992,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 11,
+      "t": 4.99999999999999,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 12,
+      "t": 5.4999999999999885,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 13,
+      "t": 5.999999999999987,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 14,
+      "t": 6.499999999999985,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 15,
+      "t": 6.999999999999983,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 16,
+      "t": 7.499999999999981,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 17,
+      "t": 7.99999999999998,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 18,
+      "t": 8.499999999999986,
+      "guard": "surface",
+      "level_body_at_proposed_waypoint_known": false
+    }
+  ],
+  "sofa_2": [
+    {
+      "n": 1,
+      "t": 0.0,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 2,
+      "t": 0.49999999999999994,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 3,
+      "t": 1.0000000000000002,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 4,
+      "t": 1.5000000000000007,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 5,
+      "t": 2.000000000000001,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 6,
+      "t": 2.499999999999999,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 7,
+      "t": 2.9999999999999973,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 8,
+      "t": 3.4999999999999956,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 9,
+      "t": 3.999999999999994,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 10,
+      "t": 4.499999999999992,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 11,
+      "t": 4.99999999999999,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 12,
+      "t": 5.4999999999999885,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 13,
+      "t": 5.999999999999987,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 14,
+      "t": 6.499999999999985,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 15,
+      "t": 6.999999999999983,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 16,
+      "t": 7.499999999999981,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 17,
+      "t": 7.99999999999998,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 18,
+      "t": 8.499999999999986,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 19,
+      "t": 8.999999999999993,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 20,
+      "t": 9.5,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 21,
+      "t": 10.000000000000007,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 22,
+      "t": 10.500000000000014,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    },
+    {
+      "n": 23,
+      "t": 11.000000000000021,
+      "guard": "free",
+      "level_body_at_proposed_waypoint_known": true
+    }
+  ]
+}

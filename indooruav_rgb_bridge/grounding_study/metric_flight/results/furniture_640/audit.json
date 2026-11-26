@@ -1,0 +1,18 @@
+{
+  "checkpoint": 29999,
+  "parameter_files_match_release": 32,
+  "published_archive_sha256": "f9c709f3891fd85c338d9727d3e3a58864c2188683038cc4d2c0cee00501b82e",
+  "expert_read_probe_blocked": true,
+  "detector_and_model_worker_verified": true,
+  "manifest_sha256": "666da078bce4b350923857f9b6fcf6d00d24193256428429627351101094138a",
+  "scene_asset_sha256": {
+    "models/rgb.ply": "1d28a7469622301c04b464aebd85223b5f4dadec91517803115d83a6cd3e37a3",
+    "models/thermal.ply": "3c035f1bba6a5448b6fb01969a223ea4d2bf7a5634f4f19b130ac3286aec35e2",
+    "collision/rgb_surface_m.ply": "f43bffb103fce6573d002557b4b6d5c9e914b524ffc4dcdbfcb3ea0180afe653",
+    "collision/free_volume.npz": "94789149d8b328509118ec16a8bc220d7e41416d394a3f31201521825423a763",
+    "inputs/manifest.json": "925c5cfcdbb8062fb7e796974e74a04ebfc48c7f26e0b5efda4154e516666f1f",
+    "inputs/frame.json": "9420b9302b442e9abcb8b15a883beac1557c1c773be40f02025c0d22216904ed",
+    "inputs/rig.json": "204e2e70d214344f99b782da8f942af5a789f755ebd47f72b595023d9e8fef76"
+  },
+  "reference_photo_sha256": "86b8d7cdb5905a57d609ddceae8a3d204b537d48d2bea44bf5dd3c9e2d5c6fec"
+}

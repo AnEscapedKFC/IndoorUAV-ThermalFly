@@ -1,0 +1,42 @@
+{
+  "laptop_1": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.0
+  },
+  "laptop_2": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.2035513767195911
+  },
+  "sofa_1": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.0
+  },
+  "sofa_2": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.11581344915391668
+  },
+  "scan_1": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.24663683368526967
+  },
+  "scan_2": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.13501893624569056
+  },
+  "sofa_h3": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.0
+  },
+  "scan_h3": {
+    "samples": 150,
+    "outside_samples": 0,
+    "max_hover_excursion_m": 0.13501893624572514
+  }
+}

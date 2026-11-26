@@ -1,0 +1,1322 @@
+[
+  {
+    "n": 1,
+    "t": 0.0,
+    "raw_world": [
+      0.23999979427458287,
+      1.4291267975642457,
+      1.1740992331873685,
+      -104.7763281871765
+    ],
+    "world_target": [
+      0.4239006492093803,
+      1.8867849555145337,
+      1.7291666666666667,
+      -106.74549298007943
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.3903985382000448,
+      "anchor": {
+        "world": [
+          -0.16936951018060536,
+          -0.08499799378748274,
+          0.8314082336193435
+        ],
+        "uv": [
+          0.50703125,
+          0.4833333333333332
+        ],
+        "error_m": 0.04607932090759277,
+        "views": 1,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.50703125,
+      "cy": 0.4833333333333332,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.6194553971290588,
+          "label": "laptop",
+          "xyxy": [
+            0.44293651580810545,
+            0.4383131345113119,
+            0.571104621887207,
+            0.6014827728271485
+          ],
+          "x": 0.5070205688476562,
+          "area": 0.020913143512552777,
+          "side": "center"
+        }
+      ],
+      "image_sha": "62c79fd58e9cdf7e2de83016b01ccf328a3c28ae45d811f527d6f131182de659",
+      "bearing_right_deg": 0.5711767763346529,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.4239006492093803,
+      1.8867849555145337,
+      1.7291666666666667,
+      -106.74549298007943
+    ],
+    "reference_velocity_in": [
+      -0.045,
+      -0.28,
+      -0.028
+    ],
+    "reference_velocity_out": [
+      -0.09219870158123933,
+      -0.3064300889709326,
+      0.018333333333333535
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 2,
+    "t": 0.49999999999999994,
+    "raw_world": [
+      0.09353717629463698,
+      0.31425564618595137,
+      0.8509599560484676,
+      -105.02986295804612
+    ],
+    "world_target": [
+      0.3817251195500077,
+      1.7352627188751701,
+      1.7205675876086735,
+      -106.88458952859865
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.24962573641141,
+      "anchor": {
+        "world": [
+          -0.17073030770738606,
+          -0.08484206437975406,
+          0.8310512560109191
+        ],
+        "uv": [
+          0.5135677045865299,
+          0.5176011653083059
+        ],
+        "error_m": 0.04744828571352882,
+        "views": 2,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5135677045865299,
+      "cy": 0.5176011653083059,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.741424560546875,
+          "label": "laptop",
+          "xyxy": [
+            0.44544048309326173,
+            0.4697606404622396,
+            0.5829332351684571,
+            0.6476657231648763
+          ],
+          "x": 0.5141868591308594,
+          "area": 0.024460659428950746,
+          "side": "center"
+        }
+      ],
+      "image_sha": "c8c44cda20434b6651f3692c4cc8fd297b669e9c12cf7f0ae2f51349347ea3e0",
+      "bearing_right_deg": 1.1749162407669473,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.3817251195500077,
+      1.7352627188751701,
+      1.7205675876086735,
+      -106.88458952859865
+    ],
+    "reference_velocity_in": [
+      -0.09219870158123933,
+      -0.3064300889709326,
+      0.018333333333333535
+    ],
+    "reference_velocity_out": [
+      -0.09294234726057815,
+      -0.3062053560695732,
+      -0.019361281839136435
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 3,
+    "t": 1.0000000000000002,
+    "raw_world": [
+      0.3482895400369414,
+      1.4475760135660103,
+      0.5116156240201339,
+      -106.59047666101787
+    ],
+    "world_target": [
+      0.32759464131080385,
+      1.5751293937084283,
+      1.688309977873606,
+      -106.7543670656713
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 2.0917112967632963,
+      "anchor": {
+        "world": [
+          -0.17209110523416676,
+          -0.08468613497202537,
+          0.8306942784024947
+        ],
+        "uv": [
+          0.5091979721078455,
+          0.5570356854189915
+        ],
+        "error_m": 0.051197113739283644,
+        "views": 3,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5091979721078455,
+      "cy": 0.5570356854189915,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7462140321731567,
+          "label": "laptop",
+          "xyxy": [
+            0.4349678993225098,
+            0.5048851331075033,
+            0.5878481388092041,
+            0.7013905843098959
+          ],
+          "x": 0.511408019065857,
+          "area": 0.030041800440262695,
+          "side": "center"
+        }
+      ],
+      "image_sha": "558ddb976631acb32c8edab0b7c54a41d965556a42800520eb5e2e0b4fd3d0ee",
+      "bearing_right_deg": 1.0843712768867135,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.32759464131080385,
+      1.5751293937084283,
+      1.688309977873606,
+      -106.7543670656713
+    ],
+    "reference_velocity_in": [
+      -0.09294234726057815,
+      -0.3062053560695732,
+      -0.019361281839136435
+    ],
+    "reference_velocity_out": [
+      -0.09224616098381766,
+      -0.3064158053752246,
+      -0.06273925396089064
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 4,
+    "t": 1.5000000000000007,
+    "raw_world": [
+      0.04389050666415534,
+      1.0794954464588362,
+      0.13425009552178957,
+      -105.9274326947899
+    ],
+    "world_target": [
+      0.2816975431493224,
+      1.4202999099540257,
+      1.6441193361797395,
+      -106.8948865804852
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.932521904329635,
+      "anchor": {
+        "world": [
+          -0.1752260379037674,
+          -0.08409536568010378,
+          0.8302561247817992
+        ],
+        "uv": [
+          0.5156969664659314,
+          0.5778853536511144
+        ],
+        "error_m": 0.051720460777911384,
+        "views": 4,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5156969664659314,
+      "cy": 0.5778853536511144,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7782217860221863,
+          "label": "laptop",
+          "xyxy": [
+            0.43329663276672364,
+            0.5217118899027506,
+            0.6033421516418457,
+            0.7397344589233399
+          ],
+          "x": 0.5183193922042847,
+          "area": 0.037073760875593206,
+          "side": "center"
+        }
+      ],
+      "image_sha": "b6b855f62ed2d74ce88257deaa79e1994c4f87a05b002182cf15aa65dc11dd8d",
+      "bearing_right_deg": 1.5400712355744304,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.2816975431493224,
+      1.4202999099540257,
+      1.6441193361797395,
+      -106.8948865804852
+    ],
+    "reference_velocity_in": [
+      -0.09224616098381766,
+      -0.3064158053752246,
+      -0.06273925396089064
+    ],
+    "reference_velocity_out": [
+      -0.09299737620776272,
+      -0.3061886477622444,
+      -0.08567388901622586
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 5,
+    "t": 2.000000000000001,
+    "raw_world": [
+      0.24446738952257432,
+      1.2248648624006617,
+      -0.15250596624280321,
+      -103.4753236942305
+    ],
+    "world_target": [
+      0.23472739943412518,
+      1.2649972215692773,
+      1.5857761588520347,
+      -107.03146810187383
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.7683847662366934,
+      "anchor": {
+        "world": [
+          -0.17836097057336803,
+          -0.0835045963881822,
+          0.8298179711611037
+        ],
+        "uv": [
+          0.5166161241379499,
+          0.6039395428876404
+        ],
+        "error_m": 0.05296326964277118,
+        "views": 5,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5166161241379499,
+      "cy": 0.6039395428876404,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7928056716918945,
+          "label": "laptop",
+          "xyxy": [
+            0.4243793964385986,
+            0.5408515294392904,
+            0.6133354187011719,
+            0.7888948440551757
+          ],
+          "x": 0.5188574075698853,
+          "area": 0.046869278078641705,
+          "side": "center"
+        }
+      ],
+      "image_sha": "6b7e34f2cfbe1197b4740a393cc1724c79b3619b05f324f07dfcaf70ab5ce1d7",
+      "bearing_right_deg": 1.6269687673301405,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.23472739943412518,
+      1.2649972215692773,
+      1.5857761588520347,
+      -107.03146810187383
+    ],
+    "reference_velocity_in": [
+      -0.09299737620776272,
+      -0.3061886477622444,
+      -0.08567388901622586
+    ],
+    "reference_velocity_out": [
+      -0.09372700294349712,
+      -0.30596609112649986,
+      -0.11433349717640429
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 6,
+    "t": 2.499999999999999,
+    "raw_world": [
+      -0.02292922160738642,
+      0.396775313159893,
+      0.7195836266548267,
+      -105.84772954371394
+    ],
+    "world_target": [
+      0.18666313083218147,
+      1.1093689591068292,
+      1.514544062424796,
+      -107.06212348947619
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.5971800833446095,
+      "anchor": {
+        "world": [
+          -0.17940600855281252,
+          -0.08336236291783428,
+          0.829615855186698
+        ],
+        "uv": [
+          0.5167825392304424,
+          0.6267994379879211
+        ],
+        "error_m": 0.05338772471523702,
+        "views": 6,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5167825392304424,
+      "cy": 0.6267994379879211,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8212692141532898,
+          "label": "laptop",
+          "xyxy": [
+            0.4130370616912842,
+            0.5564542770385742,
+            0.6258971691131592,
+            0.840469233194987
+          ],
+          "x": 0.5194671154022217,
+          "area": 0.06045545407687315,
+          "side": "center"
+        }
+      ],
+      "image_sha": "17e664acf701033d8560ef6da1e8835f065656dbc8360ca0e777fc0067784c3e",
+      "bearing_right_deg": 1.7281730910100066,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.18666313083218147,
+      1.1093689591068292,
+      1.514544062424796,
+      -107.06212348947619
+    ],
+    "reference_velocity_in": [
+      -0.09372700294349712,
+      -0.30596609112649986,
+      -0.11433349717640429
+    ],
+    "reference_velocity_out": [
+      -0.09389069283661006,
+      -0.30591589987880896,
+      -0.13947938178671304
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 7,
+    "t": 2.9999999999999973,
+    "raw_world": [
+      0.0941475690810542,
+      0.9921020408288677,
+      0.0993780435311733,
+      -106.11384178541905
+    ],
+    "world_target": [
+      0.14561111826439854,
+      0.9762638434765002,
+      1.4325778528560822,
+      -107.10604358671908
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.4203475132514418,
+      "anchor": {
+        "world": [
+          -0.18045104653225702,
+          -0.08322012944748636,
+          0.8295721985392897
+        ],
+        "uv": [
+          0.5193965820132511,
+          0.6460520786628241
+        ],
+        "error_m": 0.05370839935658138,
+        "views": 7,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5193965820132511,
+      "cy": 0.6460520786628241,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -32.5080465,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8107629418373108,
+          "label": "laptop",
+          "xyxy": [
+            0.4006959915161133,
+            0.565418561299642,
+            0.6449320793151856,
+            0.8975573221842448
+          ],
+          "x": 0.5228140354156494,
+          "area": 0.08112027156488694,
+          "side": "center"
+        }
+      ],
+      "image_sha": "ee724cd1a6fd557286d4b9ae419dd605db25e8827d6a93502b7af7c19ffc92dd",
+      "bearing_right_deg": 2.049261418259846,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.14561111826439854,
+      0.9762638434765002,
+      1.4325778528560822,
+      -107.10604358671908
+    ],
+    "reference_velocity_in": [
+      -0.09389069283661006,
+      -0.30591589987880896,
+      -0.13947938178671304
+    ],
+    "reference_velocity_out": [
+      -0.08038545843740558,
+      -0.2611989800279091,
+      -0.1606572865291067
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 8,
+    "t": 3.4999999999999956,
+    "raw_world": [
+      -0.2098649881128538,
+      -0.16897017060997888,
+      0.9602442562786421,
+      -107.4324533434388
+    ],
+    "world_target": [
+      0.09645256089799853,
+      0.8169490486776938,
+      1.346338038024494,
+      -107.17143582937638
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.2552294419038117,
+      "anchor": {
+        "world": [
+          -0.1816008482666467,
+          -0.08288420262249807,
+          0.829492968875791
+        ],
+        "uv": [
+          0.5224841930068501,
+          0.6536227676564101
+        ],
+        "error_m": 0.054347655394650474,
+        "views": 8,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5224841930068501,
+      "cy": 0.6536227676564101,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -40.905974089101655,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8065005540847778,
+          "label": "laptop",
+          "xyxy": [
+            0.3854639768600464,
+            0.5621992746988932,
+            0.6689558982849121,
+            0.9526403427124024
+          ],
+          "x": 0.5272099375724792,
+          "area": 0.11068688857432639,
+          "side": "center"
+        }
+      ],
+      "image_sha": "5426947272b0aa5a5006469d96cca54990075611b6a1c8d714ff9ef4cea299cc",
+      "bearing_right_deg": 2.4700776084922893,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.09645256089799853,
+      0.8169490486776938,
+      1.346338038024494,
+      -107.17143582937638
+    ],
+    "reference_velocity_in": [
+      -0.08038545843740558,
+      -0.2611989800279091,
+      -0.1606572865291067
+    ],
+    "reference_velocity_out": [
+      -0.09447416638826595,
+      -0.30573621291113406,
+      -0.1689850444220511
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 9,
+    "t": 3.999999999999994,
+    "raw_world": [
+      -0.19199631721995253,
+      -0.13940775184205423,
+      0.2865331164054987,
+      -104.82775586898492
+    ],
+    "world_target": [
+      0.05184613966528528,
+      0.6732368699551963,
+      1.3188692091014254,
+      -107.23372150550824
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 1.0822773882304693,
+      "anchor": {
+        "world": [
+          -0.1827506500010364,
+          -0.08304691114721496,
+          0.8295721985392897
+        ],
+        "uv": [
+          0.5260836049717952,
+          0.5469298785036991
+        ],
+        "error_m": 0.05346747689321241,
+        "views": 9,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5260836049717952,
+      "cy": 0.5469298785036991,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -38.50804650000001,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8187174201011658,
+          "label": "laptop",
+          "xyxy": [
+            0.3636526107788086,
+            0.4404065450032552,
+            0.6961500644683838,
+            0.8965015411376953
+          ],
+          "x": 0.5299013376235961,
+          "area": 0.15165042485525795,
+          "side": "center"
+        }
+      ],
+      "image_sha": "6a266762789145735e4a4b4ce38d833eaf5bd9eacfafbbb54c4e23f940453102",
+      "bearing_right_deg": 2.8259610704264446,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.05184613966528528,
+      0.6732368699551963,
+      1.3188692091014254,
+      -107.23372150550824
+    ],
+    "reference_velocity_in": [
+      -0.09447416638826595,
+      -0.30573621291113406,
+      -0.1689850444220511
+    ],
+    "reference_velocity_out": [
+      -0.09480647331769237,
+      -0.30563333034383144,
+      -0.051622866354068986
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 10,
+    "t": 4.499999999999992,
+    "raw_world": [
+      0.011820828616675938,
+      0.6284325914493674,
+      0.34823017340259443,
+      -108.31094605546413
+    ],
+    "world_target": [
+      0.024467600984218945,
+      0.5852890672317503,
+      1.233441438251843,
+      -107.29533459606272
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.9213981756027158,
+      "anchor": {
+        "world": [
+          -0.18355854593966,
+          -0.08279759347236237,
+          0.829492968875791
+        ],
+        "uv": [
+          0.5311646061230205,
+          0.6581328975546593
+        ],
+        "error_m": 0.05779062367919648,
+        "views": 10,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5311646061230205,
+      "cy": 0.6581328975546593,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -47.148854884597526,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7805200219154358,
+          "label": "laptop",
+          "xyxy": [
+            0.334334659576416,
+            0.5289141654968261,
+            0.7401798248291016,
+            0.9998369852701823
+          ],
+          "x": 0.5372572422027588,
+          "area": 0.1911217496121784,
+          "side": "center"
+        }
+      ],
+      "image_sha": "40a96082f07e1d5f6e89fb0a96c1216936c122d3ce7c3269c232f12459477d20",
+      "bearing_right_deg": 3.7046002404022147,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.024467600984218945,
+      0.5852890672317503,
+      1.233441438251843,
+      -107.29533459606272
+    ],
+    "reference_velocity_in": [
+      -0.09480647331769239,
+      -0.30563333034383144,
+      -0.051622866354068986
+    ],
+    "reference_velocity_out": [
+      -0.04756754081749916,
+      -0.15276560169284026,
+      -0.17394618731012512
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 11,
+    "t": 4.99999999999999,
+    "raw_world": [
+      0.1325952370008323,
+      -0.32140170462533724,
+      1.2232789864456521,
+      -108.04636630800975
+    ],
+    "world_target": [
+      0.0006851586906286844,
+      0.509153217664257,
+      1.2168078820549943,
+      -107.36680500385717
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.7936685581153494,
+      "anchor": {
+        "world": [
+          -0.1843664418782836,
+          -0.08254827579750978,
+          0.8294137392122923
+        ],
+        "uv": [
+          0.536826313921279,
+          0.5236266258251414
+        ],
+        "error_m": 0.06075738525669945,
+        "views": 11,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.536826313921279,
+      "cy": 0.5236266258251414,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -44.50804650000003,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8106793761253357,
+          "label": "laptop",
+          "xyxy": [
+            0.3007211685180664,
+            0.371985658009847,
+            0.7843307495117188,
+            0.9998338063557942
+          ],
+          "x": 0.5425259590148925,
+          "area": 0.30363337994922407,
+          "side": "center"
+        }
+      ],
+      "image_sha": "557fd8e591d4dcb6fba053a04f55628beaef91b6613f374a97f5987fed62ea55",
+      "bearing_right_deg": 4.461377521583046,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      0.0006851586906286844,
+      0.509153217664257,
+      1.2168078820549943,
+      -107.36680500385717
+    ],
+    "reference_velocity_in": [
+      -0.04756754081749915,
+      -0.15276560169284026,
+      -0.17394618731012512
+    ],
+    "reference_velocity_out": [
+      -0.03898797332099404,
+      -0.12466383414224413,
+      -0.025989288407655575
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 12,
+    "t": 5.4999999999999885,
+    "raw_world": [
+      -0.22739579319794034,
+      -0.3137465664085646,
+      0.5458764729206079,
+      -106.40548531808518
+    ],
+    "world_target": [
+      -0.006120304716330403,
+      0.4875175986127639,
+      1.2051147145891048,
+      -107.36323120036803
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "approach",
+      "range_est_m": 0.7534351414517491,
+      "anchor": {
+        "world": [
+          -0.1843664418782836,
+          -0.08254827579750978,
+          0.8294137392122923
+        ],
+        "uv": [
+          0.5380749211306937,
+          0.5234378801473328
+        ],
+        "error_m": 0.06072174167912377,
+        "views": 11,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5380749211306937,
+      "cy": 0.5234378801473328,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -44.50804650000003,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8069882988929749,
+          "label": "laptop",
+          "xyxy": [
+            0.2862666130065918,
+            0.36195875803629557,
+            0.8028600692749024,
+            0.9996810913085937
+          ],
+          "x": 0.5445633411407471,
+          "area": 0.3294431842846279,
+          "side": "center"
+        }
+      ],
+      "image_sha": "3e2efd67f04beedf1ffb417887db65a76b98b99f8b9de507c4a3e3f69bea5b3b",
+      "bearing_right_deg": 4.7567600241278,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.006120304716330403,
+      0.4875175986127639,
+      1.2051147145891048,
+      -107.36323120036803
+    ],
+    "reference_velocity_in": [
+      -0.03898797332099404,
+      -0.12466383414224413,
+      -0.025989288407655575
+    ],
+    "reference_velocity_out": [
+      -0.02877442372247791,
+      -0.09202621319699156,
+      -0.02578166816206595
+    ],
+    "passing_waypoint": true
+  },
+  {
+    "n": 13,
+    "t": 5.999999999999987,
+    "raw_world": [
+      -0.2842297649949746,
+      -0.25648029311046106,
+      -0.12270406798779199,
+      -107.34501919027518
+    ],
+    "world_target": [
+      -0.00782419555585891,
+      0.48213050714706907,
+      1.2048746572555766,
+      -107.27955103072654
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "terminal_hold",
+      "range_est_m": 0.7007702912973923,
+      "anchor": {
+        "world": [
+          -0.18355854593966,
+          -0.08279759347236237,
+          0.8293048496422155
+        ],
+        "uv": [
+          0.5402773339455265,
+          0.5916098568427604
+        ],
+        "error_m": 0.05918909664206388,
+        "views": 12,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5402773339455265,
+      "cy": 0.5916098568427604,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -49.53918424407075,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7865234017372131,
+          "label": "laptop",
+          "xyxy": [
+            0.2674395561218262,
+            0.4163249969482422,
+            0.8031045913696289,
+            0.9997074762980144
+          ],
+          "x": 0.5352720737457275,
+          "area": 0.3124975963638463,
+          "side": "center"
+        }
+      ],
+      "image_sha": "0290dbf4d61df0c6adc59b65092847290761cfe3d9f3057cb540e9c782ab31f0",
+      "bearing_right_deg": 3.767191659102025,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.00782419555585891,
+      0.48213050714706907,
+      1.2048746572555766,
+      -107.27955103072654
+    ],
+    "reference_velocity_in": [
+      -0.027166018097445517,
+      -0.08694910947052298,
+      -0.026350636305725858
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 14,
+    "t": 6.499999999999985,
+    "raw_world": [
+      -0.2624565014271626,
+      -0.09070653998277622,
+      0.5096900491731232,
+      -109.0504137792351
+    ],
+    "world_target": [
+      -0.010324504642765025,
+      0.47415116235835636,
+      1.2054372634713508,
+      -107.27784917356145
+    ],
+    "raw_stop": false,
+    "stopping": false,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "terminal_hold",
+      "range_est_m": 0.6940299290508816,
+      "anchor": {
+        "world": [
+          -0.18355854593966,
+          -0.08279759347236237,
+          0.8293048496422155
+        ],
+        "uv": [
+          0.5417461330421882,
+          0.508799580561624
+        ],
+        "error_m": 0.05932028646521451,
+        "views": 12,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5417461330421882,
+      "cy": 0.508799580561624,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -49.53918424407075,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.7828707695007324,
+          "label": "laptop",
+          "xyxy": [
+            0.2648784875869751,
+            0.3309366544087728,
+            0.8271051406860351,
+            0.999719746907552
+          ],
+          "x": 0.5459918141365051,
+          "area": 0.37600767974482774,
+          "side": "center"
+        }
+      ],
+      "image_sha": "f2c61200a52203be1f2a23469ad703bc583938c1771c8d2c12c6b8f597edf2d8",
+      "bearing_right_deg": 5.230582928340482,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.010324504642765025,
+      0.47415116235835636,
+      1.2054372634713508,
+      -107.27784917356145
+    ],
+    "reference_velocity_in": [
+      0.014832610292290997,
+      0.04764362862623502,
+      -0.0011663618254809899
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  },
+  {
+    "n": 15,
+    "t": 6.999999999999983,
+    "raw_world": [
+      -0.13062814077515683,
+      0.08265878911430669,
+      1.20434579640745,
+      -109.49429976694665
+    ],
+    "world_target": [
+      -0.009219208336488174,
+      0.4777123854093174,
+      1.2054524663275312,
+      -107.27815799385712
+    ],
+    "raw_stop": false,
+    "stopping": true,
+    "prompt": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover. The laptop is centered ahead. It is ahead relative to your heading.",
+    "gate": false,
+    "info": {
+      "phase": "terminal_hold",
+      "range_est_m": 0.6971747776561462,
+      "anchor": {
+        "world": [
+          -0.18355854593966,
+          -0.08279759347236237,
+          0.8293048496422155
+        ],
+        "uv": [
+          0.5414870563448174,
+          0.5052689602509037
+        ],
+        "error_m": 0.05935092325262906,
+        "views": 12,
+        "source": "screen_midpoint",
+        "confirmed": true,
+        "cropped": false
+      },
+      "cx": 0.5414870563448174,
+      "cy": 0.5052689602509037,
+      "clipped": false,
+      "centered": true,
+      "gimbal_setpoint_deg": -49.53918424407075,
+      "depth_guard": {
+        "choice": "proposed",
+        "rejected": {}
+      }
+    },
+    "detection": {
+      "object": "laptop",
+      "side": "center",
+      "boxes": [
+        {
+          "score": 0.8013759851455688,
+          "label": "laptop",
+          "xyxy": [
+            0.2664587736129761,
+            0.32813224792480467,
+            0.8248437881469727,
+            0.9998054504394531
+          ],
+          "x": 0.5456512808799744,
+          "area": 0.375052250948238,
+          "side": "center"
+        }
+      ],
+      "image_sha": "bd84c408993b63d3f73bb52b8ba7e80c68072fe9f65bc3238e70072264528531",
+      "bearing_right_deg": 5.181110580720201,
+      "bearing_source": "current"
+    },
+    "proposed_world": [
+      -0.009219208336488174,
+      0.4777123854093174,
+      1.2054524663275312,
+      -107.27762632434803
+    ],
+    "reference_velocity_in": [
+      -0.008675082669867697,
+      -0.027843466895738876,
+      -0.000413806257699125
+    ],
+    "reference_velocity_out": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "passing_waypoint": false
+  }
+]
