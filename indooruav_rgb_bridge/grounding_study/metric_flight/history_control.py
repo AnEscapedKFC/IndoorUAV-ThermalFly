@@ -5,11 +5,12 @@ import numpy as np
 from metric_flight.control import angle
 from metric_flight.depth_guidance import camera
 from metric_flight.observation_memory import ObservationMemory
+from metric_flight.instance_mask import instance_mask
 
 
 class HistoryInspection:
     def __init__(self, folder, noun, instruction):
-        self.memory = ObservationMemory(folder, noun)
+        self.memory = ObservationMemory(folder, noun, instance_mask())
         words = instruction.lower()
         self.intent = (
             "overview"
@@ -54,7 +55,8 @@ class HistoryInspection:
             angle(np.degrees(np.arctan2(d[1], d[0])) - yaw), -9.0, 9.0
         )
         pitch_error = np.degrees(np.arctan((uv[1] - 0.5) * rig.height / k[1, 1]))
-        pitch = float(np.clip(rig.pitch_deg - pitch_error, -62.0, 45.0))
+        requested_pitch = rig.pitch_deg - pitch_error
+        pitch = float(np.clip(requested_pitch, -62.0, 45.0))
         width = r - l
         # Framing is dimensionless; there are no target coordinates or range setpoints.
         desired = 0.64 if self.intent == "overview" else 0.41
@@ -72,6 +74,8 @@ class HistoryInspection:
             self.best = (quality, p.copy(), obs["id"])
         center_ok = abs(uv[0] - 0.5) < 0.14 and abs(uv[1] - 0.5) < 0.15
         close_enough = width >= desired * 0.88
+        if self.intent == "detail" and verified:
+            close_enough |= part_pixels.min() >= 0.018 * rig.width * rig.height
         ready = (
             observed_both and verified and center_ok and close_enough and not clipped
         )
@@ -82,8 +86,12 @@ class HistoryInspection:
         # Verify a comparable second view before holding for the final image.
         phase = "approach"
         movement = np.r_[forward * step, 0.0]
+        # Share the vertical viewing angle with the body before the gimbal hits
+        # its stop. Moving down makes a low target less steeply below the camera.
+        tilt_err = requested_pitch - np.clip(requested_pitch, -40.0, 26.0)
+        movement[2] = np.clip(0.005 * tilt_err, -0.08, 0.08)
         if not center_ok:
-            movement *= 0.55
+            movement[:2] *= 0.55
         if clipped:
             movement[:2] = -0.09 * forward
             phase = "widen"
@@ -96,7 +104,7 @@ class HistoryInspection:
             delta = self.best[1] - p
             movement = delta * min(1.0, 0.14 / max(np.linalg.norm(delta), 1.0e-6))
             phase = "restore_view"
-        elif close_enough:
+        elif close_enough and abs(tilt_err) < 10.0:
             side = np.array([-forward[1], forward[0]])
             # Low/occluded lower parts merit a higher line of sight. Reverse a
             # height probe when the following RGB-D observations show worse parts.

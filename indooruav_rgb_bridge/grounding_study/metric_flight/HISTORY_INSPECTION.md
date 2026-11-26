@@ -15,15 +15,22 @@
 
 ## 在线记录与飞行决策
 
-检测器从 RGB 得到目标框，框内通过 GrabCut 提取前景，再从 RGB 水平亮度边缘拟合部件分界。沙发分为靠背与坐面，笔记本分为屏幕与键盘所在底座，空调分为面板与下方出风区域。候选边缘需要来自多列并具有足够响应。未得到可靠分界的前景保留为未分部件。此方法是外观估计，适用性取决于视角、遮挡和目标外形。
+检测器从 RGB 得到目标框，以目标框提示冻结的 SlimSAM 分割 RGB 实例前景，再从 RGB 水平亮度边缘拟合部件分界。沙发分为靠背与坐面，笔记本分为屏幕与键盘所在底座，空调分为面板与下方出风区域。候选边缘需要来自多列并具有足够响应。未得到可靠分界的前景保留为未分部件。此方法是外观估计，适用性取决于视角、遮挡和目标外形。
 
-每个决策时刻按像素使用相机内参、实际光轴深度、同步云台姿态对应的外参，把目标表面投到以米为单位的世界系。用 6 cm 格子关联观测。同一格子的像素数表示该次观测的采样量。仅在已见格子投影落入当前视野，且测得另一表面明显更近时才记为遮挡。单次姿态重复或丢失深度不能证明细节可靠。
+目标记录在 2 Hz 航点决策时更新，安全地图以 5 Hz 更新，同步录像为 20 Hz。每个决策时刻按像素使用相机内参、实际光轴深度、同步云台姿态对应的外参，把目标表面投到以米为单位的世界系。用 6 cm 格子关联观测。同一格子的像素数表示该次观测的采样量。仅在已见格子投影落入当前视野，且测得另一表面明显更近时才记为遮挡。单次姿态重复或丢失深度不能证明细节可靠。
 
 关键帧触发条件为首次有效观测、新部件、视角或位置变化、遮挡集合明显变化或细节质量改善。可比较的已存视角需有平移基线和相近观察方向。将当前有效像素重投到该帧，按同部件、深度相符、边缘邻域相符计算证据。面积较大但无法跨视角复现的纹理不能仅靠锐度获得高质量分。深度、标定和里程计均来自本次模拟。稳定的系统性渲染误差仍可能跨帧一致。
 
-控制器结合模型提出的进度、目标画幅比例、部件可见情况、遮挡和重复视角证据决定前进、退让、改变观察高度或恢复先前较好视角。云台单独重新构图。新的观测点由局部深度图检查机体运动及制动余量，历史数据始终来自当次任务已收到的图像。部件判别和动作选择均未使用离线参考图、真实目标位置或专家动作。历史中的“最好”只在已获得的观测之间比较。
+控制器结合模型提出的进度、目标画幅比例、部件可见情况、遮挡和重复视角证据决定前进、退让、改变观察高度或恢复先前较好视角。云台单独重新构图。云台接近活动限位时，机体在安全航点内共同调节观察高度，避免围绕同一位置反复前进和后退。新的观测点由局部深度图检查机体运动及制动余量，历史数据始终来自当次任务已收到的图像。部件判别和动作选择均未使用离线参考图、真实目标位置或专家动作。历史中的“最好”只在已获得的观测之间比较。
 
 ## 运行与核验
+
+冻结实例分割模型使用 [SlimSAM 发布权重](https://huggingface.co/Zigeng/SlimSAM-uniform-77/tree/79c09c1ce6b4ae51f00634ed171d9b8e888f6911)。在 grounding_study 下下载一次，之后飞行只读本地文件。
+
+```bash
+.venv/bin/python -c "from huggingface_hub import snapshot_download; snapshot_download('Zigeng/SlimSAM-uniform-77', revision='79c09c1ce6b4ae51f00634ed171d9b8e888f6911', allow_patterns=['config.json','preprocessor_config.json','model.safetensors'], local_dir='assets/history_sam')"
+echo 'b0ee221e3d33935807a820c157fec81a537b3b9979edc88b148a8dae8bbdd5d2  assets/history_sam/model.safetensors' | sha256sum -c -
+```
 
 使用项目已配置的权重和仿真资产。从 indooruav_rgb_bridge 启动推理服务，再从 grounding_study 运行测试。默认运行三类任务的全部起点。传入 --cases 可选择子集。完整结果按架次原子发布，重复命令跳过完整架次。
 
@@ -33,10 +40,24 @@ python -B bridge_client.py --socket runtime/grounding-study.sock serve -- script
 
 ```bash
 ./launch.sh run.py flight history
-./launch.sh metric_flight/history_review.py metric_flight/results/history_inspection/{sofa,laptop,ac}_{east,west,diagonal}
+./launch.sh metric_flight/history_review.py metric_flight/results/history_inspection_final/{sofa,laptop,ac}_{east,west,diagonal,long}
 ./launch.sh metric_flight/test_observation_memory.py
 ```
 
 每个架次下的 observations/index.json 按 receipt_frame 与传感器记录对应，保存图像内参、原生 w2c、米制相机中心、光轴朝向、云台俯仰角、配对帧及关键帧入选原因。对关键帧，NNNN_rgb.png 为无损 RGB，NNNN_depth.npz 的 depth_m 为未量化的浮点光轴深度，NNNN_mask.png 为部件标签。每次观测的 NNNN_surface.npz 列出可见及被遮挡的格子 ID、每格有效像素、各部件像素、跨视角深度及边缘一致的像素数。没有出现在任何一组中的格子当帧没有确定证据。surfaces.npz 给出格子坐标、最佳观测和最佳已存关键帧；最佳关键帧为 -1 表示只在普通观测中出现过，质量为零表示缺乏跨视角细节证据。逐像素分割和世界格子只在本次飞行内部使用。
 
-RGB 和热红外视频保存在本地。IndoorUAV-Agent 使用当前 RGB、首帧 RGB、语言和状态；控制接入层额外使用在线 RGB-D 历史。history_review.py 解码录像、按帧哈希核查关键帧同步、核验表面观测索引与悬停状态，并输出 RGB 画面核验图。仓库仅提交本轮代码、画面核验图及结果摘要。
+RGB 和热红外视频保存在本地。IndoorUAV-Agent 使用当前 RGB、首帧 RGB、语言和状态；控制接入层额外使用在线 RGB-D 历史。history_review.py 解码录像、按帧哈希核查关键帧同步、核验表面观测索引与悬停状态，并输出 RGB 画面核验图。keyframe_review.jpg 对齐显示同一帧的 RGB、部件掩码和深度。仓库仅提交本轮代码、画面核验图及结果摘要。
+
+## 版本与数据边界
+
+初版结果在 results/history_inspection。初版使用框内颜色分割，能把前景茶几计入沙发，部分笔记本任务在云台俯仰限位附近反复移动。最终版使用 SlimSAM 获取实例掩码，加入基于相机实际俯仰需求的高度调整及依据部件有效像素的细节判定，在相同指令和起点重新飞行。最终结果在 results/history_inspection_final。对比涉及多项改动，且冻结目标框检测器从 CPU 切换至 GPU；仅用于诊断，不能据此独立归因或证明跨房间泛化。
+
+## 冻结参数后的较远起点
+
+最终版另对每类目标固定四个新候选。以起始机体净空、首帧能否分出目标，以及起点环视后沿初始航向的 0.12 m 前移能否获得空间支持作为筛选条件。0.12 m 是起飞可行性检查，不是指令的终点约束。仅在合格候选中按目标掩码内首帧光轴深度中位数选择最远者。筛选阶段只有原地观测和局部几何检查。正式飞行从空历史重新开始，未据此改变控制参数，三个 long 起点单独报告。
+
+```bash
+./launch.sh metric_flight/history_start_screen.py /tmp/indooruav_long_start_selection.json
+./launch.sh run.py flight history --cases sofa_long laptop_long ac_long
+./launch.sh metric_flight/history_review.py metric_flight/results/history_inspection_final/{sofa,laptop,ac}_long
+```

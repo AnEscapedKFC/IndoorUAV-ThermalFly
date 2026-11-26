@@ -118,6 +118,18 @@ def audit(folder):
             assert np.array_equal(
                 np.bincount(mask[valid], minlength=4), row["part_pixels"]
             )
+            y, x = np.nonzero(valid)
+            rays = np.linalg.solve(row["K"], np.stack((x, y, np.ones_like(x))))
+            world = np.asarray(row["world_camera_center"])[:, None] + np.asarray(
+                row["world_from_optical_axes"]
+            ) @ (rays * dep[y, x])
+            voxels, counts = np.unique(
+                np.floor(world.T / idx["cell_m"]).astype(np.int32),
+                axis=0,
+                return_counts=True,
+            )
+            assert np.array_equal(voxels, catalog["world_voxel"][trace["visible"]])
+            assert np.array_equal(counts, trace["pixels"])
         if row["pair"] is not None:
             pair = row["pair"]
             assert pair in keys and pair < i
@@ -140,7 +152,11 @@ def audit(folder):
         len(frames) - 1,
     ]
     sample += [max(0, len(frames) - 31), max(0, len(frames) - 11)]
-    sample = sorted(sample)
+    sample = (
+        sorted(sample)
+        if travel[-1] > 0.05
+        else np.linspace(0, len(frames) - 1, 6, dtype=int).tolist()
+    )
     cap = cv2.VideoCapture(str(folder / "rgb_fpv.mp4"))
     sheet = Image.new("RGB", (3 * 384, 2 * 315), "white")
     draw = ImageDraw.Draw(sheet)

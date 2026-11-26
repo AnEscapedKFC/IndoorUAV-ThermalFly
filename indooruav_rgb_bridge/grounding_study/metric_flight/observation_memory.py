@@ -24,8 +24,8 @@ def write_json(path, obj):
     )
 
 
-def segment(rgb, box, noun):
-    """RGB foreground cut within a grounded box, then fit the visible part boundary.
+def segment(rgb, box, noun, instance_mask):
+    """Segment the RGB instance, then fit the visible boundary between parts.
 
     The named regions are appearance-based estimates, not annotated part masks.
     Unreliable or absent seams leave the foreground labelled 'object only'.
@@ -38,23 +38,7 @@ def segment(rgb, box, noun):
     l, t, r, b = max(0, l), max(0, t), min(w, r), min(h, b)
     if r - l < 12 or b - t < 8:
         return labels
-    # Add an outer background border even when a detector box touches the image edge.
-    pad = 6
-    patch = cv2.copyMakeBorder(
-        rgb[max(0, t - pad) : min(h, b + pad), max(0, l - pad) : min(w, r + pad)],
-        pad,
-        pad,
-        pad,
-        pad,
-        cv2.BORDER_REPLICATE,
-    )
-    x = pad + min(l, pad)
-    y = pad + min(t, pad)
-    mask = np.zeros(patch.shape[:2], np.uint8)
-    rect = (x, y, r - l, b - t)
-    cv2.setRNGSeed(42)
-    cv2.grabCut(patch, mask, rect, None, None, 2, cv2.GC_INIT_WITH_RECT)
-    fg = (mask[y : y + b - t, x : x + r - l] & 1).astype(bool)
+    fg = instance_mask(rgb, box)[t:b, l:r]
     if not fg.any():
         return labels
     # Estimate the upholstered seam, display hinge, or outlet lip from row-wise
@@ -103,10 +87,11 @@ def project(points, center, axes, k, shape):
 
 
 class ObservationMemory:
-    def __init__(self, folder, noun):
+    def __init__(self, folder, noun, instance_mask):
         self.root = Path(folder) / "observations"
         self.root.mkdir()
         self.noun = noun
+        self.instance_mask = instance_mask
         self.keys = []
         self.views = []
         self.cells = {}
@@ -121,7 +106,7 @@ class ObservationMemory:
         image = np.rint(rgb * 255).astype(np.uint8)
         depth = np.asarray(depth, np.float32)
         box = boxes[0]["xyxy"] if boxes else None
-        labels = segment(image, box, self.noun)
+        labels = segment(image, box, self.noun, self.instance_mask)
         c, R, K = camera(rig)
         rows, cols = np.nonzero((labels > 0) & np.isfinite(depth) & (depth > 0.08))
         parts = labels[rows, cols]

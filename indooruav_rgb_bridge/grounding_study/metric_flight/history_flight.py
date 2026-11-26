@@ -27,6 +27,9 @@ STARTS = {
     "sofa_diagonal": ("sofa", (1.80, 0.30, 1.59, 134.0, -22.0)),
     "laptop_diagonal": ("laptop", (0.47, 2.04, 1.72, -107.0, -30.0)),
     "ac_diagonal": ("ac", (0.73, -0.82, 1.46, 98.0, 13.0)),
+    "sofa_long": ("sofa", (0.7, -1.04, 1.67, 109.0, -15.0)),
+    "laptop_long": ("laptop", (2.16, 2.05, 1.76, -137.0, -21.0)),
+    "ac_long": ("ac", (0.7, -1.04, 1.58, 99.0, 12.0)),
 }
 
 
@@ -35,8 +38,10 @@ def main(argv=None):
     parser.add_argument("--cases", nargs="+", choices=list(STARTS))
     args = parser.parse_args(argv)
     deny_expert_reads()
-    detector = Detector(use_cache=False)
-    root = OUT / "history_inspection"
+    detector = Detector(
+        use_cache=False, device=os.environ.get("INDOORUAV_BOX_DEVICE", "cuda")
+    )
+    root = OUT / "history_inspection_final"
     root.mkdir(parents=True, exist_ok=True)
     for name in args.cases or STARTS:
         noun, (x, y, z, yaw, pitch) = STARTS[name]

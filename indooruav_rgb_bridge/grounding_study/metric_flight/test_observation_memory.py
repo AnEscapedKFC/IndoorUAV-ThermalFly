@@ -18,7 +18,9 @@ class MemoryTest(unittest.TestCase):
     def setUp(self):
         self.tmp = TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.mem = ObservationMemory(Path(self.tmp.name), "laptop")
+        self.mem = ObservationMemory(
+            Path(self.tmp.name), "laptop", lambda rgb, box: rgb.min(axis=2) < 120
+        )
         self.k = np.array([[100.0, 0, 60.0], [0, 100.0, 45.0], [0, 0, 1.0]])
         self.image = np.full((90, 120, 3), 0.7, np.float32)
         cv2.rectangle(self.image, (24, 17), (95, 72), (0.1, 0.12, 0.13), -1)

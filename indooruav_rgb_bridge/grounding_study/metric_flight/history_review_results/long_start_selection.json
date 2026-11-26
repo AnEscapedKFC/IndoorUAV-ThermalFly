@@ -1,0 +1,176 @@
+{
+  "candidates": {
+    "sofa": [
+      {
+        "pose": [
+          2.65,
+          -1.02,
+          1.78,
+          128.0,
+          -17.0
+        ],
+        "eligible": false,
+        "initial_median_optical_depth_m": 4.698622226715088,
+        "status": "surface"
+      },
+      {
+        "pose": [
+          1.55,
+          -1.0,
+          1.7,
+          120.0,
+          -16.0
+        ],
+        "eligible": false,
+        "initial_median_optical_depth_m": 4.110569953918457,
+        "status": "surface"
+      },
+      {
+        "pose": [
+          0.7,
+          -1.04,
+          1.67,
+          109.0,
+          -15.0
+        ],
+        "eligible": true,
+        "initial_median_optical_depth_m": 3.902623176574707,
+        "status": "free"
+      },
+      {
+        "pose": [
+          -0.74,
+          -0.98,
+          1.62,
+          87.0,
+          -16.0
+        ],
+        "eligible": true,
+        "initial_median_optical_depth_m": 3.782731771469116,
+        "status": "free"
+      }
+    ],
+    "laptop": [
+      {
+        "pose": [
+          2.56,
+          1.86,
+          1.72,
+          -145.0,
+          -19.0
+        ],
+        "eligible": false,
+        "status": "spawn_clearance"
+      },
+      {
+        "pose": [
+          2.16,
+          2.05,
+          1.76,
+          -137.0,
+          -21.0
+        ],
+        "eligible": true,
+        "initial_median_optical_depth_m": 3.0758094787597656,
+        "status": "free"
+      },
+      {
+        "pose": [
+          1.48,
+          2.2,
+          1.73,
+          -125.0,
+          -22.0
+        ],
+        "eligible": false,
+        "initial_median_optical_depth_m": 2.7550809383392334,
+        "status": "surface"
+      },
+      {
+        "pose": [
+          -1.34,
+          1.82,
+          1.57,
+          -57.0,
+          -20.0
+        ],
+        "eligible": true,
+        "initial_median_optical_depth_m": 2.160165786743164,
+        "status": "free"
+      }
+    ],
+    "ac": [
+      {
+        "pose": [
+          2.65,
+          -1.02,
+          1.75,
+          118.0,
+          10.0
+        ],
+        "eligible": false,
+        "initial_median_optical_depth_m": 3.7880239486694336,
+        "status": "surface"
+      },
+      {
+        "pose": [
+          1.55,
+          -1.0,
+          1.6,
+          110.0,
+          12.0
+        ],
+        "eligible": false,
+        "initial_median_optical_depth_m": 4.035829544067383,
+        "status": "surface"
+      },
+      {
+        "pose": [
+          0.7,
+          -1.04,
+          1.58,
+          99.0,
+          12.0
+        ],
+        "eligible": true,
+        "initial_median_optical_depth_m": 3.89741587638855,
+        "status": "free"
+      },
+      {
+        "pose": [
+          -0.74,
+          -0.98,
+          1.63,
+          77.0,
+          12.0
+        ],
+        "eligible": true,
+        "initial_median_optical_depth_m": 3.8883183002471924,
+        "status": "free"
+      }
+    ]
+  },
+  "selected": {
+    "sofa": [
+      0.7,
+      -1.04,
+      1.67,
+      109.0,
+      -15.0
+    ],
+    "laptop": [
+      2.16,
+      2.05,
+      1.76,
+      -137.0,
+      -21.0
+    ],
+    "ac": [
+      0.7,
+      -1.04,
+      1.58,
+      99.0,
+      12.0
+    ]
+  }
+}
