@@ -35,7 +35,8 @@ def speed_results(room, distance, group, mode, case):
 
 
 def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgbt=None,
-            waypoint_speed="through",corridor_distance=13.,furniture_task=None,furniture_mode='depth'):
+            waypoint_speed="through",corridor_distance=13.,furniture_task=None,furniture_mode='depth',
+            history_output=None):
     room='room_' in case;source=case.removeprefix('fresh_').removeprefix('holdout_').removeprefix('reverse_').removeprefix('new_')
     if furniture_task is not None:
         room=True
@@ -47,7 +48,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
         final_object=next((stage['landmark'] for stage in reversed(stages) if 'landmark' in stage), None)
     standoff=room and final_object=='ac' and room_goal=='standoff'
     if furniture_task is not None:
-        out=OUT/'furniture_640'/furniture_mode/case
+        out=history_output if furniture_mode=='history' else OUT/'furniture_640'/furniture_mode/case
     else:
         out=OUT/(RESULT_FOLDER if standoff else 'room' if room else 'corridor')/(('visual' if inspect else 'hint') if room else switch)/case
         if record_rgbt:
@@ -81,7 +82,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     if room:assert not active
     mapping=EpisodeCoordinates(xyz,yaw0);prior=mapping.to_native(xyz,yaw0)
     policy=Policy(text);servo=StandoffInspection(text) if standoff else Inspection(text);odo=Odometer(xyz,yaw0)
-    if furniture_task is not None:
+    if furniture_mode=='history':
+        from metric_flight.history_control import HistoryInspection
+        servo=HistoryInspection(out,final_object,text)
+    elif furniture_task is not None:
         from metric_flight.furniture_control import FurnitureInspection
         servo=FurnitureInspection(final_object,text,use_depth=furniture_mode=='depth')
     rig,known=(RoomRig,RoomSpace()) if room else (CorridorRig,CorridorSpace())
@@ -92,7 +96,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     previous_exit_velocity=None
     pitch_setpoint=init['rig_pitch_deg']
     camera_factory=rgb_factory(rig,init['rig_pitch_deg'],render_thermal=bool(record_rgbt))
-    depth_enabled=furniture_task is not None and furniture_mode=='depth'
+    depth_enabled=furniture_task is not None and furniture_mode in ('depth','history')
     guard=None
     if depth_enabled:
         from metric_flight.depth_guard import DepthGuard,preflight,survey_rig
@@ -139,6 +143,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             elif inspect:
                 seconds=.5
                 extra={'depth':sim.last_depth} if depth_enabled else {}
+                if furniture_mode=='history':extra['receipt']=r
                 target,stop,info=servo.step(p,yaw,v,target,det,sim.scene,seconds,sim.last_rgb,**extra)
                 if depth_enabled:
                     # Detection may disappear briefly on purpose at the edge of a sofa scan.
@@ -160,7 +165,9 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                                            rig=sim.scene,anchor=anchor)
                 # When a lower observation would move the body near a surface, keep
                 # the safety envelope and re-aim the sensor from the reachable pose.
-                if observation.get('confirmed') and info.get('range_est_m',np.inf)<1.30:
+                if furniture_mode=='history':
+                    pitch_setpoint=info.get('pitch_request',sim.scene.pitch_deg)
+                elif observation.get('confirmed') and info.get('range_est_m',np.inf)<1.30:
                     vertical=observation['uv'][1]
                     if abs(vertical-.5)>.09:
                         error=np.rad2deg(np.arctan((vertical-.5)*sim.scene.height/sim.scene.ks['rgb'][1,1]))
@@ -216,6 +223,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 object_distance_range_m=[MIN_RANGE_M,MAX_RANGE_M] if standoff else None,
                 reason=reason or 'limit',duration=frames[-1]['t'],distance_setpoint=length,altitude_setpoint=height))]:
             common.dump(out/(filename+'.json'),obj)
+        if furniture_mode=='history':
+            servo.memory.finish()
         if standoff:
             from metric_flight.score_object import score
             common.dump(out/'two_tier_metrics.json',score(out))
