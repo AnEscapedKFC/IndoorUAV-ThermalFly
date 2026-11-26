@@ -1,0 +1,1066 @@
+[
+  {
+    "case": "desk_east",
+    "strict": true,
+    "reason": "stop",
+    "spawn": [
+      1.3,
+      2.1,
+      1.7
+    ],
+    "duration_s": 14.000000000000064,
+    "path_m": 2.9342907769129174,
+    "instruction": "Approach the open laptop and look down from above at its screen and keyboard together. Hover with both clearly visible.",
+    "decisions": 25,
+    "video_frames": 281,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 840,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 840,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.016778125847716485,
+    "end_bbox_area": 0.2310139766104203,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.7,
+    "end_z": 1.227647268247864,
+    "z_min": 1.2082517658680363,
+    "z_max": 1.9995264911565134,
+    "end_gimbal": -43.62626795128594,
+    "gimbal_range": [
+      -47.094430056597126,
+      -20.0
+    ],
+    "end_optical_elevation": -35.94101677026835,
+    "last_measured_los": -37.57148419064973,
+    "los_time_s": 14.000000000000064,
+    "held": true,
+    "hold_frames": [
+      {
+        "t": 12.500000000000043,
+        "area": 0.24645021870113623,
+        "uv": [
+          0.5019653081893921,
+          0.49991209506988527
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -38.85959211808207,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.282765531539917,
+          0.2188326358795166,
+          0.7211650848388672,
+          0.7809915542602539
+        ],
+        "pitch_deg": -45.897101132918884,
+        "optical_elevation_deg": -37.07354037352547
+      },
+      {
+        "t": 13.00000000000005,
+        "area": 0.24404449767213998,
+        "uv": [
+          0.5010549306869507,
+          0.4958722988764445
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -38.59758723199612,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.2826643466949463,
+          0.2165052890777588,
+          0.7194455146789551,
+          0.7752393086751302
+        ],
+        "pitch_deg": -45.29169706097666,
+        "optical_elevation_deg": -37.00517094061454
+      },
+      {
+        "t": 13.500000000000057,
+        "area": 0.2353587571121238,
+        "uv": [
+          0.4993336915969848,
+          0.4959770123163859
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -37.90489759944381,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.28423662185668946,
+          0.22242754300435383,
+          0.7144307613372802,
+          0.769526481628418
+        ],
+        "pitch_deg": -44.1750214388344,
+        "optical_elevation_deg": -36.31454030862133
+      },
+      {
+        "t": 14.000000000000064,
+        "area": 0.231015551435944,
+        "uv": [
+          0.49859395027160647,
+          0.4969490607579549
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -37.57148419064973,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.28520631790161133,
+          0.22629659970601398,
+          0.7119815826416016,
+          0.7676015218098958
+        ],
+        "pitch_deg": -43.62626795128594,
+        "optical_elevation_deg": -35.94101677026835
+      }
+    ],
+    "guard_last": {
+      "choice": "proposed",
+      "rejected": {}
+    }
+  },
+  {
+    "case": "desk_long",
+    "strict": true,
+    "reason": "stop",
+    "spawn": [
+      2.16,
+      2.05,
+      1.76
+    ],
+    "duration_s": 25.500000000000227,
+    "path_m": 4.97841418664047,
+    "instruction": "Approach the open laptop and look down from above at its screen and keyboard together. Hover with both clearly visible.",
+    "decisions": 48,
+    "video_frames": 511,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 835,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 835,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.011496623229334854,
+    "end_bbox_area": 0.33501185812994577,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.76,
+    "end_z": 1.0910820104945702,
+    "z_min": 1.0750174029579465,
+    "z_max": 2.051399831013953,
+    "end_gimbal": -39.81800073086777,
+    "gimbal_range": [
+      -43.04707957431342,
+      -21.0
+    ],
+    "end_optical_elevation": -32.2732377089913,
+    "last_measured_los": -35.07462664626318,
+    "los_time_s": 25.500000000000227,
+    "held": true,
+    "hold_frames": [
+      {
+        "t": 24.000000000000206,
+        "area": 0.3746875271373634,
+        "uv": [
+          0.5010972499847413,
+          0.49638848304748534
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -37.07155417747195,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.22899060249328612,
+          0.152141539255778,
+          0.7732038974761963,
+          0.8406354268391927
+        ],
+        "pitch_deg": -43.019027157456755,
+        "optical_elevation_deg": -34.08165578330164
+      },
+      {
+        "t": 24.500000000000213,
+        "area": 0.36773976170893546,
+        "uv": [
+          0.5005114078521729,
+          0.4929279406865438
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -36.623078946728384,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.23075556755065918,
+          0.15211997032165528,
+          0.7702672481536865,
+          0.8337359110514323
+        ],
+        "pitch_deg": -42.15207414891126,
+        "optical_elevation_deg": -33.83791304520219
+      },
+      {
+        "t": 25.00000000000022,
+        "area": 0.3463980221834663,
+        "uv": [
+          0.49980663061141967,
+          0.4932586034138997
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -35.58360310662636,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.23636410236358643,
+          0.16453603108723958,
+          0.7632491588592529,
+          0.8219811757405598
+        ],
+        "pitch_deg": -40.66035074522422,
+        "optical_elevation_deg": -32.83200122811059
+      },
+      {
+        "t": 25.500000000000227,
+        "area": 0.33500973659341376,
+        "uv": [
+          0.49952020645141604,
+          0.4951534112294515
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -35.07462664626318,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.2398427963256836,
+          0.17262849807739258,
+          0.7591976165771485,
+          0.8176783243815104
+        ],
+        "pitch_deg": -39.81800073086777,
+        "optical_elevation_deg": -32.2732377089913
+      }
+    ],
+    "guard_last": {
+      "choice": "proposed",
+      "rejected": {}
+    }
+  },
+  {
+    "case": "desk_new",
+    "strict": false,
+    "reason": "depth_path_unconfirmed",
+    "spawn": [
+      0.78,
+      1.86,
+      1.7
+    ],
+    "duration_s": 3.4999999999999956,
+    "path_m": 0.0,
+    "instruction": "Approach the open laptop and look down from above at its screen and keyboard together. Hover with both clearly visible.",
+    "decisions": 8,
+    "video_frames": 71,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 820,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 820,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.026233676104648128,
+    "end_bbox_area": 0.024208681347954536,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.7,
+    "end_z": 1.7,
+    "z_min": 1.7,
+    "z_max": 1.7,
+    "end_gimbal": -33.77918700992941,
+    "gimbal_range": [
+      -33.841579427189345,
+      -22.0
+    ],
+    "end_optical_elevation": -25.73073007338399,
+    "last_measured_los": -25.55792264591882,
+    "los_time_s": 3.4999999999999956,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": {
+      "choice": "brake",
+      "rejected": {
+        "proposed": "unknown",
+        "level": "unknown",
+        "short_level": "unknown",
+        "slide": "unknown",
+        "opposite_slide": "unknown",
+        "rise_forward": "unknown",
+        "rise": "unknown"
+      },
+      "braking_envelope": "free"
+    }
+  },
+  {
+    "case": "desk_west",
+    "strict": true,
+    "reason": "stop",
+    "spawn": [
+      -1.4,
+      2.0,
+      1.63
+    ],
+    "duration_s": 13.500000000000057,
+    "path_m": 2.6421638396148355,
+    "instruction": "Approach the open laptop and look down from above at its screen and keyboard together. Hover with both clearly visible.",
+    "decisions": 24,
+    "video_frames": 271,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "surface",
+      "cells": 830,
+      "surface": 4,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 830,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 14,
+    "start_bbox_area": 0.018777576365349286,
+    "end_bbox_area": 0.2356052654182198,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.63,
+    "end_z": 1.1555482651783633,
+    "z_min": 1.1437106292829922,
+    "z_max": 1.8999349968109607,
+    "end_gimbal": -39.638949041670145,
+    "gimbal_range": [
+      -44.222505114986504,
+      -22.0
+    ],
+    "end_optical_elevation": -31.973108796977936,
+    "last_measured_los": -33.625671637053365,
+    "los_time_s": 13.500000000000057,
+    "held": true,
+    "hold_frames": [
+      {
+        "t": 12.000000000000036,
+        "area": 0.25283936399585705,
+        "uv": [
+          0.4991251945495605,
+          0.4985634803771973
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -34.84654792729083,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.2738812446594238,
+          0.21793511708577473,
+          0.7243691444396972,
+          0.7791918436686198
+        ],
+        "pitch_deg": -41.74586842525576,
+        "optical_elevation_deg": -33.06996694413909
+      },
+      {
+        "t": 12.500000000000043,
+        "area": 0.24942302388967014,
+        "uv": [
+          0.49954562187194823,
+          0.4963614702224731
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -34.57018088869832,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.2752922534942627,
+          0.21830207506815594,
+          0.7237989902496338,
+          0.7744208653767903
+        ],
+        "pitch_deg": -41.14019177894071,
+        "optical_elevation_deg": -32.90654494901831
+      },
+      {
+        "t": 13.00000000000005,
+        "area": 0.23959218587854142,
+        "uv": [
+          0.500186026096344,
+          0.4970747311909994
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -33.93017275665048,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.2789572477340698,
+          0.22632312774658203,
+          0.7214148044586182,
+          0.7678263346354167
+        ],
+        "pitch_deg": -40.204599411178606,
+        "optical_elevation_deg": -32.31294480994398
+      },
+      {
+        "t": 13.500000000000057,
+        "area": 0.23560974415868866,
+        "uv": [
+          0.5003094673156738,
+          0.49781730969746907
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": -33.625671637053365,
+        "view": "above",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.28092117309570314,
+          0.22933244705200195,
+          0.7196977615356446,
+          0.7663021723429362
+        ],
+        "pitch_deg": -39.638949041670145,
+        "optical_elevation_deg": -31.973108796977936
+      }
+    ],
+    "guard_last": {
+      "choice": "proposed",
+      "rejected": {}
+    }
+  },
+  {
+    "case": "level_diagonal",
+    "strict": false,
+    "reason": "target_lost",
+    "spawn": [
+      0.73,
+      -0.82,
+      1.46
+    ],
+    "duration_s": 17.500000000000114,
+    "path_m": 4.053243344291949,
+    "instruction": "Approach the air conditioner and look horizontally at its front panel. Hover with the unit centered and fully in view.",
+    "decisions": 36,
+    "video_frames": 351,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 795,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 795,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.012673692181351724,
+    "end_bbox_area": null,
+    "end_centered": false,
+    "end_box_clipped": false,
+    "start_z": 1.46,
+    "end_z": 2.329806094708214,
+    "z_min": 1.4587737557360922,
+    "z_max": 2.3367406051195907,
+    "end_gimbal": -7.980295839002914,
+    "gimbal_range": [
+      -9.722036674272163,
+      13.0
+    ],
+    "end_optical_elevation": 0.060758297859099995,
+    "last_measured_los": 0.08068058620805496,
+    "los_time_s": 13.500000000000057,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": null
+  },
+  {
+    "case": "level_east",
+    "strict": false,
+    "reason": "depth_path_unconfirmed",
+    "spawn": [
+      2.1,
+      -0.85,
+      1.6
+    ],
+    "duration_s": 3.4999999999999956,
+    "path_m": 0.0,
+    "instruction": "Approach the air conditioner and look horizontally at its front panel. Hover with the unit centered and fully in view.",
+    "decisions": 8,
+    "video_frames": 71,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 825,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 825,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.011555808488074037,
+    "end_bbox_area": 0.010628528828019632,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.6,
+    "end_z": 1.6,
+    "z_min": 1.6,
+    "z_max": 1.6,
+    "end_gimbal": 2.051787983214969,
+    "gimbal_range": [
+      2.031718648112982,
+      13.0
+    ],
+    "end_optical_elevation": 10.100244919760385,
+    "last_measured_los": 10.023310070477395,
+    "los_time_s": 3.4999999999999956,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": {
+      "choice": "brake",
+      "rejected": {
+        "proposed": "unknown",
+        "level": "unknown",
+        "short_level": "unknown",
+        "slide": "unknown",
+        "opposite_slide": "unknown",
+        "rise_forward": "unknown",
+        "rise": "unknown"
+      },
+      "braking_envelope": "free"
+    }
+  },
+  {
+    "case": "level_new",
+    "strict": false,
+    "reason": "target_lost",
+    "spawn": [
+      0.28,
+      -0.52,
+      1.64
+    ],
+    "duration_s": 15.000000000000078,
+    "path_m": 3.1080396046352745,
+    "instruction": "Approach the air conditioner and look horizontally at its front panel. Hover with the unit centered and fully in view.",
+    "decisions": 31,
+    "video_frames": 301,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 805,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 805,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.015528242684922583,
+    "end_bbox_area": null,
+    "end_centered": false,
+    "end_box_clipped": false,
+    "start_z": 1.64,
+    "end_z": 2.336286913572468,
+    "z_min": 1.63877326214371,
+    "z_max": 2.3371884471739013,
+    "end_gimbal": -11.204636832549413,
+    "gimbal_range": [
+      -12.404636832549413,
+      10.0
+    ],
+    "end_optical_elevation": -3.16045141602533,
+    "last_measured_los": 0.04136638949967093,
+    "los_time_s": 11.000000000000021,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": null
+  },
+  {
+    "case": "level_west",
+    "strict": false,
+    "reason": "outside_known_space",
+    "spawn": [
+      -1.15,
+      -0.65,
+      1.55
+    ],
+    "duration_s": 2.6499999999999986,
+    "path_m": 0.4561041899553687,
+    "instruction": "Approach the air conditioner and look horizontally at its front panel. Hover with the unit centered and fully in view.",
+    "decisions": 6,
+    "video_frames": 54,
+    "collision_samples": 0,
+    "outside_samples": 1,
+    "precheck": {
+      "status": "free",
+      "cells": 815,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 815,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.01444013952359455,
+    "end_bbox_area": 0.015192547060087245,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.55,
+    "end_z": 1.5487750546146555,
+    "z_min": 1.5487750546146555,
+    "z_max": 1.5504710397765629,
+    "end_gimbal": 4.356753414708269,
+    "gimbal_range": [
+      3.7055454283196054,
+      13.0
+    ],
+    "end_optical_elevation": 12.343974332743604,
+    "last_measured_los": 12.379937064295511,
+    "los_time_s": 2.499999999999999,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": {
+      "choice": "slide",
+      "rejected": {
+        "proposed": "unknown",
+        "level": "unknown",
+        "short_level": "unknown"
+      }
+    }
+  },
+  {
+    "case": "outlet_diagonal",
+    "strict": true,
+    "reason": "stop",
+    "spawn": [
+      0.73,
+      -0.82,
+      1.46
+    ],
+    "duration_s": 13.500000000000057,
+    "path_m": 3.231904850945309,
+    "instruction": "Approach the air conditioner and look up at its lower air outlet from below. Keep the unit centered and the outlet visible while hovering.",
+    "decisions": 24,
+    "video_frames": 271,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 795,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 795,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.012673692181351724,
+    "end_bbox_area": 0.20405960992905123,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.46,
+    "end_z": 1.8737673068390044,
+    "z_min": 1.1507977001996303,
+    "z_max": 1.8770201580596113,
+    "end_gimbal": 21.51346607876165,
+    "gimbal_range": [
+      4.435734664748377,
+      23.33814612467201
+    ],
+    "end_optical_elevation": 29.23491897411668,
+    "last_measured_los": 23.13571182738007,
+    "los_time_s": 13.500000000000057,
+    "held": true,
+    "hold_frames": [
+      {
+        "t": 12.000000000000036,
+        "area": 0.2105505362687897,
+        "uv": [
+          0.49878870248794555,
+          0.502865219116211
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": 23.559198416328417,
+        "view": "below",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.17122480869293213,
+          0.3421709696451823,
+          0.826352596282959,
+          0.6635594685872396
+        ],
+        "pitch_deg": 21.178819938858467,
+        "optical_elevation_deg": 29.747018557666546
+      },
+      {
+        "t": 12.500000000000043,
+        "area": 0.20739921119036359,
+        "uv": [
+          0.49910634756088257,
+          0.5042731920878093
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": 23.668547119635242,
+        "view": "below",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.17315146923065186,
+          0.34520270029703776,
+          0.8250612258911133,
+          0.6633436838785808
+        ],
+        "pitch_deg": 21.502919082527555,
+        "optical_elevation_deg": 29.70391376287497
+      },
+      {
+        "t": 13.00000000000005,
+        "area": 0.20683597253744665,
+        "uv": [
+          0.4994206428527832,
+          0.5022419770558675
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": 23.20549074195216,
+        "view": "below",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.176979923248291,
+          0.34187453587849936,
+          0.8218613624572754,
+          0.6626094182332357
+        ],
+        "pitch_deg": 21.49269842387089,
+        "optical_elevation_deg": 29.41072929965911
+      },
+      {
+        "t": 13.500000000000057,
+        "area": 0.20407923295329244,
+        "uv": [
+          0.4989902079105377,
+          0.5018858750661214
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "los_deg": 23.13571182738007,
+        "view": "below",
+        "view_ok": true,
+        "parts_ok": true,
+        "xyxy": [
+          0.17751818895339966,
+          0.34317903518676757,
+          0.8204622268676758,
+          0.6605927149454752
+        ],
+        "pitch_deg": 21.51346607876165,
+        "optical_elevation_deg": 29.23491897411668
+      }
+    ],
+    "guard_last": {
+      "choice": "proposed",
+      "rejected": {}
+    }
+  },
+  {
+    "case": "outlet_east",
+    "strict": false,
+    "reason": "depth_path_unconfirmed",
+    "spawn": [
+      2.1,
+      -0.85,
+      1.6
+    ],
+    "duration_s": 3.4999999999999956,
+    "path_m": 0.0,
+    "instruction": "Approach the air conditioner and look up at its lower air outlet from below. Keep the unit centered and the outlet visible while hovering.",
+    "decisions": 8,
+    "video_frames": 71,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 825,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 825,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.011555808488074037,
+    "end_bbox_area": 0.010628528828019632,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.6,
+    "end_z": 1.6,
+    "z_min": 1.6,
+    "z_max": 1.6,
+    "end_gimbal": 2.051787983214969,
+    "gimbal_range": [
+      2.031718648112982,
+      13.0
+    ],
+    "end_optical_elevation": 10.100244919760385,
+    "last_measured_los": 8.465882504607675,
+    "los_time_s": 3.4999999999999956,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": {
+      "choice": "brake",
+      "rejected": {
+        "proposed": "unknown",
+        "level": "unknown",
+        "short_level": "unknown",
+        "slide": "unknown",
+        "opposite_slide": "unknown",
+        "rise_forward": "unknown",
+        "rise": "unknown"
+      },
+      "braking_envelope": "free"
+    }
+  },
+  {
+    "case": "outlet_new",
+    "strict": false,
+    "reason": "target_lost",
+    "spawn": [
+      0.28,
+      -0.52,
+      1.64
+    ],
+    "duration_s": 16.000000000000092,
+    "path_m": 3.1608319118741903,
+    "instruction": "Approach the air conditioner and look up at its lower air outlet from below. Keep the unit centered and the outlet visible while hovering.",
+    "decisions": 33,
+    "video_frames": 321,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 805,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 805,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.015528242684922583,
+    "end_bbox_area": null,
+    "end_centered": false,
+    "end_box_clipped": false,
+    "start_z": 1.64,
+    "end_z": 1.9566049148274078,
+    "z_min": 1.314744088744627,
+    "z_max": 1.9683666742007548,
+    "end_gimbal": 21.693035873572526,
+    "gimbal_range": [
+      2.719690480469797,
+      23.26797274863076
+    ],
+    "end_optical_elevation": 29.742178928569256,
+    "last_measured_los": 22.76610682792907,
+    "los_time_s": 12.000000000000036,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": null
+  },
+  {
+    "case": "outlet_west",
+    "strict": false,
+    "reason": "target_lost",
+    "spawn": [
+      -1.15,
+      -0.65,
+      1.55
+    ],
+    "duration_s": 15.000000000000078,
+    "path_m": 3.187111049155796,
+    "instruction": "Approach the air conditioner and look up at its lower air outlet from below. Keep the unit centered and the outlet visible while hovering.",
+    "decisions": 31,
+    "video_frames": 301,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "free",
+      "cells": 815,
+      "surface": 0,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "free",
+      "cells": 815,
+      "surface": 0,
+      "unknown": 0
+    },
+    "rescan_frames": 0,
+    "start_bbox_area": 0.01444013952359455,
+    "end_bbox_area": null,
+    "end_centered": false,
+    "end_box_clipped": false,
+    "start_z": 1.55,
+    "end_z": 1.8134018677516808,
+    "z_min": 1.1512559218572869,
+    "z_max": 1.8208289950194494,
+    "end_gimbal": 17.285357294441948,
+    "gimbal_range": [
+      4.943411742295001,
+      21.650036913050887
+    ],
+    "end_optical_elevation": 25.339455252079077,
+    "last_measured_los": 22.49101879430328,
+    "los_time_s": 11.000000000000021,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": null
+  },
+  {
+    "case": "overview_east",
+    "strict": false,
+    "reason": "start_clearance_unconfirmed",
+    "spawn": [
+      2.1,
+      -0.85,
+      1.7
+    ],
+    "duration_s": 0.0,
+    "path_m": 0.0,
+    "instruction": "Fly toward the black sofa and show its whole front. Keep both ends, the backrest and the seat in the picture while hovering.",
+    "decisions": 0,
+    "video_frames": 1,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "precheck": {
+      "status": "surface",
+      "cells": 830,
+      "surface": 1,
+      "unknown": 0
+    },
+    "postcheck": {
+      "status": "surface",
+      "cells": 830,
+      "surface": 1,
+      "unknown": 0
+    },
+    "rescan_frames": 4,
+    "start_bbox_area": 0.09258326030955384,
+    "end_bbox_area": 0.09258326030955384,
+    "end_centered": true,
+    "end_box_clipped": false,
+    "start_z": 1.7,
+    "end_z": 1.7,
+    "z_min": 1.7,
+    "z_max": 1.7,
+    "end_gimbal": -16.0,
+    "gimbal_range": [
+      -16.0,
+      -16.0
+    ],
+    "end_optical_elevation": -7.951543063454587,
+    "last_measured_los": null,
+    "los_time_s": null,
+    "held": false,
+    "hold_frames": [],
+    "guard_last": null
+  }
+]

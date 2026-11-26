@@ -59,6 +59,20 @@ class DepthGuard:
         if idx is None:raise ValueError('Spawn outside local depth grid')
         self.evidence[idx]=-12
 
+    def stationary(self, state):
+        p=np.asarray(state['position'])
+        rotation=Rotation.from_quat(np.asarray(state['quaternion_wxyz'])[[1,2,3,0]]).as_matrix()
+        idx=self.body(p,rotation)
+        if idx is None:
+            return dict(status='unknown',outside_grid=True), np.empty((0,3))
+        evidence=self.evidence[idx]
+        surface=int((evidence>0).sum())
+        unknown=int((evidence==0).sum())
+        cells=np.column_stack(idx)[evidence>=0]
+        return (dict(status='surface' if surface else 'unknown' if unknown else 'free',
+                     cells=len(evidence),surface=surface,unknown=unknown),
+                self.origin+(cells+.5)*self.cell)
+
     def check(self,st,goal,seconds,start_v,end_v):
         sample=guided_curve(st,goal,seconds,True,start_velocity=start_v,end_velocity=end_v)
         times=np.linspace(0.,seconds,max(2,int(np.ceil(seconds/.075))+1))
@@ -126,10 +140,18 @@ class DepthGuard:
         return hold,dict(choice='brake',rejected=failures,braking_envelope=brake_status)
 
 
-def survey_rig(base):
+def survey_rig(base, pitch_limits=None):
     """Survey pan is applied only during the preflight sensor pass."""
     class SurveyRig(base):
         pan_deg=0.
+        @property
+        def pitch_deg(self):
+            return self._mechanical_pitch
+
+        @pitch_deg.setter
+        def pitch_deg(self,value):
+            self._mechanical_pitch=float(value if pitch_limits is None else np.clip(value,*pitch_limits))
+
         def render(self,pose):
             if self.pan_deg:
                 pose=np.asarray(pose).copy()
@@ -138,7 +160,7 @@ def survey_rig(base):
     return SurveyRig
 
 
-def preflight(sim,guard):
+def preflight(sim,guard,*,pitch_limits=None):
     """Physically hover at launch and scan with the calibrated camera before task reset."""
     from sim_bridge import CONTROL_DT,controller
     rig=sim.scene
@@ -153,6 +175,8 @@ def preflight(sim,guard):
     # Include polar caps. The camera sits ahead of the center of rotation,
     # so newly swept top/bottom corners can lie almost directly above/below it.
     pitches=(-68.,-32.,0.,32.,68.)
+    if pitch_limits is not None:
+        pitches=np.linspace(*pitch_limits,5)
     turns=60
     for idx in range(turns*len(pitches)):
         band=idx//turns
@@ -165,9 +189,48 @@ def preflight(sim,guard):
         if idx%2==0:
             guard.observe(sim.last_depth,rig)
             samples.append(dict(t=receipt['sim_time'],position=receipt['state']['position'],
-                                w2c=rig.W.tolist(),pitch_deg=rig.pitch_deg,pan_deg=rig.pan_deg))
+                                w2c=rig.W.tolist(),pitch_deg=rig.pitch_deg,pan_deg=rig.pan_deg,
+                                direction=camera(rig)[1][:,2].tolist()))
     rig.pitch_deg=original_pitch
     rig.pan_deg=0.
     sim.reset()
     if not np.allclose(initial_rgb,sim.last_rgb,atol=1e-5):raise RuntimeError('Task reset changed first RGB')
-    return dict(duration_s=turns*len(pitches)*CONTROL_DT,samples=samples)
+    report=dict(duration_s=turns*len(pitches)*CONTROL_DT,samples=samples)
+    if pitch_limits is None:
+        return report
+    # The reset body interior is the simulator spawn prior. Survey depth may
+    # contradict it; never reseed the envelope after observing a conflict.
+    guard.observe(sim.last_depth,rig)
+    before,cells=guard.stationary(sim.last_receipt['state'])
+    rechecks=[]
+    if before['status']!='free' and len(cells):
+        center=camera(rig)[0]
+        rays=cells-center
+        rays/=np.maximum(np.linalg.norm(rays,axis=1,keepdims=True),1e-6)
+        directions=np.asarray([s['direction'] for s in samples])
+        # Reinspect each conflicting direction from the best two measured camera
+        # orientations, including interleaved neighboring azimuths for fresh rays.
+        ranked=np.argsort(rays@directions.T,axis=1)[:,-2:]
+        chosen=list(dict.fromkeys(ranked[:,::-1].T.ravel().tolist()))[:12]
+        receipt=sim.last_receipt
+        for j in chosen:
+            for offset in (-3.,3.):
+                rig.pitch_deg=samples[j]['pitch_deg']
+                rig.pan_deg=(samples[j]['pan_deg']+offset)%360
+                u,_=controller(sim,receipt,None,CONTROL_DT,sample=hold)
+                receipt=sim.step(u,format='body_rates_thrust')
+                if receipt['terminated'] or receipt['truncated']:
+                    raise RuntimeError(f"Static reinspection interrupted: {receipt['reason']}")
+                guard.observe(sim.last_depth,rig)
+                rechecks.append(dict(pitch_deg=rig.pitch_deg,pan_deg=rig.pan_deg,
+                                     body_xyz=receipt['state']['position'],w2c=rig.W.tolist()))
+        rig.pitch_deg=original_pitch
+        rig.pan_deg=0.
+        sim.reset()
+        if not np.allclose(initial_rgb,sim.last_rgb,atol=1e-5):
+            raise RuntimeError('Static reinspection changed the launch image')
+    after,_=guard.stationary(sim.last_receipt['state'])
+    report.update(before=before, after=after, rechecks=rechecks,
+                  duration_s=report['duration_s']+len(rechecks)*CONTROL_DT,
+                  envelope_prior='reset body seeded free once; surface votes retained')
+    return report

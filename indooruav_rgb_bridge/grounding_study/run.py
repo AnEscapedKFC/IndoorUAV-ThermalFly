@@ -140,9 +140,9 @@ def run(name,new,arm,mode,detector,waypoint_check='auto'):
             reason=reason,hold=hold,num_decisions=len(decisions),end=pos.tolist(),end_yaw=yaw,render_wh=[sim.scene.width,sim.scene.height],duration=t))
         print(mode,arm,case,reason,len(decisions),flush=True)
 if __name__=='__main__':
-    if sys.argv[1:3] == ['flight','history']:
+    if sys.argv[1:3] in (['flight','history'], ['flight','coordinated']):
         from metric_flight.history_flight import main
-        main(sys.argv[3:]);sys.exit(0)
+        main(sys.argv[3:], coordinated=sys.argv[2]=='coordinated');sys.exit(0)
     if sys.argv[1:3] == ['flight','furniture']:
         from metric_flight.furniture import main
         main(sys.argv[3:]);sys.exit(0)

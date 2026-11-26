@@ -86,6 +86,19 @@ def project(points, center, axes, k, shape):
     return uv[:, 0].clip(0, w - 1), uv[:, 1].clip(0, h - 1), z, inside
 
 
+def measured_parts(labels, depth, c, R, K):
+    """Return visible instance points and robust world centers for both RGB regions."""
+    rows, cols = np.nonzero((labels > 0) & np.isfinite(depth) & (depth > 0.08))
+    parts = labels[rows, cols]
+    rays = np.column_stack((cols, rows, np.ones(len(rows)))) @ np.linalg.inv(K).T
+    xyz = c + (rays * depth[rows, cols, None]) @ R.T
+    summaries = []
+    for label in (2, 3):
+        points = xyz[parts == label]
+        summaries.append(dict(pixels=len(points), world=np.median(points, axis=0).tolist() if len(points) >= 32 else None))
+    return rows, cols, parts, xyz, summaries
+
+
 class ObservationMemory:
     def __init__(self, folder, noun, instance_mask):
         self.root = Path(folder) / "observations"
@@ -108,10 +121,7 @@ class ObservationMemory:
         box = boxes[0]["xyxy"] if boxes else None
         labels = segment(image, box, self.noun, self.instance_mask)
         c, R, K = camera(rig)
-        rows, cols = np.nonzero((labels > 0) & np.isfinite(depth) & (depth > 0.08))
-        parts = labels[rows, cols]
-        rays = np.column_stack((cols, rows, np.ones(len(rows)))) @ np.linalg.inv(K).T
-        xyz = c + (rays * depth[rows, cols, None]) @ R.T
+        rows, cols, parts, xyz, part_samples = measured_parts(labels, depth, c, R, K)
         edge = cv2.Canny(image, 45, 110)
         near_edge = cv2.dilate(edge, np.ones((5, 5), np.uint8)) > 0
         is_edge = edge[rows, cols] > 0
@@ -210,6 +220,7 @@ class ObservationMemory:
             K=K.tolist(),
             pair=paired,
             reasons=reasons,
+            part_samples=part_samples,
             part_pixels=np.bincount(parts, minlength=4).tolist(),
             consistent_pixels=int(consistent.sum()),
             matched_edge_pixels=int(edge_match.sum()),

@@ -1,5 +1,7 @@
 # IndoorUAV-Agent 方位提示与航点检查对照
 
+会议室空调和笔记本的新实验使用语言指定观察方向、机体与云台协同控制、20%–60% 检测框面积及起点深度包络复查。[协同控制实验与复跑命令](metric_flight/COORDINATED_INSPECTION.md)
+
 [会议室家具任务、640×480 双模态录像和深度辅助飞行](metric_flight/DEPTH_FURNITURE.md)
 
 [实验报告](REPORT.md) · [预先固定的设计](protocol.md) · [背向起点补充设计](reverse_protocol.md) · [完整指标](results/metrics.json) · [配对与完整性校验](results/verification.json)

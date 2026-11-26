@@ -1,5 +1,7 @@
 # IndoorUAV-Agent 在会议室与走廊的 RGB 飞行验证
 
+会议室空调和笔记本的新实验使用语言指定观察方向、机体与云台协同控制、20%–60% 检测框面积及起点深度包络复查。[协同控制实验与复跑命令](grounding_study/metric_flight/COORDINATED_INSPECTION.md)
+
 会议室空调任务沿用冻结观察策略，当前评分分为严格完成（距空调 0.4–0.8 米且居中）和大致完成（0.5–1.5 米）。[空调任务入口与评分说明](grounding_study/README.md)
 
 [动力学飞行：13.5 米在线里程、航点检查开关与可见目标观察](grounding_study/metric_flight/REPORT.md)

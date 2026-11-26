@@ -33,19 +33,46 @@ STARTS = {
 }
 
 
-def main(argv=None):
+COORDINATED_TASKS = {
+    "level": "Approach the air conditioner and look horizontally at its front panel. Hover with the unit centered and fully in view.",
+    "outlet": "Approach the air conditioner and look up at its lower air outlet from below. Keep the unit centered and the outlet visible while hovering.",
+    "desk": "Approach the open laptop and look down from above at its screen and keyboard together. Hover with both clearly visible.",
+    "overview": TASKS["sofa"],
+}
+# Identical launch states for both instructions on the same physical AC.
+COORDINATED_CASES = {
+    **{f"{mode}_{start}": (mode, "ac_"+start) for start in ("east","diagonal") for mode in ("level","outlet")},
+    **{"desk_"+start: ("desk","laptop_"+start) for start in ("east","long","west")},
+    "overview_east": ("overview","sofa_east"),
+}
+
+
+# Additional launch states selected before scoring, separate from the historical starts.
+NEW_STARTS = {
+    "ac_new": ("ac", (.28,-.52,1.64,92.,10.)),
+    "laptop_new": ("laptop", (.78,1.86,1.70,-114.,-22.)),
+}
+COORDINATED_CASES.update(level_new=("level","ac_new"), outlet_new=("outlet","ac_new"),
+                         desk_new=("desk","laptop_new"))
+# Diagnostic pair added after horizontal-view detection losses. Report separately.
+COORDINATED_CASES.update(level_west=("level","ac_west"), outlet_west=("outlet","ac_west"))
+
+
+def main(argv=None, *, coordinated=False):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cases", nargs="+", choices=list(STARTS))
+    cases = COORDINATED_CASES if coordinated else STARTS
+    parser.add_argument("--cases", nargs="+", choices=list(cases))
     args = parser.parse_args(argv)
     deny_expert_reads()
     detector = Detector(
         use_cache=False, device=os.environ.get("INDOORUAV_BOX_DEVICE", "cuda")
     )
-    root = OUT / "history_inspection_final"
+    root = OUT / ("coordinated_inspection" if coordinated else "history_inspection_final")
     root.mkdir(parents=True, exist_ok=True)
-    for name in args.cases or STARTS:
-        noun, (x, y, z, yaw, pitch) = STARTS[name]
-        instruction = TASKS[noun]
+    for name in args.cases or cases:
+        mode, start = COORDINATED_CASES[name] if coordinated else (STARTS[name][0], name)
+        noun, (x, y, z, yaw, pitch) = (NEW_STARTS if start in NEW_STARTS else STARTS)[start]
+        instruction = COORDINATED_TASKS[mode] if coordinated else TASKS[noun]
         task = dict(
             target=noun,
             instruction=instruction,
@@ -72,7 +99,7 @@ def main(argv=None):
                     room_goal="history",
                     record_rgbt="history",
                     furniture_task=task,
-                    furniture_mode="history",
+                    furniture_mode="coordinated" if coordinated else "history",
                     history_output=folder,
                 )
                 os.rename(folder, root / name)
