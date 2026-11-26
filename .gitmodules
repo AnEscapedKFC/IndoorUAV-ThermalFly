@@ -1,0 +1,3 @@
+[submodule "IndoorUAV-Agent"]
+	path = indooruav_rgb_bridge/upstream/IndoorUAV-Agent
+	url = https://github.com/valyentinee/IndoorUAV-Agent.git

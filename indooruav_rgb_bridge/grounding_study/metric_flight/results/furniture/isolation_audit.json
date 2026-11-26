@@ -1,0 +1,12 @@
+{
+  "checkpoint": 29999,
+  "archive_sha256": "f9c709f3891fd85c338d9727d3e3a58864c2188683038cc4d2c0cee00501b82e",
+  "matching_parameter_files": 32,
+  "normalizer_verified": true,
+  "worker_verified": true,
+  "detector_sha256": "1a2412ef99bd74bcd3c2a246fa1e48581f8889a1300c9051974741314fc042f3",
+  "manifest_sha256": "666da078bce4b350923857f9b6fcf6d00d24193256428429627351101094138a",
+  "expert_read_probe_blocked": true,
+  "sim_commit": "30cd3159fd519fc7ac3d73809ccc92ce50391f73",
+  "sim_tracked_files_clean": true
+}

@@ -1,0 +1,43 @@
+{
+  "upstream_repository": "https://github.com/valyentinee/IndoorUAV-Agent",
+  "upstream_commit": "4626bbe9c54350a0e7b2631da6211ffca8ac809f",
+  "model_repository": "https://modelscope.cn/models/valyentine/IndoorUAV-Agent",
+  "checkpoint_archive": "29999.zip",
+  "model_revision": "128bc49dbf0bfcb4d54c88095b238064e169e69b",
+  "archive_bytes": 9468831797,
+  "archive_sha256": "f9c709f3891fd85c338d9727d3e3a58864c2188683038cc4d2c0cee00501b82e",
+  "normalizer_member": "training_data.zip:training_data/norm_stats.json",
+  "normalizer_sha256": "baa16375c1cfd8c352be91607622438cf7f8db5b7a27232e00d13e627cfdbe7f",
+  "tokenizer_url": "https://storage.googleapis.com/big_vision/paligemma_tokenizer.model",
+  "tokenizer_sha256": "8986bb4f423f07f8c7f70d0dbe3526fb2316056c17bae71b1ea975e77a168fc6",
+  "policy_config": "pi0_uav_low_mem_finetune",
+  "checkpoint_step": 29999,
+  "sampling_steps": 10,
+  "action_horizon": 10,
+  "max_token_len": 240,
+  "jax_version": "0.5.3",
+  "jax_backend": "cuda",
+  "python": "3.12.3",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "source_python_path": "upstream/IndoorUAV-Agent/openpi/src",
+  "cuda_toolkit": "12.8",
+  "cudnn": "9.7.1.26",
+  "training_resolution": [
+    1280,
+    720
+  ],
+  "training_fps": 10,
+  "sampling_seed_rule": "Reset upstream JAX PRNG to supplied seed before policy.infer; fixed seed for prompt counterfactuals.",
+  "gpu_smoke": {
+    "request": "model_logs/smoke_request.jsonl",
+    "response": "model_logs/smoke_response.jsonl",
+    "identical_repeat": "model_logs/smoke_repeat.jsonl",
+    "dtype": "bfloat16",
+    "preflight": "model_logs/gpu_preflight.log"
+  },
+  "worker_sha256": "ec6aba9cb44b5f9c17a266ea8b2d6e56df5a61dde2f9d8a1ac0a560000d09fca",
+  "archive_hash_verified": true,
+  "verified_params_files": 32,
+  "inference_checkpoint_path": "assets/29999/params",
+  "params_tree_sha256": "2ffebfb46063790182330fa9ce5781755437f4ff16184674d31eae5ccbc7e1d6"
+}

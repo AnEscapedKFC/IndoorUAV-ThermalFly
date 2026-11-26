@@ -1,0 +1,140 @@
+{
+  "laptop_1": {
+    "instruction": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover.",
+    "target": "laptop",
+    "initial": {
+      "position_w_m": [
+        1.57,
+        0.8,
+        1.51
+      ],
+      "q_w_from_b_wxyz": [
+        0.23532607050066906,
+        0.0,
+        0.0,
+        -0.9719164781722317
+      ],
+      "velocity_w_mps": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rig_pitch_deg": -28.304273408535284
+    }
+  },
+  "laptop_2": {
+    "instruction": "Approach the open laptop on the conference table. Keep it in view, look down at its screen and hover.",
+    "target": "laptop",
+    "initial": {
+      "position_w_m": [
+        0.47,
+        2.04,
+        1.72
+      ],
+      "q_w_from_b_wxyz": [
+        0.594672122012772,
+        0.0,
+        0.0,
+        -0.803968324811884
+      ],
+      "velocity_w_mps": [
+        -0.045,
+        -0.28,
+        -0.028
+      ],
+      "rig_pitch_deg": -32.5080465
+    }
+  },
+  "sofa_1": {
+    "instruction": "Approach the black sofa from the table side, lower the viewing height, then hover while looking at the sofa.",
+    "target": "sofa",
+    "initial": {
+      "position_w_m": [
+        0.85,
+        0.6,
+        1.49
+      ],
+      "q_w_from_b_wxyz": [
+        0.462086074546986,
+        0.0,
+        0.0,
+        0.8868350803332925
+      ],
+      "velocity_w_mps": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rig_pitch_deg": -24.28667581543391
+    }
+  },
+  "sofa_2": {
+    "instruction": "Approach the black sofa from the table side, lower the viewing height, then hover while looking at the sofa.",
+    "target": "sofa",
+    "initial": {
+      "position_w_m": [
+        -1.07,
+        -0.34,
+        1.73
+      ],
+      "q_w_from_b_wxyz": [
+        0.7552939568259827,
+        0.0,
+        0.0,
+        0.6553861753059418
+      ],
+      "velocity_w_mps": [
+        0.02,
+        0.16,
+        -0.017
+      ],
+      "rig_pitch_deg": -27.0100407
+    }
+  },
+  "scan_1": {
+    "instruction": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds.",
+    "target": "sofa",
+    "initial": {
+      "position_w_m": [
+        1.8,
+        0.3,
+        1.59
+      ],
+      "q_w_from_b_wxyz": [
+        0.3867958634613035,
+        0.0,
+        0.0,
+        0.9221653647850936
+      ],
+      "velocity_w_mps": [
+        -0.233057,
+        0.254253,
+        -0.016313
+      ],
+      "rig_pitch_deg": -22.89852
+    }
+  },
+  "scan_2": {
+    "instruction": "Approach the black sofa from the table side. At close range, look across its front from left to right, then face the sofa and hover for two seconds.",
+    "target": "sofa",
+    "initial": {
+      "position_w_m": [
+        -1.13,
+        -0.4,
+        1.65
+      ],
+      "q_w_from_b_wxyz": [
+        0.7604954482591915,
+        0.0,
+        0.0,
+        0.6493432629796443
+      ],
+      "velocity_w_mps": [
+        -0.028658,
+        0.185256,
+        -0.024289
+      ],
+      "rig_pitch_deg": -25.25266
+    }
+  }
+}

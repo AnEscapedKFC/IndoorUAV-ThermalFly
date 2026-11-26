@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.log
+indooruav_rgb_bridge/assets/
+indooruav_rgb_bridge/grounding_study/assets/
+indooruav_rgb_bridge/runtime/
+indooruav_rgb_bridge/env/runtime/
