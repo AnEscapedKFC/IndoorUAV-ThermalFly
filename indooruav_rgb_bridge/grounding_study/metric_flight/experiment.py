@@ -111,6 +111,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     pitch_setpoint=init['rig_pitch_deg']
     camera_factory=rgb_factory(rig,init['rig_pitch_deg'],render_thermal=bool(record_rgbt))
     depth_enabled=furniture_task is not None and furniture_mode in ('depth','history','coordinated','window')
+    recovery=None
+    if window:
+        from metric_flight.unknown_views import BlockedViews
+        recovery=BlockedViews()
     guard=None
     if depth_enabled:
         from metric_flight.depth_guard import DepthGuard,preflight,survey_rig
@@ -118,10 +122,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     with (RgbtRecording(out,meta['scene_version']) if record_rgbt else nullcontext()) as video, PolicyFlightSimulator(scene/'models/rgb.ply',point_cloud=scene/'collision/rgb_surface_m.ply',config={'limits':{'max_steps':1500}},
         seed=meta['seed'],spawn=xyz.tolist(),yaw=yaw0,resolution=1.0,spawn_velocity_w_mps=init['velocity_w_mps'],scene_factory=camera_factory) as sim:
         if depth_enabled:
-            guard=DepthGuard(xyz,sim.obstacles.safety_half_size)
+            guard=DepthGuard(xyz,sim.obstacles.safety_half_size,recovery)
             survey=preflight(sim,guard,pitch_limits=PITCH_LIMITS if coordinated else None)
             common.dump(out/'depth_preflight.json',survey)
-            if coordinated and survey['after']['status']!='free':
+            if coordinated and survey['after']['status']!='free' and not (recovery and survey['after']['status']=='unknown'):
                 reason='start_clearance_unconfirmed'
         r=sim.last_receipt
         def detect_current(path, noun):
@@ -129,7 +133,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 return instance.detect(detector,path,sim.scene,sim.last_depth)
             return detector(path,noun)
         def record():
-            if guard is not None and r['step_id']%4==0 and (not coordinated or r['step_id']>0):guard.observe(sim.last_depth,sim.scene)
+            if guard is not None and r['step_id']%4==0 and (not coordinated or r['step_id']>0):guard.observe(sim.last_depth,sim.scene,sim.last_rgb)
             if video is not None:video.frame(sim,r)
             st=r['state'];p=np.asarray(st['position']);q=np.array(st['quaternion_wxyz'])
             inside=bool(known.contains_box(p,Rotation.from_quat(q[[1,2,3,0]]).as_matrix(),sim.obstacles.safety_half_size))
@@ -144,6 +148,35 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
         assert record() and sim.obstacles.distance(xyz,r['state']['quaternion_wxyz'])['safety_clearance']>0
         if coordinated:
             Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(out/'start.png')
+        def scan_step(action, rotating):
+            nonlocal r
+            r=sim.step(action,format='body_rates_thrust')
+            inside=record()
+            if r['terminated'] or r['truncated'] or (not rotating and not inside):
+                return r['reason'] or 'outside_known_space'
+            if r['sim_time']>=60-1e-6:
+                return 'limit'
+            return None
+
+        if recovery and survey['after']['status']=='unknown':
+            survey['before_recovery']=survey['after']
+            while True:
+                entry,centers=guard.stationary(r['state'])
+                if entry['status']!='unknown' or not len(centers):
+                    break
+                ids=np.rint((centers-guard.origin)/guard.cell-.5).astype(int)
+                recovery.clear(guard,ids)
+                remaining=ids[guard.evidence[tuple(ids.T)]==0]
+                if not len(remaining):
+                    break
+                before=len(recovery.events)
+                reason=recovery.scan(sim,guard,{'start':remaining},scan_step)
+                if reason or len(recovery.events)==before:
+                    break
+            survey['after'],_=guard.stationary(r['state'])
+            common.dump(out/'depth_preflight.json',survey)
+            if survey['after']['status']!='free':
+                reason=reason or 'start_clearance_unconfirmed'
         for i in range(130):
             if reason:break
             if r['sim_time']>=60-1e-6:reason='limit';break
@@ -208,6 +241,17 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 if safety['choice']=='brake':
                     stop=passing=False
                     ds[-1]['stopping']=False
+                if recovery is not None and safety['choice']=='brake' and guard.blockers:
+                    safety['blocking_cells']=guard.blockers
+                    # Brake normally first if moving. Never bypass unknown for translation.
+                    before=len(recovery.events)
+                    reason=recovery.scan(sim,guard,guard.blockers,scan_step)
+                    if reason:
+                        break
+                    if len(recovery.events)>before and r['sim_time']>ds[-1]['t']+1.e-6:
+                        safety['observation_event']=before
+                        previous_exit_velocity=None
+                        continue
                 if guard.stalled>=8:
                     reason='depth_path_unconfirmed';break
             if stop:
@@ -275,7 +319,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 object_distance_range_m=[MIN_RANGE_M,MAX_RANGE_M] if standoff else None,
                 reason=reason or 'limit',duration=frames[-1]['t'],distance_setpoint=length,altitude_setpoint=height))]:
             common.dump(out/(filename+'.json'),obj)
-        if window:common.dump(out/'hold_attempts.json',attempts)
+        if window:
+            common.dump(out/'hold_attempts.json',attempts)
+            common.dump(out/'blocked_views.json',dict(scans=recovery.events,history_releases=recovery.releases,
+                                                      rgbd_frames=recovery.history.serial))
         if history:
             servo.memory.finish()
         if standoff:

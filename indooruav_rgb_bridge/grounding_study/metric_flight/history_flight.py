@@ -88,7 +88,7 @@ def main(argv=None, *, coordinated=False, window=False):
     )
     root = OUT / ("coordinated_inspection" if coordinated else "history_inspection_final")
     if window:
-        root = OUT / "observation_window"
+        root = OUT / "observation_window_unknown_views"
     root.mkdir(parents=True, exist_ok=True)
     for name in args.cases or cases:
         mode, start = cases[name] if coordinated else (STARTS[name][0], name)

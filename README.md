@@ -8,6 +8,10 @@
 
 [640×480 配对测试结果和视频](indooruav_rgb_bridge/grounding_study/metric_flight/results/furniture_640/REPORT.md)
 
+## 阻塞区域的 RGB-D 历史复核
+
+飞控把未知体素投回本次飞行的历史图像，证据不足时用云台和原地机体转向补看，记录实际的运动、碰撞、剩余未知格与任务结果。[实现、记录格式与配对复跑](indooruav_rgb_bridge/grounding_study/metric_flight/UNKNOWN_VIEWS.md)
+
 ## 会议室持续观察实验
 
 加入沙发全貌和门口独立黑色扶手椅。24 个动力学回合中，取得并保持合格画面 14/24，自主确认完成 11/24。每回合记录同步 RGB 与热红外。可查看[逐次验收结果](indooruav_rgb_bridge/grounding_study/metric_flight/window_results/REPORT.md)和[新标准及运行命令](indooruav_rgb_bridge/grounding_study/metric_flight/OBSERVATION_WINDOW.md)。

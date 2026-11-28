@@ -8,7 +8,9 @@ from metric_flight.depth_guidance import camera
 
 class DepthGuard:
     cell=.065
-    def __init__(self, origin, half):
+    def __init__(self, origin, half, recovery=None):
+        self.recovery = recovery
+        self.blockers = {}
         self.origin=np.asarray(origin)-[6.,6.,3.]
         self.half=np.asarray(half)
         self.evidence=np.zeros((185,185,94),np.int8)
@@ -16,7 +18,9 @@ class DepthGuard:
         self.stalled=0
         self.slide_sign=1
 
-    def observe(self,z,rig):
+    def observe(self,z,rig,rgb=None):
+        if self.recovery is not None and rgb is not None:
+            self.recovery.history.add(rgb,z,rig)
         center,R,K=camera(rig)
         mid=np.floor((center-self.origin)/self.cell).astype(int)
         ids=self.offsets+mid
@@ -73,7 +77,7 @@ class DepthGuard:
                      cells=len(evidence),surface=surface,unknown=unknown),
                 self.origin+(cells+.5)*self.cell)
 
-    def check(self,st,goal,seconds,start_v,end_v):
+    def check(self,st,goal,seconds,start_v,end_v,*,blocked=None):
         sample=guided_curve(st,goal,seconds,True,start_velocity=start_v,end_velocity=end_v)
         times=np.linspace(0.,seconds,max(2,int(np.ceil(seconds/.075))+1))
         current=Rotation.from_quat(np.asarray(st['quaternion_wxyz'])[[1,2,3,0]]).as_matrix()
@@ -100,7 +104,15 @@ class DepthGuard:
             if ids is None:return 'unknown'
             ev=self.evidence[ids]
             if np.any(ev>0):return 'surface'
-            if np.any(ev>=0):return 'unknown'
+            if np.any(ev==0):
+                unknown = np.column_stack(ids)[ev==0]
+                if blocked is not None and self.recovery is not None:
+                    self.recovery.clear(self, unknown)
+                    unknown = unknown[self.evidence[tuple(unknown.T)]==0]
+                if len(unknown):
+                    if blocked is not None:
+                        blocked.extend(unknown.tolist())
+                    return 'unknown'
         return 'free'
 
     def select(self,st,goal,seconds,passing,prev,rig=None,anchor=None):
@@ -116,6 +128,7 @@ class DepthGuard:
                         ('rise_forward',np.r_[.45*d[:2],.055]),
                         ('rise',np.array([0.,0.,.055]))]
         failures={}
+        self.blockers = {}
         for name,delta in choices:
             target=np.r_[p+delta,goal[3]]
             # During avoidance do not climb or sidestep until the semantic point
@@ -128,7 +141,10 @@ class DepthGuard:
                 if uv[2]<=.10 or np.any(abs(uv[:2]/uv[2]/[rig.width,rig.height]-.5)>.32):
                     failures[name]='target_leaves_view'
                     continue
-            status=self.check(st,target,seconds,prev if passing else None,delta/seconds if passing else None)
+            unknown = [] if self.recovery is not None else None
+            status=self.check(st,target,seconds,prev if passing else None,delta/seconds if passing else None,blocked=unknown)
+            if unknown:
+                self.blockers[name] = unknown
             if status=='free':
                 self.stalled=0
                 if name=='opposite_slide':self.slide_sign*=-1
@@ -187,7 +203,7 @@ def preflight(sim,guard,*,pitch_limits=None):
         if receipt['terminated'] or receipt['truncated']:
             raise RuntimeError(f'Launch survey stopped: {receipt["reason"]}')
         if idx%2==0:
-            guard.observe(sim.last_depth,rig)
+            guard.observe(sim.last_depth,rig,sim.last_rgb)
             samples.append(dict(t=receipt['sim_time'],position=receipt['state']['position'],
                                 w2c=rig.W.tolist(),pitch_deg=rig.pitch_deg,pan_deg=rig.pan_deg,
                                 direction=camera(rig)[1][:,2].tolist()))
@@ -200,10 +216,10 @@ def preflight(sim,guard,*,pitch_limits=None):
         return report
     # The reset body interior is the simulator spawn prior. Survey depth may
     # contradict it; never reseed the envelope after observing a conflict.
-    guard.observe(sim.last_depth,rig)
+    guard.observe(sim.last_depth,rig,sim.last_rgb)
     before,cells=guard.stationary(sim.last_receipt['state'])
     rechecks=[]
-    if before['status']!='free' and len(cells):
+    if (before['status']=='surface' or (guard.recovery is None and before['status']=='unknown')) and len(cells):
         center=camera(rig)[0]
         rays=cells-center
         rays/=np.maximum(np.linalg.norm(rays,axis=1,keepdims=True),1e-6)
@@ -221,7 +237,7 @@ def preflight(sim,guard,*,pitch_limits=None):
                 receipt=sim.step(u,format='body_rates_thrust')
                 if receipt['terminated'] or receipt['truncated']:
                     raise RuntimeError(f"Static reinspection interrupted: {receipt['reason']}")
-                guard.observe(sim.last_depth,rig)
+                guard.observe(sim.last_depth,rig,sim.last_rgb)
                 rechecks.append(dict(pitch_deg=rig.pitch_deg,pan_deg=rig.pan_deg,
                                      body_xyz=receipt['state']['position'],w2c=rig.W.tolist()))
         rig.pitch_deg=original_pitch
