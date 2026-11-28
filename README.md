@@ -1,6 +1,6 @@
 # IndoorUAV-ThermalFly
 
-会议室观察任务可从首次目标检测开始跟踪 RGB-D，在一秒悬停窗口用有效框占比中位数 10%–50% 确认。地图覆盖告警会触发制动复核，显式边界和碰撞独立计数。[当前协议与复跑入口](indooruav_rgb_bridge/grounding_study/metric_flight/OBSERVATION_WINDOW.md)
+会议室观察任务可从首次目标检测开始跟踪 RGB-D，在一秒悬停窗口用有效框占比中位数 10%–50% 确认。地图覆盖告警会触发制动复核，显式边界和碰撞独立计数。本轮 13 个相同起点自主完成 11 个（上一轮 4 个），3 次地图覆盖告警、0 次显式边界违规、0 次碰撞。[当前协议与复跑入口](indooruav_rgb_bridge/grounding_study/metric_flight/OBSERVATION_WINDOW.md)
 
 [导航接入层](indooruav_rgb_bridge/README.md) · [动力学模拟器](gs_gradnav_simulator/README.md) · [会议室家具任务及基线](indooruav_rgb_bridge/grounding_study/metric_flight/results/furniture/REPORT.md)
 

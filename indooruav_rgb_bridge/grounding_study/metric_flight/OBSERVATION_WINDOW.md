@@ -14,6 +14,12 @@ python -B ../bridge_client.py --socket ../runtime/grounding-study.sock serve -- 
 ./launch.sh run.py flight window --cases chair_far chair_north desk_fresh desk_new level_diagonal level_east level_fresh level_new level_west outlet_east outlet_fresh outlet_west overview_east
 ```
 
+## 当前版本的 13 个配对回合
+
+相同任务与起点自主完成 11/13（84.6%），上一轮 4/13（30.8%）。按 10%–50% 的同一面积口径复核，两轮观察完成分别为 8/13 和 11/13。3 个地图覆盖告警均获得制动复核机会，2 个回合随后完成；显式边界违规和碰撞均为 0。沙发东侧起点通过最外层余量复查后完成，扶手椅远侧的起点表面冲突保留拒飞，平视空调东侧在恢复导航后因包络证据不足终止。沙发验收要求两端、靠背和可见坐面均在画面内；茶几遮住部分下缘。
+
+4 个完成窗口用到了 RGB-D 跟踪，其中 2 个直接以跟踪框启动悬停。11 个成功窗口的面积中位数为 10.07%–13.78%，均在一秒内确认。末帧缺测时的延长机制有回归测试覆盖，本组实飞没有触发。此次比较同时更改了安全控制和观察协议，沿用已多次诊断的会议室起点。[逐回合评分、停止证据和安全事件](coverage_window_results.json)
+
 ## 历史基线（20%–60%）
 
 

@@ -1,0 +1,631 @@
+{
+  "control_commit": "af1abab",
+  "baseline_commit": "c3dc474",
+  "scores": {
+    "n": 13,
+    "observation": 11,
+    "autonomous": 11,
+    "baseline_observation_same_rule": 8,
+    "baseline_autonomous_same_rule": 4,
+    "warnings": 3,
+    "warning_episodes": 3,
+    "boundary": 0,
+    "collision": 0,
+    "frames": 3333
+  },
+  "cases": [
+    {
+      "case": "chair_far",
+      "reviewed_rgb_sha256": [
+        "c5b23c80ce5dd5525a029e810904e5fe2562e36459b2273a1ff9287e29424337"
+      ],
+      "observation": false,
+      "autonomous": false,
+      "reason": "start_clearance_unconfirmed",
+      "duration_s": 0.0,
+      "path_m": 0.0,
+      "frames": 1,
+      "baseline_same_rule": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "start_clearance_unconfirmed",
+        "median_area": null
+      },
+      "baseline_original_observation": false,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "surface",
+        "cells": 830,
+        "surface": 31,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 0,
+      "confirmation": null,
+      "reviewer": "预扫描与定向复扫仍提示机体附近有表面，没有下发平移或观察任务。"
+    },
+    {
+      "case": "chair_north",
+      "reviewed_rgb_sha256": [
+        "ce3f35fbfe8d73a54298a96782b148da8c39301727c975adb8f01f2ff607d40c",
+        "6d1041b9faeb599a60cc0e6b3ef4e121fbfc11b8bb1857e36e6beef5570c0867",
+        "dfb1c3d1d6effe071f6f1bf501c0dab513b865e28e9bbaf7a4dfdbdf2137fa36"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 6.15,
+      "path_m": 0.545,
+      "frames": 124,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": true,
+        "reason": "stop",
+        "median_area": 0.20858361484202986
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 835,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.10218596931770206,
+        "drift_m": 0.029449094427673014,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "门边独立黑椅的靠背、扶手与座面在三张实际悬停图中保持完整居中。"
+    },
+    {
+      "case": "desk_fresh",
+      "reviewed_rgb_sha256": [
+        "7126929d0262eadedbad63f56374dcf7e70ce464f095e6f7ec877b01af79aec7",
+        "dbffc6dc8b5bd52061d2e6f4e9145e3e8e8672b0f078884d730cf8a20a46618e",
+        "5f24877faa23d94418c63501796b0f21267945ed0c8b806c2d7d1ffcffc9999c"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 18.7,
+      "path_m": 2.924,
+      "frames": 375,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": true,
+        "reason": "stop",
+        "median_area": 0.28073231874213134
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 815,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 2,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.13779801039157066,
+        "drift_m": 0.058041162006839474,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "屏幕与键盘从上方同时完整可见；最终窗口三次检测均锁定同一台打开的笔记本。"
+    },
+    {
+      "case": "desk_new",
+      "reviewed_rgb_sha256": [
+        "791255d98ecc22951386ebc9b0cfa9afc8564d33551ece08ca112e827a4e6a80",
+        "6bd2cbc02b3b297fa13b54a48aad0ec02dcf558c30dfc0b537faa92b1a50b6aa",
+        "c556503109a2382500cfa274a00a2ae17b614d4fa80f78d8e08b594184f1ae54"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 15.45,
+      "path_m": 1.885,
+      "frames": 310,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": true,
+        "reason": "stop",
+        "median_area": 0.22111387887131664
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 820,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.10972213798190522,
+        "drift_m": 0.037682280547415535,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "桌上同一台笔记本的屏幕和键盘保持可见，俯视窗口通过。"
+    },
+    {
+      "case": "level_diagonal",
+      "reviewed_rgb_sha256": [
+        "2d68d3f5665daa7ad31c492e967987b7e7e6f1c028447fba3c765153645d48b3",
+        "73864ca54070da5f01377b6caeb3fc4c8313bede6f65909ecc4b5e7fd9651cdb",
+        "dc4fd5e61bb1d3950fb7b8ea7b943995e75605e115ce1f3c40201ca049b15b87"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 14.0,
+      "path_m": 3.703,
+      "frames": 281,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "median_area": 0.2380208333333333
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 795,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.1024221673176271,
+        "drift_m": 0.09400019766714061,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "rgbd_track"
+        ]
+      },
+      "reviewer": "空调面板与下沿持续可见，平视构图居中，末帧由 RGB-D 跟踪确认。"
+    },
+    {
+      "case": "level_east",
+      "reviewed_rgb_sha256": [
+        "775f082d430f8d7b4af87480fbb86d260101ea77a1cbcbfa9b24dbe91a85f2fc"
+      ],
+      "observation": false,
+      "autonomous": false,
+      "reason": "map_coverage_unresolved",
+      "duration_s": 19.6,
+      "path_m": 1.84,
+      "frames": 393,
+      "baseline_same_rule": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "outside_known_space",
+        "median_area": null
+      },
+      "baseline_original_observation": false,
+      "map_coverage_events": [
+        {
+          "t": 18.450000000000127,
+          "position": [
+            1.301217488326657,
+            -0.6228186896110746,
+            1.8028734494095906
+          ],
+          "result": "rechecked",
+          "end_t": 19.45000000000014,
+          "speed": 0.06538740553141288,
+          "supported": true
+        }
+      ],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 3,
+      "preflight": {
+        "status": "free",
+        "cells": 825,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 0,
+      "confirmation": null,
+      "reviewer": "发生覆盖告警，一秒制动复查后恢复导航，随后无法持续证实当前包络，空调仍明显小于面积下限。"
+    },
+    {
+      "case": "level_fresh",
+      "reviewed_rgb_sha256": [
+        "b0280beabcf7b240ef8e16178829bdd0d1eecdbab5b8e0b2663ab1b77a72f5d8",
+        "6407e96c111abf774b27e62c3575016ccbeb9c0565f241a4ed609220bcb2d4c0",
+        "01d90c55afe1da8e4a2f5585deadcc63cab7cd5617798c02c6d792d22f55fd38"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 14.6,
+      "path_m": 3.796,
+      "frames": 293,
+      "baseline_same_rule": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "outside_known_space",
+        "median_area": null
+      },
+      "baseline_original_observation": false,
+      "map_coverage_events": [
+        {
+          "t": 6.5999999999999845,
+          "position": [
+            -1.188893210231051,
+            -0.1134890416862609,
+            1.8792444393193004
+          ],
+          "result": "rechecked",
+          "end_t": 7.599999999999981,
+          "speed": 0.08208604558982881,
+          "supported": true
+        }
+      ],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 31,
+      "preflight": {
+        "status": "free",
+        "cells": 795,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 2,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.10931685511848326,
+        "drift_m": 0.09397765843339864,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "rgbd_track",
+          "rgbd_track"
+        ]
+      },
+      "reviewer": "画面持续对准同一空调面板，后两次均以现场 RGB-D 跟踪框复核。"
+    },
+    {
+      "case": "level_new",
+      "reviewed_rgb_sha256": [
+        "27b5ff683614cf66a60669f9a81a343990346ad0ee15cd58cf64ecba07db1eeb",
+        "4f595ab92a08fffe90cb10b7a1c92827e65471d9d1bb879d5bad05a6e76b8ba9",
+        "44a535c5a1b153651a04b0c8ec4b97192ed74eac5c784287e6d9c4c043c3f127"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 12.5,
+      "path_m": 3.108,
+      "frames": 251,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "median_area": 0.11214843750000002
+      },
+      "baseline_original_observation": false,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 805,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 1,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "rgbd_track",
+        "median_area": 0.10916355325858805,
+        "drift_m": 0.026614987473198876,
+        "duration_s": 1.0,
+        "sources": [
+          "rgbd_track",
+          "rgbd_track",
+          "detector"
+        ]
+      },
+      "reviewer": "同一空调正面持续完整且居中，首次悬停与中间帧使用 RGB-D 跟踪，最后一次重新检测到空调。"
+    },
+    {
+      "case": "level_west",
+      "reviewed_rgb_sha256": [
+        "5d566ed11b8aa793c12f47e8f6c81f72e058acc5c6ab41dadae9d0c6c256b76c",
+        "3b3c4506952807213e15759287261c6634438fec19be45b97ce5b4298ac24345",
+        "95470d1c7cd62a2b0d11450de9e825812119b47a3f4d4c78021da49836f3872b"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 19.65,
+      "path_m": 4.267,
+      "frames": 394,
+      "baseline_same_rule": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "outside_known_space",
+        "median_area": null
+      },
+      "baseline_original_observation": false,
+      "map_coverage_events": [
+        {
+          "t": 2.6499999999999986,
+          "position": [
+            -1.4989649975022104,
+            -0.3568357231816596,
+            1.5487750546146555
+          ],
+          "result": "rechecked",
+          "end_t": 3.649999999999995,
+          "speed": 0.07827873712705476,
+          "supported": true
+        }
+      ],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 21,
+      "preflight": {
+        "status": "free",
+        "cells": 815,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 3,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "rgbd_track",
+        "median_area": 0.13123583668903366,
+        "drift_m": 0.04815021753084766,
+        "duration_s": 1.0,
+        "sources": [
+          "rgbd_track",
+          "rgbd_track",
+          "detector"
+        ]
+      },
+      "reviewer": "制动复核后恢复飞行，空调正面持续完整居中；导航跟踪启动悬停，末帧重新检测到空调。"
+    },
+    {
+      "case": "outlet_east",
+      "reviewed_rgb_sha256": [
+        "298f404458dce0a7161e592b97bff0965aed4349d919b0176b6bd22923cdd51d",
+        "3c6e0f1f93645b47852e278ca189674369e4ad1860f0e17a61eaaa301099bcbb",
+        "101f6dedb32132302c63632b6e89721bf74bc1062158775a811c5eb473495077"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 21.85,
+      "path_m": 3.592,
+      "frames": 438,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": true,
+        "reason": "stop",
+        "median_area": 0.22572886479040788
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 825,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.1051648026398652,
+        "drift_m": 0.054270887018024204,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "整机保持在画面内，从下方可以辨认出风口开口及叶片，三帧居中。"
+    },
+    {
+      "case": "outlet_fresh",
+      "reviewed_rgb_sha256": [
+        "bcbc6e62b9a9b04c581c20c4193c7c85e71310a6590ca243e3bbbba0d0f3ea76",
+        "4e1c1b2b731037d715d1b9f4339e53175413cf3664d7238ebbbb227aa15a6b63",
+        "16d6d0fedee0c4b5927caecc2332608295ed6908a988cadee89ade07e27c15aa"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 10.5,
+      "path_m": 2.785,
+      "frames": 211,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "median_area": 0.20947265625000003
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 795,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.10451128734759547,
+        "drift_m": 0.026550699441413632,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "三张实际图均可辨认整机和下方出风口，仰视构图完整，三次直接检测确认。"
+    },
+    {
+      "case": "outlet_west",
+      "reviewed_rgb_sha256": [
+        "c40b793e45ecddedb8f40607d987063960d3e05895e23cfe51b7cc8b6e0db280",
+        "18a31d88177307c7831f3cec9bd48a591aa2dfa0f5d198faf3e4c5b855f03ab1",
+        "0ad0e67f5e094e6bd614ae0d31d962d0a62acc52de2cb9467955e2cde729dd33"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 10.0,
+      "path_m": 2.871,
+      "frames": 201,
+      "baseline_same_rule": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "median_area": 0.2347916666666667
+      },
+      "baseline_original_observation": true,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 815,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 0,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.10073357146879973,
+        "drift_m": 0.11873870146722743,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "出风口清楚且居中，末帧仍有可靠检测。其单帧占比约 9.5%，一秒中位数超过 10%。"
+    },
+    {
+      "case": "overview_east",
+      "reviewed_rgb_sha256": [
+        "64743edfe260612777ee263ba3f7924c175abf0d7467f11e921d3454f73ad485",
+        "cc724d894a0162529254a43d9fef8aa09cd52cfda82e30998b06c75252407ae0",
+        "a3023424c95a0314d671ae30b42a7427a98ec5beed1ced466caed0a28f2f3f0a"
+      ],
+      "observation": true,
+      "autonomous": true,
+      "reason": "stop",
+      "duration_s": 3.0,
+      "path_m": 0.479,
+      "frames": 61,
+      "baseline_same_rule": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "start_clearance_unconfirmed",
+        "median_area": null
+      },
+      "baseline_original_observation": false,
+      "map_coverage_events": [],
+      "boundary": 0,
+      "collision": 0,
+      "raw_outside_samples": 0,
+      "preflight": {
+        "status": "free",
+        "cells": 829,
+        "surface": 0,
+        "unknown": 0
+      },
+      "launch_fringe_cells": 1,
+      "track_navigation_decisions": 0,
+      "attempts": 1,
+      "confirmation": {
+        "initiated_by": "detector",
+        "median_area": 0.1007084812969151,
+        "drift_m": 0.057555434291276394,
+        "duration_s": 1.0,
+        "sources": [
+          "detector",
+          "detector",
+          "detector"
+        ]
+      },
+      "reviewer": "两端、靠背与可见坐面在画面内；茶几遮住部分下缘，坐面有白布。按与既有沙发全貌实验一致的部件可辨口径通过。"
+    }
+  ]
+}
