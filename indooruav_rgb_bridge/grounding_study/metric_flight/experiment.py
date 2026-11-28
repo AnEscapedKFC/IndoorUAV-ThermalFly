@@ -37,8 +37,9 @@ def speed_results(room, distance, group, mode, case):
 def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgbt=None,
             waypoint_speed="through",corridor_distance=13.,furniture_task=None,furniture_mode='depth',
             history_output=None):
-    coordinated=furniture_mode=='coordinated'
-    history=furniture_mode in ('history','coordinated')
+    window=furniture_mode=='window'
+    coordinated=furniture_mode in ('coordinated','window')
+    history=furniture_mode=='history' or coordinated
     room='room_' in case;source=case.removeprefix('fresh_').removeprefix('holdout_').removeprefix('reverse_').removeprefix('new_')
     if furniture_task is not None:
         room=True
@@ -89,7 +90,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
         if coordinated:
             from metric_flight.view_control import CoordinatedInspection, PITCH_LIMITS, pointing_request, elevation
             from metric_flight.depth_guidance import camera
-            servo=CoordinatedInspection(out,final_object,text)
+            servo=CoordinatedInspection(out,final_object,text,single_frame=window)
         else:
             servo=HistoryInspection(out,final_object,text)
     elif furniture_task is not None:
@@ -100,10 +101,16 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     landmarks=link_targets(meta,DATA) if room and furniture_task is None else {}
     course=VisualCourse(odo.axis) if active and length is not None else None
     frames=[];ds=[];hold=[];hold_rgb=[];reason=None
+    hold_duration=2.
+    attempts=[]
+    if window:
+        from metric_flight.observation_window import DoorChair, HoldTracker, box_iou, hold_seconds, write_sample
+        hold_duration=hold_seconds(text)
+        instance=DoorChair() if final_object=='armchair' else None
     previous_exit_velocity=None
     pitch_setpoint=init['rig_pitch_deg']
     camera_factory=rgb_factory(rig,init['rig_pitch_deg'],render_thermal=bool(record_rgbt))
-    depth_enabled=furniture_task is not None and furniture_mode in ('depth','history','coordinated')
+    depth_enabled=furniture_task is not None and furniture_mode in ('depth','history','coordinated','window')
     guard=None
     if depth_enabled:
         from metric_flight.depth_guard import DepthGuard,preflight,survey_rig
@@ -117,6 +124,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             if coordinated and survey['after']['status']!='free':
                 reason='start_clearance_unconfirmed'
         r=sim.last_receipt
+        def detect_current(path, noun):
+            if window and instance is not None:
+                return instance.detect(detector,path,sim.scene,sim.last_depth)
+            return detector(path,noun)
         def record():
             if guard is not None and r['step_id']%4==0 and (not coordinated or r['step_id']>0):guard.observe(sim.last_depth,sim.scene)
             if video is not None:video.frame(sim,r)
@@ -127,6 +138,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                      cumulative_m=odo.path,forward_m=odo.forward))
             if coordinated:
                 frames[-1]['optical_elevation_deg']=elevation(camera(sim.scene)[1][:,2])
+            if window and r['step_id']%10==0:
+                write_sample(out,r['step_id'],sim.last_rgb,sim.last_depth,sim.scene)
             return inside
         assert record() and sim.obstacles.distance(xyz,r['state']['quaternion_wxyz'])['safety_clearance']>0
         if coordinated:
@@ -138,7 +151,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             path=out/f'{i:03d}.png'
             Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(path,compress_level=1)
             if room:
-                prompt,det=policy.update(now,path,detector,lambda b:common.world_ray(sim.scene,b,yaw))
+                prompt,det=policy.update(now,path,detect_current,lambda b:common.world_ray(sim.scene,b,yaw))
                 if furniture_task is not None and final_object=='sofa' and servo.scan:
                     # Output-only sensor tape for offline occlusion checks.
                     z=np.nan_to_num(sim.last_depth,nan=0.,posinf=0.,neginf=0.)
@@ -176,7 +189,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 goal=np.r_[p,yaw] if stop else target
                 observation=info.get('anchor') or {}
                 anchor=observation.get('world') if observation.get('confirmed') else None
-                target,safety=guard.select(st,goal,2. if stop else seconds,passing,previous_exit_velocity,
+                target,safety=guard.select(st,goal,hold_duration if stop else seconds,passing,previous_exit_velocity,
                                            rig=sim.scene,anchor=anchor)
                 # When a lower observation would move the body near a surface, keep
                 # the safety envelope and re-aim the sensor from the reachable pose.
@@ -198,7 +211,14 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 if guard.stalled>=8:
                     reason='depth_path_unconfirmed';break
             if stop:
-                target=np.r_[p,yaw];seconds=2.;hold=[dict(xyz=p.tolist(),speed=st['speed'])]
+                target=np.r_[p,yaw];seconds=hold_duration;hold=[dict(xyz=p.tolist(),speed=st['speed'])]
+                if window:
+                    hold_rgb=[]
+                    first_box=det['boxes'][0]['xyxy']
+                    mask=servo.memory.instance_mask(np.rint(255*sim.last_rgb).astype(np.uint8),first_box)
+                    tracker=HoldTracker(sim.last_rgb,sim.last_depth,sim.scene,first_box,mask)
+                    attempt=dict(t=r['sim_time'],decision=i,qualified=info['phase']=='terminal_hold')
+                    attempts.append(attempt)
             start_velocity=previous_exit_velocity if passing else None
             end_velocity=(target[:3]-p)/seconds if passing else None
             sample=guided_curve(st,target,seconds,legacy_hold,
@@ -218,19 +238,33 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                     hold.append(dict(xyz=r['state']['position'],speed=r['state']['speed']))
                     if (standoff or furniture_task is not None) and (k+1)%round(.5/CONTROL_DT)==0:
                         # Independent RGB checks during the final hover, at 2 Hz.
-                        hold_path=out/f'hold_{k+1:03d}.png'
+                        hold_path=out/(f'attempt_{len(attempts):02d}_{k+1:03d}.png' if window else f'hold_{k+1:03d}.png')
                         Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(hold_path)
-                        boxes=detector(hold_path,det['object'])['boxes']
+                        boxes=detect_current(hold_path,det['object'])['boxes']
                         box=boxes[0]['xyxy'] if boxes else None
                         uv=[(box[0]+box[2])/2,(box[1]+box[3])/2] if box else None
                         metrics=servo.hold_metrics(sim.last_rgb,sim.last_depth,sim.scene,box) if coordinated else dict(uv=uv,centered=bool(uv and centered(*uv)))
+                        if window:
+                            tracked=tracker.measure(sim.last_rgb,sim.last_depth,sim.scene)
+                            source='detector' if box is not None else 'missing'
+                            if tracked is not None and (box is None or box_iou(box,tracked)<.35):
+                                metrics=servo.hold_metrics(sim.last_rgb,sim.last_depth,sim.scene,tracked)
+                                source='rgbd_track'
+                            metrics.update(source=source,detected_box=box,tracked_box=tracked)
                         hold_rgb.append(dict(t=r['sim_time'],**metrics))
                 if r['terminated'] or r['truncated'] or (room and not inside):
                     reason=r['reason'] or 'outside_known_space';break
                 if not room and odo.path>=length-1e-6:
                     reason='distance_reached';break
                 if r['sim_time']>=60-1e-6:reason='limit';break
-            if stop and not reason:reason='stop'
+            if stop and window:
+                drift=max(np.linalg.norm(np.subtract(v['xyz'],hold[0]['xyz'])) for v in hold)
+                confirmed=bool(not reason and len(hold_rgb)==round(2*hold_duration) and drift<=.12 and
+                               all(row['framing_ok'] and row['view_ok'] and row['parts_ok'] for row in hold_rgb))
+                attempt.update(confirmed=confirmed,max_drift_m=float(drift),checks=hold_rgb)
+                if confirmed:reason='stop'
+                else:servo.ready=0
+            elif stop and not reason:reason='stop'
             if reason:break
         Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(out/'end.png')
         for filename,obj in [('frames',frames),('decisions',ds),('episode',dict(case=case,source=source,mode='flight',instruction=text,gate=active,
@@ -241,6 +275,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 object_distance_range_m=[MIN_RANGE_M,MAX_RANGE_M] if standoff else None,
                 reason=reason or 'limit',duration=frames[-1]['t'],distance_setpoint=length,altitude_setpoint=height))]:
             common.dump(out/(filename+'.json'),obj)
+        if window:common.dump(out/'hold_attempts.json',attempts)
         if history:
             servo.memory.finish()
         if standoff:

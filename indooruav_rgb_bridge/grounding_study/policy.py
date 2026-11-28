@@ -14,7 +14,7 @@ class Policy:
         self.text=instruction
         t=instruction.lower()
         self.search='laptop' in t and ('search' in t or 'find' in t)
-        self.objects=['laptop','sofa'] if self.search and 'sofa' in t else ['ac'] if 'air conditioner' in t else ['laptop'] if 'laptop' in t else ['sofa'] if 'sofa' in t else []
+        self.objects=['laptop','sofa'] if self.search and 'sofa' in t else ['ac'] if 'air conditioner' in t else ['laptop'] if 'laptop' in t else ['sofa'] if 'sofa' in t else ['armchair'] if 'armchair' in t else []
         m=re.search(r'about\s+([\d.]+)\s*m',t)
         self.alt=float(m.group(1)) if m else None
         self.profile=('accelerat' in t or 'speed up' in t) and ('descend' in t or 'descent' in t or 'slow' in t)
@@ -43,7 +43,7 @@ class Policy:
         angle,source=self.bearings.estimate(obj,det,now,ray,self.frame)
         det=dict(det,bearing_right_deg=angle,bearing_source=source)
         if angle is None:return self.text,det
-        noun={'ac':'air conditioner','laptop':'laptop','sofa':'sofa'}[obj]
+        noun={'ac':'air conditioner','laptop':'laptop','sofa':'sofa','armchair':'black armchair by the door'}[obj]
         hint=f'Turn {side} toward the {noun}.' if side!='center' else f'The {noun} is centered ahead.'
         if source=='memory':
             hint=f'Turn in place to face the {noun}, last seen {SECTORS[sector(angle)]} relative to your current heading.'

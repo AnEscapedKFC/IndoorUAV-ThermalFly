@@ -1,0 +1,289 @@
+{
+  "level_east": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "No approach. AC occupies about one percent of the frame."
+  },
+  "outlet_east": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "No approach. AC occupies about one percent of the frame."
+  },
+  "level_diagonal": {
+    "method": "offline_boxes",
+    "identity_ok": true,
+    "start_step": 330,
+    "samples": [
+      {
+        "box": [
+          91,
+          159,
+          548,
+          319
+        ],
+        "parts_visible": true
+      },
+      {
+        "box": [
+          91,
+          159,
+          549,
+          319
+        ],
+        "parts_visible": true
+      },
+      {
+        "box": [
+          91,
+          159,
+          548,
+          319
+        ],
+        "parts_visible": true
+      }
+    ],
+    "comment": "Frontal panel and outlet remain visible on all three RGB images. Top edge is diffuse. Boxes exclude the cable and wall."
+  },
+  "desk_east": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Screen and keyboard remain visible in all three sampled frames.",
+    "visually_verified": true
+  },
+  "outlet_diagonal": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Complete housing and lower outlet band visible through the second hold.",
+    "visually_verified": true
+  },
+  "desk_long": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Screen and keyboard visible throughout the hold.",
+    "visually_verified": true
+  },
+  "desk_west": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Both the screen and keyboard deck visible throughout the hold.",
+    "visually_verified": true
+  },
+  "overview_east": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "Static launch envelope still contained a surface after rescan. No navigation request issued."
+  },
+  "level_new": {
+    "method": "offline_boxes",
+    "identity_ok": true,
+    "start_step": 280,
+    "comment": "Stable level view, but full housing is visibly too small; wall and hanging cable excluded.",
+    "samples": [
+      {
+        "box": [
+          177,
+          150,
+          474,
+          266
+        ],
+        "parts_visible": true
+      },
+      {
+        "box": [
+          177,
+          150,
+          474,
+          266
+        ],
+        "parts_visible": true
+      },
+      {
+        "box": [
+          178,
+          150,
+          474,
+          266
+        ],
+        "parts_visible": true
+      }
+    ]
+  },
+  "outlet_new": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "The lower louver and complete housing remain in frame. Both later boxes are supported by current RGB-D tracking after the detector dropped out.",
+    "visually_verified": true
+  },
+  "chair_north": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "First-frame door association selected the black standalone chair. Guard rejected movement; the chair stayed small."
+  },
+  "chair_east": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Same freestanding black chair, with backrest, armrests, and visible front portion of seat. Bag partially obscures cushion; chrome feet remain in the image.",
+    "visually_verified": true
+  },
+  "chair_far": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "Stationary envelope remained in conflict after preflight; no navigation decision was executed."
+  },
+  "overview_west": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Both ends, backrest and seat are in the image; coffee table partly occludes the lower front.",
+    "visually_verified": true
+  },
+  "overview_diagonal": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Both sofa ends, backrest and seat remain in frame from an oblique view. Table overlaps the lower front.",
+    "visually_verified": true
+  },
+  "overview_long": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Both ends, seat and backrest are visible; table in front does not hide the seat.",
+    "visually_verified": true
+  },
+  "desk_new": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "Depth guard kept the vehicle at the spawn. Laptop remains small."
+  },
+  "level_west": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "Simulator known-space envelope exited during lateral adjustment. No qualifying window."
+  },
+  "outlet_west": {
+    "method": "offline_boxes",
+    "identity_ok": true,
+    "start_step": 340,
+    "comment": "Front housing and lower louver visible in final second. Independent boxes exclude the cable; depth sampled on central outlet band.",
+    "samples": [
+      {
+        "box": [
+          122,
+          169,
+          514,
+          353
+        ],
+        "parts_visible": true,
+        "part_roi": [
+          319,
+          303,
+          337,
+          313
+        ]
+      },
+      {
+        "box": [
+          122,
+          169,
+          514,
+          353
+        ],
+        "parts_visible": true,
+        "part_roi": [
+          319,
+          303,
+          337,
+          313
+        ]
+      },
+      {
+        "box": [
+          122,
+          169,
+          514,
+          353
+        ],
+        "parts_visible": true,
+        "part_roi": [
+          319,
+          303,
+          337,
+          313
+        ]
+      }
+    ]
+  },
+  "level_fresh": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "Exited the known-space envelope before task completion."
+  },
+  "outlet_fresh": {
+    "method": "offline_boxes",
+    "identity_ok": true,
+    "start_step": 270,
+    "comment": "Outlet survives dropout in the final second. Whole housing is close to the 20% lower bound; alternate blurred boundaries may change the area verdict.",
+    "samples": [
+      {
+        "box": [
+          119,
+          160,
+          509,
+          325
+        ],
+        "parts_visible": true,
+        "part_roi": [
+          310,
+          274,
+          330,
+          283
+        ]
+      },
+      {
+        "box": [
+          119,
+          160,
+          509,
+          325
+        ],
+        "parts_visible": true,
+        "part_roi": [
+          310,
+          274,
+          330,
+          283
+        ]
+      },
+      {
+        "box": [
+          119,
+          160,
+          509,
+          325
+        ],
+        "parts_visible": true,
+        "part_roi": [
+          310,
+          274,
+          330,
+          283
+        ]
+      }
+    ]
+  },
+  "overview_fresh": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "Full sofa, both ends, backrest and visible seat persist at the held-out pose.",
+    "visually_verified": true
+  },
+  "desk_fresh": {
+    "method": "no_eligible_view",
+    "identity_ok": true,
+    "comment": "Inherited depth trajectory guard rejected the movements at the new start. The laptop stayed small."
+  },
+  "chair_fresh": {
+    "method": "online_frames",
+    "identity_ok": true,
+    "comment": "The independent black chair stays in frame, including its backrest and front seat; the dark bag is visible on the cushion.",
+    "visually_verified": true
+  }
+}

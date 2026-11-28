@@ -58,9 +58,28 @@ COORDINATED_CASES.update(level_new=("level","ac_new"), outlet_new=("outlet","ac_
 COORDINATED_CASES.update(level_west=("level","ac_west"), outlet_west=("outlet","ac_west"))
 
 
-def main(argv=None, *, coordinated=False):
+WINDOW_CASES = dict(COORDINATED_CASES)
+WINDOW_CASES.update(overview_west=("overview","sofa_west"),overview_diagonal=("overview","sofa_diagonal"),
+                    overview_long=("overview","sofa_long"))
+# Chosen from door/chair visibility in launch images; no final pose is supplied.
+NEW_STARTS.update(chair_north=("armchair",(.47,2.04,1.72,-47.,-32.)),
+                  chair_east=("armchair",(1.30,2.10,1.70,-64.,-34.)),
+                  chair_far=("armchair",(-1.40,2.0,1.63,-32.,-25.)))
+WINDOW_CASES.update({n:("chair",n) for n in ("chair_north","chair_east","chair_far")})
+# New positions frozen before any holdout outcomes, shared between both AC instructions.
+NEW_STARTS.update(ac_fresh=("ac",(-.55,-.84,1.59,82.,10.)),
+                  sofa_fresh=("sofa",(-.55,-.84,1.63,89.,-19.)),
+                  laptop_fresh=("laptop",(1.02,2.15,1.66,-115.,-27.)),
+                  chair_fresh=("armchair",(.08,1.87,1.62,-42.,-31.)))
+WINDOW_CASES.update(level_fresh=("level","ac_fresh"),outlet_fresh=("outlet","ac_fresh"),
+                    overview_fresh=("overview","sofa_fresh"),desk_fresh=("desk","laptop_fresh"),
+                    chair_fresh=("chair","chair_fresh"))
+WINDOW_TASKS = dict(COORDINATED_TASKS, chair="Approach the freestanding black armchair by the door. Keep the whole chair centered, with its backrest and seat visible, and hover.")
+
+
+def main(argv=None, *, coordinated=False, window=False):
     parser = argparse.ArgumentParser(description=__doc__)
-    cases = COORDINATED_CASES if coordinated else STARTS
+    cases = WINDOW_CASES if window else COORDINATED_CASES if coordinated else STARTS
     parser.add_argument("--cases", nargs="+", choices=list(cases))
     args = parser.parse_args(argv)
     deny_expert_reads()
@@ -68,11 +87,13 @@ def main(argv=None, *, coordinated=False):
         use_cache=False, device=os.environ.get("INDOORUAV_BOX_DEVICE", "cuda")
     )
     root = OUT / ("coordinated_inspection" if coordinated else "history_inspection_final")
+    if window:
+        root = OUT / "observation_window"
     root.mkdir(parents=True, exist_ok=True)
     for name in args.cases or cases:
-        mode, start = COORDINATED_CASES[name] if coordinated else (STARTS[name][0], name)
+        mode, start = cases[name] if coordinated else (STARTS[name][0], name)
         noun, (x, y, z, yaw, pitch) = (NEW_STARTS if start in NEW_STARTS else STARTS)[start]
-        instruction = COORDINATED_TASKS[mode] if coordinated else TASKS[noun]
+        instruction = (WINDOW_TASKS if window else COORDINATED_TASKS)[mode] if coordinated else TASKS[noun]
         task = dict(
             target=noun,
             instruction=instruction,
@@ -99,7 +120,7 @@ def main(argv=None, *, coordinated=False):
                     room_goal="history",
                     record_rgbt="history",
                     furniture_task=task,
-                    furniture_mode="coordinated" if coordinated else "history",
+                    furniture_mode="window" if window else "coordinated" if coordinated else "history",
                     history_output=folder,
                 )
                 os.rename(folder, root / name)

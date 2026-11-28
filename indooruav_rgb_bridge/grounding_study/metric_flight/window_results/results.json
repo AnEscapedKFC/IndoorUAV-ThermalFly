@@ -1,0 +1,1587 @@
+[
+  {
+    "case": "chair_east",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Same freestanding black chair, with backrest, armrests, and visible front portion of seat. Bag partially obscures cushion; chrome feet remain in the image.",
+    "frames": 151,
+    "path_m": 1.04480040302254,
+    "duration_s": 7.499999999999981,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 2,
+    "confirmations": [
+      {
+        "t": 6.499999999999985,
+        "max_drift_m": 0.07614310245533613,
+        "checks": [
+          {
+            "t": 6.999999999999983,
+            "area": 0.22476456821814392,
+            "uv": [
+              0.5009227871894837,
+              0.5421273787816365
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -46.79428867785172,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.31163275241851807,
+              0.2452752908070882,
+              0.6902128219604492,
+              0.8389794667561848
+            ],
+            "pitch_deg": -55.87803611091896,
+            "optical_elevation_deg": -43.36527816251913,
+            "source": "detector",
+            "detected_box": [
+              0.31163275241851807,
+              0.2452752908070882,
+              0.6902128219604492,
+              0.8389794667561848
+            ],
+            "tracked_box": [
+              0.31107448353744827,
+              0.24709455373266287,
+              0.6936816986410287,
+              0.8413815543362083
+            ]
+          },
+          {
+            "t": 7.499999999999981,
+            "area": 0.2440706592135827,
+            "uv": [
+              0.4977848887443542,
+              0.4560949762662252
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -46.01438943427815,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.3156784772872925,
+              0.12102898756663004,
+              0.679891300201416,
+              0.7911609649658203
+            ],
+            "pitch_deg": -52.54298677572091,
+            "optical_elevation_deg": -48.15284784261558,
+            "source": "detector",
+            "detected_box": [
+              0.3156784772872925,
+              0.12102898756663004,
+              0.679891300201416,
+              0.7911609649658203
+            ],
+            "tracked_box": [
+              0.3171537671187978,
+              0.1288173704509606,
+              0.6822858585056567,
+              0.6967432744054314
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": "door"
+  },
+  {
+    "case": "chair_far",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "start_clearance_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "Stationary envelope remained in conflict after preflight; no navigation decision was executed.",
+    "frames": 1,
+    "path_m": 0.0,
+    "duration_s": 0.0,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "surface",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "chair_fresh",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "The independent black chair stays in frame, including its backrest and front seat; the dark bag is visible on the cushion.",
+    "frames": 101,
+    "path_m": 1.4762445781165472,
+    "duration_s": 4.99999999999999,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [
+      {
+        "t": 3.999999999999994,
+        "max_drift_m": 0.09500940420199673,
+        "checks": [
+          {
+            "t": 4.499999999999992,
+            "area": 0.25983563824158334,
+            "uv": [
+              0.5066494822502137,
+              0.5580824693044026
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -28.723247333867853,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.32253692150115965,
+              0.2052607536315918,
+              0.6907620429992676,
+              0.9109041849772136
+            ],
+            "pitch_deg": -42.19597583250727,
+            "optical_elevation_deg": -28.394240252152372,
+            "source": "detector",
+            "detected_box": [
+              0.32253692150115965,
+              0.2052607536315918,
+              0.6907620429992676,
+              0.9109041849772136
+            ],
+            "tracked_box": [
+              0.32128874077988584,
+              0.204085719928516,
+              0.6939976761209198,
+              0.9153106216000422
+            ]
+          },
+          {
+            "t": 4.99999999999999,
+            "area": 0.23789362646981413,
+            "uv": [
+              0.4985130071640015,
+              0.36872382362683614
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -26.377866722653074,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.322000789642334,
+              0.031787335872650146,
+              0.675025224685669,
+              0.7056603113810221
+            ],
+            "pitch_deg": -39.27964942275123,
+            "optical_elevation_deg": -35.790666357589735,
+            "source": "detector",
+            "detected_box": [
+              0.322000789642334,
+              0.031787335872650146,
+              0.675025224685669,
+              0.7056603113810221
+            ],
+            "tracked_box": [
+              0.3276011144539014,
+              0.04180426368342586,
+              0.6777173622567243,
+              0.7101247167618013
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": "door"
+  },
+  {
+    "case": "chair_north",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "depth_path_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "First-frame door association selected the black standalone chair. Guard rejected movement; the chair stayed small.",
+    "frames": 71,
+    "path_m": 0.0,
+    "duration_s": 3.4999999999999956,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": "door"
+  },
+  {
+    "case": "desk_east",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Screen and keyboard remain visible in all three sampled frames.",
+    "frames": 281,
+    "path_m": 3.1219583773332165,
+    "duration_s": 14.000000000000064,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 3,
+    "confirmations": [
+      {
+        "t": 13.00000000000005,
+        "max_drift_m": 0.028779518530673946,
+        "checks": [
+          {
+            "t": 13.500000000000057,
+            "area": 0.21529466529452745,
+            "uv": [
+              0.504247498512268,
+              0.4901436328887939
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -35.95985098595123,
+            "view": "above",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.29674358367919923,
+              0.2307573636372884,
+              0.7117514133453369,
+              0.7495299021402995
+            ],
+            "pitch_deg": -42.60481445197641,
+            "optical_elevation_deg": -34.73260887027222,
+            "source": "detector",
+            "detected_box": [
+              0.29674358367919923,
+              0.2307573636372884,
+              0.7117514133453369,
+              0.7495299021402995
+            ],
+            "tracked_box": [
+              0.29647528102909104,
+              0.22890506154398949,
+              0.7140179663293336,
+              0.7569149645509619
+            ]
+          },
+          {
+            "t": 14.000000000000064,
+            "area": 0.20841497989725324,
+            "uv": [
+              0.5037457823753357,
+              0.4946115573247274
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -35.20306291453273,
+            "view": "above",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.29882514476776123,
+              0.24034851392110188,
+              0.7086664199829101,
+              0.7488746007283529
+            ],
+            "pitch_deg": -40.85101799117733,
+            "optical_elevation_deg": -33.756911346413574,
+            "source": "detector",
+            "detected_box": [
+              0.29882514476776123,
+              0.24034851392110188,
+              0.7086664199829101,
+              0.7488746007283529
+            ],
+            "tracked_box": [
+              0.2977146784999183,
+              0.23694380879984753,
+              0.7103351078197548,
+              0.7589879411174094
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "desk_fresh",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "depth_path_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "Inherited depth trajectory guard rejected the movements at the new start. The laptop stayed small.",
+    "frames": 71,
+    "path_m": 0.0,
+    "duration_s": 3.4999999999999956,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "desk_long",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Screen and keyboard visible throughout the hold.",
+    "frames": 491,
+    "path_m": 5.074486347200505,
+    "duration_s": 24.500000000000213,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 2,
+    "confirmations": [
+      {
+        "t": 23.5000000000002,
+        "max_drift_m": 0.047117812662625075,
+        "checks": [
+          {
+            "t": 24.000000000000206,
+            "area": 0.2815724888055843,
+            "uv": [
+              0.5005200624465942,
+              0.5255063772201538
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -32.14023920831883,
+            "view": "above",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.25899338722229004,
+              0.23405566215515136,
+              0.7420467376708985,
+              0.8169570922851562
+            ],
+            "pitch_deg": -34.65288965174616,
+            "optical_elevation_deg": -27.85648635349182,
+            "source": "detector",
+            "detected_box": [
+              0.25899338722229004,
+              0.23405566215515136,
+              0.7420467376708985,
+              0.8169570922851562
+            ],
+            "tracked_box": [
+              0.24927273292747731,
+              0.21499651818156482,
+              0.7435291670180244,
+              0.810622158026079
+            ]
+          },
+          {
+            "t": 24.500000000000213,
+            "area": 0.329489575849985,
+            "uv": [
+              0.5025107264518738,
+              0.5407943566640219
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -35.28375592246904,
+            "view": "above",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.24547507762908935,
+              0.22032365798950196,
+              0.7595463752746582,
+              0.8612650553385417
+            ],
+            "pitch_deg": -40.65288965174617,
+            "optical_elevation_deg": -30.07017217158297,
+            "source": "detector",
+            "detected_box": [
+              0.24547507762908935,
+              0.22032365798950196,
+              0.7595463752746582,
+              0.8612650553385417
+            ],
+            "tracked_box": null
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "desk_new",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "depth_path_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "Depth guard kept the vehicle at the spawn. Laptop remains small.",
+    "frames": 71,
+    "path_m": 0.0,
+    "duration_s": 3.4999999999999956,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "desk_west",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Both the screen and keyboard deck visible throughout the hold.",
+    "frames": 231,
+    "path_m": 2.6343957341346047,
+    "duration_s": 11.500000000000028,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [
+      {
+        "t": 10.500000000000014,
+        "max_drift_m": 0.05249878366812999,
+        "checks": [
+          {
+            "t": 11.000000000000021,
+            "area": 0.2638177369350918,
+            "uv": [
+              0.495615816116333,
+              0.49540422757466634
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -34.8386216801779,
+            "view": "above",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.26487255096435547,
+              0.209569517771403,
+              0.7263590812683105,
+              0.7812389373779297
+            ],
+            "pitch_deg": -44.38773915647698,
+            "optical_elevation_deg": -33.23683609158758,
+            "source": "detector",
+            "detected_box": [
+              0.26487255096435547,
+              0.209569517771403,
+              0.7263590812683105,
+              0.7812389373779297
+            ],
+            "tracked_box": [
+              0.26070864257628534,
+              0.20855139986843785,
+              0.7282464414142216,
+              0.7791800288077746
+            ]
+          },
+          {
+            "t": 11.500000000000028,
+            "area": 0.2245817227850239,
+            "uv": [
+              0.5000514268875123,
+              0.45515238444010414
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -32.338536153758305,
+            "view": "above",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.28410749435424804,
+              0.19515234629313152,
+              0.7159953594207764,
+              0.7151524225870768
+            ],
+            "pitch_deg": -38.72180085825271,
+            "optical_elevation_deg": -33.11229892443409,
+            "source": "detector",
+            "detected_box": [
+              0.28410749435424804,
+              0.19515234629313152,
+              0.7159953594207764,
+              0.7151524225870768
+            ],
+            "tracked_box": [
+              0.2847393871071182,
+              0.19418499879478807,
+              0.7158016936683154,
+              0.7196507813434241
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "level_diagonal",
+    "observation": true,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "target_lost",
+    "visual_method": "offline_boxes",
+    "comment": "Frontal panel and outlet remain visible on all three RGB images. Top edge is diffuse. Boxes exclude the cable and wall.",
+    "frames": 351,
+    "path_m": 4.053243344291949,
+    "duration_s": 17.500000000000114,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": 0.0019665372906766047,
+    "manual_samples": [
+      {
+        "area": 0.2380208333333333,
+        "uv": [
+          0.49921875,
+          0.4979166666666667
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 330,
+        "los_deg": -0.29606830446052207,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          91,
+          159,
+          548,
+          319
+        ],
+        "valid": true
+      },
+      {
+        "area": 0.23854166666666665,
+        "uv": [
+          0.5,
+          0.4979166666666667
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 340,
+        "los_deg": -0.2530216383874062,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          91,
+          159,
+          549,
+          319
+        ],
+        "valid": true
+      },
+      {
+        "area": 0.2380208333333333,
+        "uv": [
+          0.49921875,
+          0.4979166666666667
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 350,
+        "los_deg": -0.38016231298818864,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          91,
+          159,
+          548,
+          319
+        ],
+        "valid": true
+      }
+    ],
+    "first_association": null
+  },
+  {
+    "case": "level_east",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "depth_path_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "No approach. AC occupies about one percent of the frame.",
+    "frames": 71,
+    "path_m": 0.0,
+    "duration_s": 3.4999999999999956,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "level_fresh",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "outside_known_space",
+    "visual_method": "no_eligible_view",
+    "comment": "Exited the known-space envelope before task completion.",
+    "frames": 133,
+    "path_m": 1.3468110806707536,
+    "duration_s": 6.5999999999999845,
+    "collision_samples": 0,
+    "outside_samples": 1,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "level_new",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "target_lost",
+    "visual_method": "offline_boxes",
+    "comment": "Stable level view, but full housing is visibly too small; wall and hanging cable excluded.",
+    "frames": 301,
+    "path_m": 3.1080396046352745,
+    "duration_s": 15.000000000000078,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": 0.001042865093444649,
+    "manual_samples": [
+      {
+        "area": 0.11214843750000002,
+        "uv": [
+          0.50859375,
+          0.43333333333333335
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": false,
+        "step": 280,
+        "los_deg": -4.011371909723415,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          177,
+          150,
+          474,
+          266
+        ],
+        "valid": false
+      },
+      {
+        "area": 0.11214843750000002,
+        "uv": [
+          0.50859375,
+          0.43333333333333335
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": false,
+        "step": 290,
+        "los_deg": -3.848767761894481,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          177,
+          150,
+          474,
+          266
+        ],
+        "valid": false
+      },
+      {
+        "area": 0.11177083333333333,
+        "uv": [
+          0.509375,
+          0.43333333333333335
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": false,
+        "step": 300,
+        "los_deg": -3.7069220158166303,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          178,
+          150,
+          474,
+          266
+        ],
+        "valid": false
+      }
+    ],
+    "first_association": null
+  },
+  {
+    "case": "level_west",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "outside_known_space",
+    "visual_method": "no_eligible_view",
+    "comment": "Simulator known-space envelope exited during lateral adjustment. No qualifying window.",
+    "frames": 54,
+    "path_m": 0.4561041899553687,
+    "duration_s": 2.6499999999999986,
+    "collision_samples": 0,
+    "outside_samples": 1,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "outlet_diagonal",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Complete housing and lower outlet band visible through the second hold.",
+    "frames": 261,
+    "path_m": 3.5098526374052175,
+    "duration_s": 13.00000000000005,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 2,
+    "confirmations": [
+      {
+        "t": 12.000000000000036,
+        "max_drift_m": 0.0807232355586561,
+        "checks": [
+          {
+            "t": 12.500000000000043,
+            "area": 0.30304717832429856,
+            "uv": [
+              0.49650058448314666,
+              0.5554674784342448
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": 20.776907213550857,
+            "view": "below",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.09958800673484802,
+              0.3645896911621094,
+              0.8934131622314453,
+              0.7463452657063802
+            ],
+            "pitch_deg": 18.272130652198534,
+            "optical_elevation_deg": 31.56976245424422,
+            "source": "detector",
+            "detected_box": [
+              0.09958800673484802,
+              0.3645896911621094,
+              0.8934131622314453,
+              0.7463452657063802
+            ],
+            "tracked_box": [
+              0.09913613490194954,
+              0.3615030500131978,
+              0.8901416610820492,
+              0.7538296376408643
+            ]
+          },
+          {
+            "t": 13.00000000000005,
+            "area": 0.24951939919104577,
+            "uv": [
+              0.49380488991737365,
+              0.4398218631744385
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": 21.408564098984936,
+            "view": "below",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.14597207307815552,
+              0.2604832649230957,
+              0.8416377067565918,
+              0.6191604614257813
+            ],
+            "pitch_deg": 21.088056178273995,
+            "optical_elevation_deg": 24.983474107907995,
+            "source": "detector",
+            "detected_box": [
+              0.14597207307815552,
+              0.2604832649230957,
+              0.8416377067565918,
+              0.6191604614257813
+            ],
+            "tracked_box": [
+              0.15336581410780958,
+              0.278616664761578,
+              0.8387543819879639,
+              0.619801144220115
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "outlet_east",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "depth_path_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "No approach. AC occupies about one percent of the frame.",
+    "frames": 71,
+    "path_m": 0.0,
+    "duration_s": 3.4999999999999956,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "outlet_fresh",
+    "observation": true,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "target_lost",
+    "visual_method": "offline_boxes",
+    "comment": "Outlet survives dropout in the final second. Whole housing is close to the 20% lower bound; alternate blurred boundaries may change the area verdict.",
+    "frames": 291,
+    "path_m": 3.314087453243602,
+    "duration_s": 14.500000000000071,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": 0.0007300552322568499,
+    "manual_samples": [
+      {
+        "area": 0.20947265625000003,
+        "uv": [
+          0.490625,
+          0.5052083333333334
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 270,
+        "los_deg": 25.15039198044829,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          119,
+          160,
+          509,
+          325
+        ],
+        "valid": true
+      },
+      {
+        "area": 0.20947265625000003,
+        "uv": [
+          0.490625,
+          0.5052083333333334
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 280,
+        "los_deg": 25.133730367946868,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          119,
+          160,
+          509,
+          325
+        ],
+        "valid": true
+      },
+      {
+        "area": 0.20947265625000003,
+        "uv": [
+          0.490625,
+          0.5052083333333334
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 290,
+        "los_deg": 25.136067402869443,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          119,
+          160,
+          509,
+          325
+        ],
+        "valid": true
+      }
+    ],
+    "first_association": null
+  },
+  {
+    "case": "outlet_new",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "The lower louver and complete housing remain in frame. Both later boxes are supported by current RGB-D tracking after the detector dropped out.",
+    "frames": 261,
+    "path_m": 3.167902129940123,
+    "duration_s": 13.00000000000005,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [
+      {
+        "t": 12.000000000000036,
+        "max_drift_m": 0.018168250570465824,
+        "checks": [
+          {
+            "t": 12.500000000000043,
+            "area": 0.3377197653294604,
+            "uv": [
+              0.4939755780676437,
+              0.49913873962347766
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": 22.984467465799167,
+            "view": "below",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.0607956089595599,
+              0.3042314323760856,
+              0.9271555471757275,
+              0.6940460468708698
+            ],
+            "pitch_deg": 21.439228975300544,
+            "optical_elevation_deg": 30.54766794786699,
+            "source": "rgbd_track",
+            "detected_box": null,
+            "tracked_box": [
+              0.0607956089595599,
+              0.3042314323760856,
+              0.9271555471757275,
+              0.6940460468708698
+            ]
+          },
+          {
+            "t": 13.00000000000005,
+            "area": 0.3235140721472844,
+            "uv": [
+              0.49536329519478933,
+              0.49788332064047924
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": 22.612394627143363,
+            "view": "below",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.07129640633080546,
+              0.30716218640270987,
+              0.9194301840587732,
+              0.6886044548782486
+            ],
+            "pitch_deg": 22.652565804406805,
+            "optical_elevation_deg": 30.115396771878203,
+            "source": "rgbd_track",
+            "detected_box": null,
+            "tracked_box": [
+              0.07129640633080546,
+              0.30716218640270987,
+              0.9194301840587732,
+              0.6886044548782486
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "outlet_west",
+    "observation": true,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "target_lost",
+    "visual_method": "offline_boxes",
+    "comment": "Front housing and lower louver visible in final second. Independent boxes exclude the cable; depth sampled on central outlet band.",
+    "frames": 361,
+    "path_m": 3.513778802231803,
+    "duration_s": 18.00000000000012,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [],
+    "manual_drift_m": 0.0026267778747713667,
+    "manual_samples": [
+      {
+        "area": 0.2347916666666667,
+        "uv": [
+          0.49687499999999996,
+          0.5437500000000001
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 340,
+        "los_deg": 24.039080356848594,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          122,
+          169,
+          514,
+          353
+        ],
+        "valid": true
+      },
+      {
+        "area": 0.2347916666666667,
+        "uv": [
+          0.49687499999999996,
+          0.5437500000000001
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 350,
+        "los_deg": 24.030181770267024,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          122,
+          169,
+          514,
+          353
+        ],
+        "valid": true
+      },
+      {
+        "area": 0.2347916666666667,
+        "uv": [
+          0.49687499999999996,
+          0.5437500000000001
+        ],
+        "centered": true,
+        "clipped": false,
+        "framing_ok": true,
+        "step": 360,
+        "los_deg": 24.036044979134804,
+        "view_ok": true,
+        "parts_ok": true,
+        "box_px": [
+          122,
+          169,
+          514,
+          353
+        ],
+        "valid": true
+      }
+    ],
+    "first_association": null
+  },
+  {
+    "case": "overview_diagonal",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Both sofa ends, backrest and seat remain in frame from an oblique view. Table overlaps the lower front.",
+    "frames": 41,
+    "path_m": 0.6249850421682405,
+    "duration_s": 2.000000000000001,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [
+      {
+        "t": 1.0000000000000002,
+        "max_drift_m": 0.08844924669517581,
+        "checks": [
+          {
+            "t": 1.5000000000000007,
+            "area": 0.2206801533546885,
+            "uv": [
+              0.49796720743179324,
+              0.5275954723358154
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -19.59204614742713,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.26817800998687746,
+              0.28750569025675454,
+              0.727756404876709,
+              0.7676852544148763
+            ],
+            "pitch_deg": -33.688300635842154,
+            "optical_elevation_deg": -19.9722378467227,
+            "source": "detector",
+            "detected_box": [
+              0.26817800998687746,
+              0.28750569025675454,
+              0.727756404876709,
+              0.7676852544148763
+            ],
+            "tracked_box": [
+              0.2647449920863093,
+              0.2871691954614139,
+              0.7267777870821398,
+              0.7712205206074436
+            ]
+          },
+          {
+            "t": 2.000000000000001,
+            "area": 0.2084524842047737,
+            "uv": [
+              0.5017473220825195,
+              0.37844666639963787
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -16.99354518539124,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.27529044151306153,
+              0.14832285245259602,
+              0.7282042026519775,
+              0.6085704803466797
+            ],
+            "pitch_deg": -29.57798023942378,
+            "optical_elevation_deg": -26.69352141596547,
+            "source": "detector",
+            "detected_box": [
+              0.27529044151306153,
+              0.14832285245259602,
+              0.7282042026519775,
+              0.6085704803466797
+            ],
+            "tracked_box": null
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "overview_east",
+    "observation": false,
+    "autonomous": false,
+    "controller_stop": false,
+    "reason": "start_clearance_unconfirmed",
+    "visual_method": "no_eligible_view",
+    "comment": "Static launch envelope still contained a surface after rescan. No navigation request issued.",
+    "frames": 1,
+    "path_m": 0.0,
+    "duration_s": 0.0,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "surface",
+    "attempt_count": 0,
+    "confirmations": [],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "overview_fresh",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Full sofa, both ends, backrest and visible seat persist at the held-out pose.",
+    "frames": 71,
+    "path_m": 0.872182886966203,
+    "duration_s": 3.4999999999999956,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [
+      {
+        "t": 2.499999999999999,
+        "max_drift_m": 0.03462458166563329,
+        "checks": [
+          {
+            "t": 2.9999999999999973,
+            "area": 0.21323806069564094,
+            "uv": [
+              0.4984093904495239,
+              0.49484845797220867
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -15.816230621164094,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.22298140525817872,
+              0.30129690170288087,
+              0.7738373756408692,
+              0.6884000142415364
+            ],
+            "pitch_deg": -29.938319376732736,
+            "optical_elevation_deg": -19.65964283842224,
+            "source": "detector",
+            "detected_box": [
+              0.22298140525817872,
+              0.30129690170288087,
+              0.7738373756408692,
+              0.6884000142415364
+            ],
+            "tracked_box": [
+              0.2219829333633946,
+              0.30116817613591856,
+              0.7729862687855332,
+              0.6885590880275065
+            ]
+          },
+          {
+            "t": 3.4999999999999956,
+            "area": 0.20697144443818843,
+            "uv": [
+              0.4992239594459534,
+              0.4922983010609945
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -15.705186012900787,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.2277229070663452,
+              0.3017175992329915,
+              0.7707250118255615,
+              0.6828790028889974
+            ],
+            "pitch_deg": -25.447985146994377,
+            "optical_elevation_deg": -19.43372587560945,
+            "source": "detector",
+            "detected_box": [
+              0.2277229070663452,
+              0.3017175992329915,
+              0.7707250118255615,
+              0.6828790028889974
+            ],
+            "tracked_box": [
+              0.2267564911709461,
+              0.3005215427686998,
+              0.7694840003317225,
+              0.6830098442004802
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "overview_long",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Both ends, seat and backrest are visible; table in front does not hide the seat.",
+    "frames": 91,
+    "path_m": 1.2120397108253447,
+    "duration_s": 4.499999999999992,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 1,
+    "confirmations": [
+      {
+        "t": 3.4999999999999956,
+        "max_drift_m": 0.026729264338877477,
+        "checks": [
+          {
+            "t": 3.999999999999994,
+            "area": 0.22698310169019273,
+            "uv": [
+              0.49804326295852663,
+              0.4961447874704996
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -13.876457392298317,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.23810389041900634,
+              0.27784090042114257,
+              0.7579826354980469,
+              0.7144486745198567
+            ],
+            "pitch_deg": -29.036906294723323,
+            "optical_elevation_deg": -19.288267165365244,
+            "source": "detector",
+            "detected_box": [
+              0.23810389041900634,
+              0.27784090042114257,
+              0.7579826354980469,
+              0.7144486745198567
+            ],
+            "tracked_box": [
+              0.23844394627737991,
+              0.27802005327645996,
+              0.7577676062723713,
+              0.7130633659923189
+            ]
+          },
+          {
+            "t": 4.499999999999992,
+            "area": 0.21930021911572412,
+            "uv": [
+              0.49973359107971194,
+              0.49377258618672687
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -13.956294695719096,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.24329061508178712,
+              0.27998215357462564,
+              0.7561765670776367,
+              0.7075630187988281
+            ],
+            "pitch_deg": -25.493504350062903,
+            "optical_elevation_deg": -19.11963321482291,
+            "source": "detector",
+            "detected_box": [
+              0.24329061508178712,
+              0.27998215357462564,
+              0.7561765670776367,
+              0.7075630187988281
+            ],
+            "tracked_box": [
+              0.24305983406709647,
+              0.27763135219243734,
+              0.7573275115638263,
+              0.7097758545737076
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  },
+  {
+    "case": "overview_west",
+    "observation": true,
+    "autonomous": true,
+    "controller_stop": true,
+    "reason": "stop",
+    "visual_method": "online_frames",
+    "comment": "Both ends, backrest and seat are in the image; coffee table partly occludes the lower front.",
+    "frames": 101,
+    "path_m": 1.0662835728322348,
+    "duration_s": 4.99999999999999,
+    "collision_samples": 0,
+    "outside_samples": 0,
+    "start_check": "free",
+    "attempt_count": 3,
+    "confirmations": [
+      {
+        "t": 3.999999999999994,
+        "max_drift_m": 0.030015972569992538,
+        "checks": [
+          {
+            "t": 4.499999999999992,
+            "area": 0.20666435077293194,
+            "uv": [
+              0.49883044958114625,
+              0.49586944580078124
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -14.091384921569075,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.22466733455657958,
+              0.30741926829020183,
+              0.7729935646057129,
+              0.6843196233113606
+            ],
+            "pitch_deg": -27.15482178457114,
+            "optical_elevation_deg": -19.17911234858949,
+            "source": "detector",
+            "detected_box": [
+              0.22466733455657958,
+              0.30741926829020183,
+              0.7729935646057129,
+              0.6843196233113606
+            ],
+            "tracked_box": [
+              0.2237573268145044,
+              0.3070062824422313,
+              0.7740399446785642,
+              0.6839459064848133
+            ]
+          },
+          {
+            "t": 4.99999999999999,
+            "area": 0.2025111840143018,
+            "uv": [
+              0.49924191236495974,
+              0.49704443613688154
+            ],
+            "centered": true,
+            "clipped": false,
+            "framing_ok": true,
+            "los_deg": -13.877265169477587,
+            "view": "unconstrained",
+            "view_ok": true,
+            "parts_ok": true,
+            "xyxy": [
+              0.22664058208465576,
+              0.3113234202067057,
+              0.7718432426452637,
+              0.6827654520670573
+            ],
+            "pitch_deg": -25.824254233249356,
+            "optical_elevation_deg": -18.842707546508628,
+            "source": "detector",
+            "detected_box": [
+              0.22664058208465576,
+              0.3113234202067057,
+              0.7718432426452637,
+              0.6827654520670573
+            ],
+            "tracked_box": [
+              0.2252990053385524,
+              0.31074618412538757,
+              0.7722979413768349,
+              0.6858707087529934
+            ]
+          }
+        ]
+      }
+    ],
+    "manual_drift_m": null,
+    "manual_samples": [],
+    "first_association": null
+  }
+]

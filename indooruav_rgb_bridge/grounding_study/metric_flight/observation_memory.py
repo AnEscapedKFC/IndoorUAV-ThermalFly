@@ -12,6 +12,7 @@ from metric_flight.depth_guidance import camera
 
 PARTS = {
     "sofa": ("backrest", "seat"),
+    "armchair": ("backrest", "seat"),
     "laptop": ("screen", "keyboard_deck"),
     "ac": ("front_panel", "outlet_band"),
 }
@@ -45,7 +46,7 @@ def segment(rgb, box, noun, instance_mask):
     # luminance edges. Missing edges stay unclassified, not a fixed box split.
     roi = cv2.cvtColor(rgb[t:b, l:r], cv2.COLOR_RGB2GRAY)
     edge = np.abs(cv2.Sobel(roi, cv2.CV_32F, 0, 1, ksize=3))
-    low, high = {"sofa": (0.35, 0.77), "laptop": (0.40, 0.80), "ac": (0.52, 0.90)}[noun]
+    low, high = {"sofa": (0.35, 0.77), "armchair": (0.35, 0.77), "laptop": (0.40, 0.80), "ac": (0.52, 0.90)}[noun]
     hh, ww = fg.shape
     xs = []
     ys = []

@@ -8,6 +8,10 @@
 
 [640×480 配对测试结果和视频](indooruav_rgb_bridge/grounding_study/metric_flight/results/furniture_640/REPORT.md)
 
+## 会议室持续观察实验
+
+加入沙发全貌和门口独立黑色扶手椅。24 个动力学回合中，取得并保持合格画面 14/24，自主确认完成 11/24。每回合记录同步 RGB 与热红外。可查看[逐次验收结果](indooruav_rgb_bridge/grounding_study/metric_flight/window_results/REPORT.md)和[新标准及运行命令](indooruav_rgb_bridge/grounding_study/metric_flight/OBSERVATION_WINDOW.md)。
+
 ## 空调与笔记本的观察高度实验
 
 新版接入层支持平视正面、从下方看出风口和从上方看屏幕与键盘。云台机械范围为 −60° 至 +30°，高度与接近程度由语言方向、实时 RGB 检测框和本次飞行的 RGB-D 记录共同决定。预扫描之后检查静止机体包络，遇到深度冲突先在原地复看。实验使用原四旋翼动力学，记录 640×480 同步 RGB 与热红外。运行说明及验收规则见[协同观察实验](indooruav_rgb_bridge/grounding_study/metric_flight/COORDINATED_INSPECTION.md)。

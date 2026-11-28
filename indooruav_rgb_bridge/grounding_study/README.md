@@ -1,5 +1,7 @@
 # IndoorUAV-Agent 方位提示与航点检查对照
 
+[一秒持续观察标准、沙发和门口扶手椅动力学实验](metric_flight/OBSERVATION_WINDOW.md)
+
 会议室空调和笔记本的新实验使用语言指定观察方向、机体与云台协同控制、20%–60% 检测框面积及起点深度包络复查。[协同控制实验与复跑命令](metric_flight/COORDINATED_INSPECTION.md)
 
 [会议室家具任务、640×480 双模态录像和深度辅助飞行](metric_flight/DEPTH_FURNITURE.md)

@@ -8,7 +8,7 @@ import torch
 from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection
 
 ROOT = Path(__file__).resolve().parent
-NOUN = {'ac':'air conditioner', 'laptop':'laptop', 'sofa':'sofa'}
+NOUN = {'ac':'air conditioner', 'laptop':'laptop', 'sofa':'sofa', 'armchair':'black armchair', 'door':'door'}
 class Detector:
     def __init__(self, *, use_cache=True, device="cpu"):
         self.use_cache=use_cache

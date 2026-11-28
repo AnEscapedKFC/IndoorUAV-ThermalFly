@@ -56,7 +56,8 @@ def body_height_delta(surface, center, horizontal_after, band, mechanical):
 
 
 class CoordinatedInspection:
-    def __init__(self, folder, noun, instruction):
+    def __init__(self, folder, noun, instruction, *, single_frame=False):
+        self.single_frame = single_frame
         self.memory = ObservationMemory(folder, noun, instance_mask())
         self.ready = 0
         self.lost = 0
@@ -124,7 +125,8 @@ class CoordinatedInspection:
         info.update(phase="terminal_hold" if ready else "adjust_view", cross_view_verified=bool(verified),
                     history_surface=self.surface.tolist(), anchor=dict(world=self.aim.tolist(), confirmed=True),
                     pitch_request=pitch, requested_dz_m=float(delta_z), requested_forward_m=float(advance))
-        return np.r_[p + movement, target_yaw], bool(self.ready >= 3 and np.linalg.norm(v) < .13), info
+        stop = ready if self.single_frame else self.ready >= 3 and np.linalg.norm(v) < .13
+        return np.r_[p + movement, target_yaw], bool(stop), info
 
     def hold_metrics(self, image, depth, rig, box):
         labels = segment(np.rint(image * 255).astype(np.uint8), box, self.memory.noun, self.memory.instance_mask)
