@@ -8,7 +8,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from metric_flight.depth_guidance import camera
-from metric_flight.view_control import PITCH_LIMITS, elevation
+from metric_flight.view_control import PITCH_LIMITS
 from sim_bridge import CONTROL_DT, controller, guided_curve
 
 
@@ -101,6 +101,8 @@ class BlockedViews:
         self.events = []
         self.releases = []
         self.looked = set()
+        self.attempts = {}
+        self.prediction = {}
 
     def clear(self, guard, ids):
         cleared = 0
@@ -119,36 +121,53 @@ class BlockedViews:
 
     def target(self, groups, guard, rig, state):
         center, axes, k = camera(rig)
-        heading = np.degrees(np.arctan2(axes[1, 2], axes[0, 2]))
-        hfov = np.degrees(np.arctan(rig.width/(2*k[0, 0])))
-        for ids in groups.values():
-            if not len(ids):
-                continue
-            ids = np.asarray(ids)
-            ids = ids[guard.evidence[tuple(ids.T)]==0]
-            if not len(ids):
-                continue
-            world = guard.origin+(ids+.5)*guard.cell
-            # Split opposite blind spots before computing a mean sightline.
-            rel = world-center
-            bearings = np.degrees(np.arctan2(rel[:,1],rel[:,0]))
-            elev = np.degrees(np.arctan2(rel[:,2],np.linalg.norm(rel[:,:2],axis=1)))
-            sectors = np.column_stack((np.floor((bearings+22.5)/45)%8,np.floor((elev+15)/30)))
-            _,group,counts=np.unique(sectors,axis=0,return_inverse=True,return_counts=True)
-            for sector in np.argsort(-counts,kind='stable'):
-                point=world[group==sector].mean(axis=0)
-                direction=point-center
-                bearing = np.degrees(np.arctan2(direction[1], direction[0]))
-                turn = (bearing-heading+180) % 360-180
-                pitch = float(np.clip(rig.pitch_deg+elevation(direction)-elevation(axes[:, 2]), *PITCH_LIMITS))
-                # Pitch first. Rotate the body only if horizontal coverage needs it.
-                yaw_delta = 0. if abs(turn) < .70*hfov else float(turn)
-                pos = tuple(np.rint(np.asarray(state['position'])/.10).astype(int))
-                key = (pos, round(bearing/18), round(elevation(direction)/15))
-                if key not in self.looked:
-                    self.looked.add(key)
-                    return point, pitch, yaw_delta
-        return None
+        body = np.asarray(state['position'])
+        pos_key = tuple(np.rint(body/.10).astype(int))
+        ids = np.unique(np.vstack(list(groups.values())), axis=0)
+        ids = [idx for idx in ids if guard.evidence[tuple(idx)] == 0 and
+               self.attempts.get((pos_key,tuple(idx)),0) < 2]
+        if not ids:
+            return None
+        ids = np.asarray(ids)
+        world = guard.origin+(ids+.5)*guard.cell
+        corners = world[:,None,:]+RayHistory.corners*(guard.cell/2)
+        yaw = state['euler_deg'][2]
+        pitches = np.unique(np.r_[np.linspace(*PITCH_LIMITS,7),rig.pitch_deg])
+        turns = [0., *[sign*step for step in range(15,180,15) for sign in (1,-1)], 180.]
+        best = None
+        for turn in turns:
+            spin = Rotation.from_euler('z',turn,degrees=True).as_matrix()
+            # The optical centre follows the measured mount around the body pivot.
+            new_center = body+spin@(center-body)
+            for pitch in pitches:
+                view_key = (pos_key, round(((yaw+turn)%360)/15)%24, round(pitch/10))
+                if view_key in self.looked:
+                    continue
+                tilt = Rotation.from_euler('x',pitch-rig.pitch_deg,degrees=True).as_matrix()
+                optical = (corners-new_center)@(spin@axes@tilt)
+                pixels = optical@k.T
+                u,v = np.moveaxis(pixels[:,:,:2]/np.maximum(optical[:,:,2:],1.e-6),-1,0)
+                visible = ((optical[:,:,2]>.08) & (u>=0) & (u<rig.width) &
+                           (v>=0) & (v<rig.height))
+                counts = visible.sum(axis=1)
+                if not counts.any():
+                    continue
+                # Full voxel coverage can certify a historical ray. Partial coverage
+                # can contribute a fresh live measurement. Prefer gimbal on ties.
+                score = (int((counts==8).sum()), int(counts.sum()), -abs(turn),
+                         -abs(pitch-rig.pitch_deg))
+                if best is None or score>best[0]:
+                    best = (score,turn,float(pitch),view_key,counts)
+        if best is None:
+            return None
+        score,turn,pitch,view_key,counts = best
+        self.looked.add(view_key)
+        for idx in ids[counts>0]:
+            key = (pos_key,tuple(idx))
+            self.attempts[key] = self.attempts.get(key,0)+1
+        self.prediction = dict(full_cells=score[0], partial_or_full_cells=int((counts>0).sum()),
+                               visible_corners=score[1], considered_cells=len(ids))
+        return world[np.argmax(counts)], pitch, turn
 
     def scan(self, sim, guard, groups, advance):
         """advance runs the actual dynamics and records each frame and termination."""
@@ -164,7 +183,8 @@ class BlockedViews:
         original_pitch = float(sim.scene.pitch_deg)
         cells = np.unique(np.vstack(list(groups.values())), axis=0)
         event = dict(t=sim.last_receipt['sim_time'], world=point.tolist(), pitch=pitch,
-                     requested_turn_deg=turn, blocking_cells=cells.tolist(), phases=[], max_drift_m=0.)
+                     requested_turn_deg=turn, blocking_cells=cells.tolist(), predicted_visibility=self.prediction,
+                     phases=[], max_drift_m=0.)
         self.events.append(event)
         def phase(name, goal_yaw, goal_pitch):
             st = sim.last_receipt['state']

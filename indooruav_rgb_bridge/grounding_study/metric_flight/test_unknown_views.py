@@ -55,6 +55,7 @@ class UnknownViewTests(unittest.TestCase):
         st=dict(position=[0.,0.,0.],velocity=[.15,0.,0.],quaternion_wxyz=[1.,0.,0.,0.],euler_deg=[0.,0.,0.])
         sim=SimpleNamespace(last_receipt={'state':st,'sim_time':0.},scene=self.rig)
         self.rig.width=160
+        self.rig.height=120
         self.views.scan(sim,self.guard,{'waypoint':[self.id]},lambda *_: self.fail('moved'))
         self.assertFalse(self.views.events)
         st['velocity']=[0.,0.,0.]
@@ -67,6 +68,7 @@ class UnknownViewTests(unittest.TestCase):
                 euler_deg=[0.,0.,0.],angular_velocity=[0.,0.,0.])
         sim=SimpleNamespace(last_receipt={'state':st,'sim_time':0.},scene=self.rig)
         self.rig.width=160
+        self.rig.height=120
         def advance(_, rotating):
             sim.last_receipt['sim_time']+=.05
             if self.views.events[-1]['phases'][-1]['phase']=='body_yaw':
@@ -78,3 +80,20 @@ class UnknownViewTests(unittest.TestCase):
         self.assertEqual(reason,'collision')
         self.assertEqual(self.views.events[-1]['phases'][-1]['duration_s'],.05)
         self.assertEqual(self.guard.evidence[tuple(self.id)],0)
+
+    def test_rotated_camera_mount_covers_side_voxel_and_skips_blind_pivot(self):
+        axes=np.array([[0.,0.,1.],[-1.,0.,0.],[0.,-1.,0.]])
+        center=np.array([.152,.031,.012])
+        self.rig.W[:3,:3]=axes.T
+        self.rig.W[:3,3]=-axes.T@center
+        self.rig.pitch_deg=0.
+        self.rig.width,self.rig.height=160,120
+        state={'position':[0.,0.,0.],'euler_deg':[0.,0.,0.]}
+        def idx(p):
+            return np.floor((p-self.guard.origin)/self.guard.cell).astype(int)
+        self.assertIsNone(self.views.target({'pivot':[idx(np.zeros(3))]},self.guard,self.rig,state))
+        side=np.array([0.,1.,0.])
+        _,pitch,turn=self.views.target({'left':[idx(side)]},self.guard,self.rig,state)
+        self.assertEqual(self.views.prediction['full_cells'],1)
+        self.assertGreater(turn,0.)
+        self.assertTrue(-60<=pitch<=30)
