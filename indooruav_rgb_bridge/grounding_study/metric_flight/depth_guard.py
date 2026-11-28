@@ -77,13 +77,15 @@ class DepthGuard:
                      cells=len(evidence),surface=surface,unknown=unknown),
                 self.origin+(cells+.5)*self.cell)
 
-    def check(self,st,goal,seconds,start_v,end_v,*,blocked=None):
-        sample=guided_curve(st,goal,seconds,True,start_velocity=start_v,end_velocity=end_v)
+    def check(self,st,goal,seconds,start_v,end_v,*,blocked=None,reference=None):
+        sample=reference or guided_curve(st,goal,seconds,True,start_velocity=start_v,end_velocity=end_v)
         times=np.linspace(0.,seconds,max(2,int(np.ceil(seconds/.075))+1))
         current=Rotation.from_quat(np.asarray(st['quaternion_wxyz'])[[1,2,3,0]]).as_matrix()
         p0=np.asarray(st['position'])
         v0=np.asarray(st['velocity'])
-        reference_v=sample(None,0.)[1][:3]
+        reference_pos,reference_rate,_,_=sample(None,0.)
+        reference_v=reference_rate[:3]
+        position_error=p0-reference_pos[:3]
         points=[]
         for t in times:
             pos,vel,acc,_=sample(None,t)
@@ -92,7 +94,7 @@ class DepthGuard:
             left=np.cross(up,[np.cos(yaw),np.sin(yaw),0.]);left/=np.linalg.norm(left)
             attitude=np.column_stack((np.cross(left,up),left,up))
             correction=(v0-reference_v)*min(t,.2)
-            points.append((pos[:3]+correction,attitude))
+            points.append((pos[:3]+position_error+correction,attitude))
         points.append((p0,current))
         last=points[-2][0];vel=sample(None,seconds)[1][:3]
         # Reaction plus controlled braking at 0.8 m/s². Check intermediate positions too.

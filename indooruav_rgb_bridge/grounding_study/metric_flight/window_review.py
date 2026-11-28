@@ -51,6 +51,13 @@ def manual_view(folder, step, annotation, view):
                 box_px=annotation["box"],valid=bool(metric["framing_ok"] and ok_angle and annotation["parts_visible"]))
 
 
+def hold_images(folder, attempt_number, attempt):
+    paths=[folder/f"{attempt['decision']:03}.png"]
+    paths.extend(folder/f"attempt_{attempt_number:02}_{10*n:03}.png"
+                 for n in range(1,len(attempt['checks'])+1))
+    return paths
+
+
 def audit(folder, review):
     ep=read(folder/"episode.json")
     frames=read(folder/"frames.json")
@@ -71,8 +78,13 @@ def audit(folder, review):
     safe=not collision and not outside and survey["after"]["status"]=="free"
     seconds=hold_seconds(ep["instruction"])
     confirmed=[a for a in attempts if a["confirmed"]]
-    for a in confirmed:
+    for attempt_number,a in enumerate(attempts,1):
+        if not a["confirmed"]:
+            continue
         start=round(a["t"]*20)
+        for j,path in enumerate(hold_images(folder,attempt_number,a)):
+            pixels=np.asarray(Image.open(path))
+            assert hashlib.sha256(pixels.tobytes()).hexdigest()==receipts[start+10*j]["rgb_sha256"]
         end=start+round(seconds*20)
         positions=[np.asarray(f["xyz"]) for f in frames[start:end+1]]
         assert len(positions)==1+round(20*seconds)
@@ -119,15 +131,17 @@ def evidence_sheets(folders, annotations, rows, out):
             if note["method"]=="offline_boxes":
                 start=note["start_step"]
                 boxes=[r["box"] for r in note["samples"]]
+                paths=[folder/"review_frames"/f"{start+10*j:04}.png" for j in range(len(boxes))]
             else:
-                a=next(a for a in read(folder/"hold_attempts.json") if a["confirmed"])
+                number,a=next((n,a) for n,a in enumerate(read(folder/"hold_attempts.json"),1) if a["confirmed"])
+                paths=hold_images(folder,number,a)
                 start=round(20*a["t"])
                 decision=read(folder/"decisions.json")[a["decision"]]
                 boxes=[decision["detection"]["boxes"][0]["xyxy"],*[c["xyxy"] for c in a["checks"]]]
                 boxes=[(np.asarray(b)*[640,480,640,480]).tolist() for b in boxes]
             for k,b in enumerate(boxes[:3]):
                 step=start+10*k
-                im=Image.open(folder/"review_frames"/f"{step:04}.png").convert("RGB")
+                im=Image.open(paths[k]).convert("RGB")
                 ImageDraw.Draw(im).rectangle(b,outline="yellow" if note["method"]=="offline_boxes" else "#43e798",width=2)
                 x=k*270;y=j*230
                 sheet.paste(im.resize((270,202),Image.Resampling.LANCZOS),(x,y))

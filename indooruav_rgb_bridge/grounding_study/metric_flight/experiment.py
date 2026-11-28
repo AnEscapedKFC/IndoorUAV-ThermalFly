@@ -114,6 +114,7 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     recovery=None
     if window:
         from metric_flight.unknown_views import BlockedViews
+        from metric_flight.short_view import move_for_view
         recovery=BlockedViews()
     guard=None
     if depth_enabled:
@@ -134,6 +135,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             return detector(path,noun)
         def record():
             if guard is not None and r['step_id']%4==0 and (not coordinated or r['step_id']>0):guard.observe(sim.last_depth,sim.scene,sim.last_rgb)
+            if recovery is not None and recovery.probes:
+                recovery.track_probe_cells(guard,r['sim_time'])
             if video is not None:video.frame(sim,r)
             st=r['state'];p=np.asarray(st['position']);q=np.array(st['quaternion_wxyz'])
             inside=bool(known.contains_box(p,Rotation.from_quat(q[[1,2,3,0]]).as_matrix(),sim.obstacles.safety_half_size))
@@ -252,6 +255,19 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                         safety['observation_event']=before
                         previous_exit_velocity=None
                         continue
+                    if len(recovery.events)==before:
+                        index=len(recovery.probes)
+                        reason=move_for_view(recovery,sim,guard,guard.blockers,scan_step,goal)
+                        if len(recovery.probes)>index:
+                            safety['short_step']=index
+                        if reason:
+                            break
+                        if r['sim_time']>ds[-1]['t']+1.e-6:
+                            previous_exit_velocity=None
+                            continue
+                elif recovery is not None and safety['choice']!='brake' and np.linalg.norm(target[:3]-p)>.01:
+                    recovery.steps_without_progress=0
+                    recovery.visited.clear()
                 if guard.stalled>=8:
                     reason='depth_path_unconfirmed';break
             if stop:
@@ -321,7 +337,13 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             common.dump(out/(filename+'.json'),obj)
         if window:
             common.dump(out/'hold_attempts.json',attempts)
+            recovery.track_probe_cells(guard,r['sim_time'])
+            for entry in recovery.probes:
+                values=guard.evidence[tuple(np.asarray(entry['cells']).T)]
+                entry['final_free_cells']=np.asarray(entry['cells'])[values<0].tolist()
+                entry['final_surface_cells']=np.asarray(entry['cells'])[values>0].tolist()
             common.dump(out/'blocked_views.json',dict(scans=recovery.events,history_releases=recovery.releases,
+                                                      suppressed_scans=recovery.skips,short_steps=recovery.probes,
                                                       rgbd_frames=recovery.history.serial))
         if history:
             servo.memory.finish()

@@ -9,6 +9,7 @@ from scipy.spatial.transform import Rotation
 
 from metric_flight.depth_guidance import camera
 from metric_flight.view_control import PITCH_LIMITS
+from metric_flight.short_view import history_corners, visible_corners
 from sim_bridge import CONTROL_DT, controller, guided_curve
 
 
@@ -103,6 +104,21 @@ class BlockedViews:
         self.looked = set()
         self.attempts = {}
         self.prediction = {}
+        self.tried_corners = {}
+        self.probes = []
+        self.visited = []
+        self.steps_without_progress = 0
+        self.skips = []
+
+    def track_probe_cells(self,guard,time):
+        for event in self.probes:
+            if 'goal' not in event:
+                continue
+            cells=np.asarray(event['cells'])
+            evidence=guard.evidence[tuple(cells.T)]
+            first=event.setdefault('first_free',{})
+            for i in np.flatnonzero(evidence<0):
+                first.setdefault(int(i),float(time))
 
     def clear(self, guard, ids):
         cleared = 0
@@ -131,6 +147,9 @@ class BlockedViews:
         ids = np.asarray(ids)
         world = guard.origin+(ids+.5)*guard.cell
         corners = world[:,None,:]+RayHistory.corners*(guard.cell/2)
+        seen = history_corners(self.history.frames,corners)
+        for row,idx in enumerate(ids):
+            seen[row] |= self.tried_corners.get((pos_key,tuple(idx)),False)
         yaw = state['euler_deg'][2]
         pitches = np.unique(np.r_[np.linspace(*PITCH_LIMITS,7),rig.pitch_deg])
         turns = [0., *[sign*step for step in range(15,180,15) for sign in (1,-1)], 180.]
@@ -144,29 +163,28 @@ class BlockedViews:
                 if view_key in self.looked:
                     continue
                 tilt = Rotation.from_euler('x',pitch-rig.pitch_deg,degrees=True).as_matrix()
-                optical = (corners-new_center)@(spin@axes@tilt)
-                pixels = optical@k.T
-                u,v = np.moveaxis(pixels[:,:,:2]/np.maximum(optical[:,:,2:],1.e-6),-1,0)
-                visible = ((optical[:,:,2]>.08) & (u>=0) & (u<rig.width) &
-                           (v>=0) & (v<rig.height))
+                visible,_,_ = visible_corners(corners,new_center,spin@axes@tilt,k,rig.width,rig.height)
                 counts = visible.sum(axis=1)
-                if not counts.any():
+                novel = int((visible & ~seen).sum())
+                full = int((counts==8).sum())
+                if not novel and not full:
                     continue
-                # Full voxel coverage can certify a historical ray. Partial coverage
-                # can contribute a fresh live measurement. Prefer gimbal on ties.
-                score = (int((counts==8).sum()), int(counts.sum()), -abs(turn),
-                         -abs(pitch-rig.pitch_deg))
+                score = (full, novel, int(counts.sum()), -abs(turn), -abs(pitch-rig.pitch_deg))
                 if best is None or score>best[0]:
-                    best = (score,turn,float(pitch),view_key,counts)
+                    best = (score,turn,float(pitch),view_key,visible)
         if best is None:
             return None
-        score,turn,pitch,view_key,counts = best
+        score,turn,pitch,view_key,visible = best
+        counts=visible.sum(axis=1)
+        for row,idx in enumerate(ids):
+            key=(pos_key,tuple(idx))
+            self.tried_corners[key]=visible[row] | self.tried_corners.get(key,False)
         self.looked.add(view_key)
         for idx in ids[counts>0]:
             key = (pos_key,tuple(idx))
             self.attempts[key] = self.attempts.get(key,0)+1
         self.prediction = dict(full_cells=score[0], partial_or_full_cells=int((counts>0).sum()),
-                               visible_corners=score[1], considered_cells=len(ids))
+                               visible_corners=score[2], new_corners=score[1], considered_cells=len(ids))
         return world[np.argmax(counts)], pitch, turn
 
     def scan(self, sim, guard, groups, advance):
@@ -176,6 +194,7 @@ class BlockedViews:
             return None
         plan = self.target(groups, guard, sim.scene, initial)
         if plan is None:
+            self.skips.append(dict(t=sim.last_receipt['sim_time'],reason='no_new_partial_or_available_full_view'))
             return None
         point, pitch, turn = plan
         p = np.asarray(initial['position'])
