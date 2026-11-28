@@ -126,3 +126,57 @@ def write_sample(folder, step, rgb, depth, rig):
     z=np.where(np.isfinite(depth)&(depth>0),depth,0)
     np.savez_compressed(base/(name+".npz"), depth_mm=np.rint(1000*np.clip(z,0,65)).astype(np.uint16),
                         center=c,axes=axes,K=k)
+
+
+class TargetTrack:
+    """Associate detector updates to an instance and bridge gaps with measured RGB-D."""
+    def __init__(self, masker):
+        self.masker = masker
+        self.track = None
+        self.anchor = None
+
+    def update(self, detection, rgb, depth, rig):
+        image = np.rint(255 * rgb).astype(np.uint8)
+        tracked = self.track.measure(rgb, depth, rig) if self.track else None
+        chosen = None
+        for candidate in detection['boxes']:
+            box = candidate['xyxy']
+            uv = np.array([[(box[0]+box[2])*rig.width/2, (box[1]+box[3])*rig.height/2]])
+            center = world_at(uv, depth, rig)[0]
+            if not np.isfinite(center).all() or np.linalg.norm(center-camera(rig)[0]) < .08:
+                continue
+            if tracked is not None and box_iou(box, tracked) < .35:
+                continue
+            if self.anchor is not None and np.linalg.norm(center-self.anchor) > .65:
+                continue
+            chosen = candidate
+            self.anchor = center
+            self.track = HoldTracker(rgb, depth, rig, box, self.masker(image, box))
+            break
+        source = 'detector' if chosen else 'missing'
+        if chosen is None and tracked is not None:
+            l,t,r,b = tracked
+            if l < r and t < b and np.isfinite(tracked).all():
+                x = (l+r)/2
+                chosen = dict(xyxy=tracked, area=(r-l)*(b-t), x=x,
+                              side='left' if x<.45 else 'right' if x>.55 else 'center')
+                source = 'rgbd_track'
+        return dict(detection, boxes=[chosen] if chosen else [], side=chosen['side'] if chosen else None,
+                    source=source, detector_boxes=detection['boxes'], tracked_box=tracked)
+
+
+INSPECTION_AREA = (.10, .50)
+
+
+def window_verdict(samples, duration, drift):
+    """Judge the latest physical observation window, including its two endpoints."""
+    count = 1 + round(2*duration)
+    rows = samples[-count:]
+    seen = [r for r in rows if r.get('source') in ('detector','rgbd_track') and r['area'] is not None]
+    median = float(np.median([r['area'] for r in seen])) if seen else None
+    valid = (len(rows)==count and rows[0] in seen and rows[-1] in seen and len(seen)>=count-1
+             and abs(rows[-1]['t']-rows[0]['t']-duration)<1e-5 and drift<=.12
+             and all(r['centered'] and not r['clipped'] and r['parts_ok'] and r['view_ok']
+                     and INSPECTION_AREA[0]-.02-1e-9<=r['area']<=INSPECTION_AREA[1]+1e-9 for r in seen)
+             and INSPECTION_AREA[0]-1e-9<=median<=INSPECTION_AREA[1]+1e-9)
+    return dict(confirmed=bool(valid), median_area=median, valid_boxes=len(seen))

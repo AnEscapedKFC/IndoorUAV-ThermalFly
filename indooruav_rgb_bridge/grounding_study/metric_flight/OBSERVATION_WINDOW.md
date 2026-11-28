@@ -1,5 +1,22 @@
 # 一秒持续观察的会议室动力学实验
 
+## 当前复飞规则
+
+从第一次经目标类别和实例关联的检测开始维护前景特征。新检测要通过实例空间关联，历史框须以当前 RGB 前后向光流、世界坐标深度和特征覆盖复核。两种观测都可进入悬停。控制器在一秒窗口的首、中、末帧以 2 Hz 检查目标，要求有效框面积中位数在 10%–50%、居中、完整、部件与任务视线合格，悬停全过程漂移至多 12 cm。允许一次中间缺测和单帧下浮至 8%；首末须有证据。末帧缺证时每 0.5 秒重取当前 RGB-D，最多多等 1 秒；明确要求两秒的任务仍使用两秒窗口。
+
+在完成预扫描和针对冲突格的复查后，如只有 2.5 cm 附加余量接触表面，可开始评估航点。原表面格保留在图中，平移、转动时仍逐姿态检查 5 cm 安全包络。飞行时，地图覆盖告警触发一秒制动和深度复核；速度降至 0.10 m/s 以内、裸机体仍在已知空间、在线静止包络证实空闲才允许重新规划。连续告警不会反复获得新的制动宽限。房间坐标文件的米制外包盒用作本组实验明确的机体中心飞行边界，动力学逐子步检查实际碰撞与该边界。每个回合的 `safety_events.json` 单列地图覆盖告警、显式边界违规、碰撞；`hold_attempts.json` 保存观测来源、中位数、复核时长和位移。
+
+在 `indooruav_rgb_bridge/grounding_study` 下运行，结果位于 `metric_flight/results/observation_window_reviewed/<case>/`。
+
+```bash
+python -B ../bridge_client.py --socket ../runtime/grounding-study.sock serve -- ../scripts/model_worker.sh
+# 在第二个终端运行
+./launch.sh run.py flight window --cases chair_far chair_north desk_fresh desk_new level_diagonal level_east level_fresh level_new level_west outlet_east outlet_fresh outlet_west overview_east
+```
+
+## 历史基线（20%–60%）
+
+
 本轮使用固定的 IndoorUAV-Agent、会议室 RGB 与热红外 3DGS、原四旋翼模拟器和 640×480 第一视角。动力学、检测置信阈值、云台硬限位、局部运动包络、静止起点复查、观察方向范围与 20%–60% 的整机检测框面积要求沿用上一轮。飞行不读专家轨迹、不训练网络。同步热红外用于录像；控制使用 RGB、深度和标定姿态。
 
 本轮逐架次判定、第一视角证据及同起点比较见[飞行实验结果](window_results/REPORT.md)。

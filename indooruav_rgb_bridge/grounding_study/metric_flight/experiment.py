@@ -104,7 +104,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     hold_duration=2.
     attempts=[]
     if window:
-        from metric_flight.observation_window import DoorChair, HoldTracker, box_iou, hold_seconds, write_sample
+        from metric_flight.observation_window import DoorChair, TargetTrack, hold_seconds, window_verdict, write_sample
+        from metric_flight.coverage_review import CoverageReview
+        coverage=CoverageReview()
+        tracking=TargetTrack(servo.memory.instance_mask)
         hold_duration=hold_seconds(text)
         instance=DoorChair() if final_object=='armchair' else None
     previous_exit_velocity=None
@@ -120,19 +123,30 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
     if depth_enabled:
         from metric_flight.depth_guard import DepthGuard,preflight,survey_rig
         camera_factory=survey_rig(camera_factory, PITCH_LIMITS if coordinated else None)
-    with (RgbtRecording(out,meta['scene_version']) if record_rgbt else nullcontext()) as video, PolicyFlightSimulator(scene/'models/rgb.ply',point_cloud=scene/'collision/rgb_surface_m.ply',config={'limits':{'max_steps':1500}},
+    limits={'max_steps':1500}
+    if window:
+        bounds=common.read(scene/'inputs/frame.json')['bounds_m']
+        limits.update(position_min=bounds[0],position_max=bounds[1])
+    with (RgbtRecording(out,meta['scene_version']) if record_rgbt else nullcontext()) as video, PolicyFlightSimulator(scene/'models/rgb.ply',point_cloud=scene/'collision/rgb_surface_m.ply',config={'limits':limits},
         seed=meta['seed'],spawn=xyz.tolist(),yaw=yaw0,resolution=1.0,spawn_velocity_w_mps=init['velocity_w_mps'],scene_factory=camera_factory) as sim:
         if depth_enabled:
             guard=DepthGuard(xyz,sim.obstacles.safety_half_size,recovery)
             survey=preflight(sim,guard,pitch_limits=PITCH_LIMITS if coordinated else None)
+            if window and survey['after']['status']=='surface' and survey.get('rechecks'):
+                survey['before_fringe_review']=survey['after']
+                if guard.recheck_launch_fringe(sim.last_receipt['state']):
+                    survey['after'],_=guard.stationary(sim.last_receipt['state'])
+                    survey['fringe_cells']=len(guard.launch_fringe)
             common.dump(out/'depth_preflight.json',survey)
             if coordinated and survey['after']['status']!='free' and not (recovery and survey['after']['status']=='unknown'):
                 reason='start_clearance_unconfirmed'
         r=sim.last_receipt
         def detect_current(path, noun):
             if window and instance is not None:
-                return instance.detect(detector,path,sim.scene,sim.last_depth)
-            return detector(path,noun)
+                result=instance.detect(detector,path,sim.scene,sim.last_depth)
+            else:
+                result=detector(path,noun)
+            return tracking.update(result,sim.last_rgb,sim.last_depth,sim.scene) if window else result
         def record():
             if guard is not None and r['step_id']%4==0 and (not coordinated or r['step_id']>0):guard.observe(sim.last_depth,sim.scene,sim.last_rgb)
             if recovery is not None and recovery.probes:
@@ -151,15 +165,19 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
         assert record() and sim.obstacles.distance(xyz,r['state']['quaternion_wxyz'])['safety_clearance']>0
         if coordinated:
             Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(out/'start.png')
-        def scan_step(action, rotating):
+        def advance(action):
             nonlocal r
             r=sim.step(action,format='body_rates_thrust')
-            inside=record()
-            if r['terminated'] or r['truncated'] or (not rotating and not inside):
-                return r['reason'] or 'outside_known_space'
+            record()
+            if r['terminated'] or r['truncated']:
+                return r['reason']
             if r['sim_time']>=60-1e-6:
                 return 'limit'
             return None
+
+        def scan_step(action, rotating):
+            failure=advance(action)
+            return failure or coverage.check(sim,guard,known,advance)
 
         if recovery and survey['after']['status']=='unknown':
             survey['before_recovery']=survey['after']
@@ -181,6 +199,9 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             if survey['after']['status']!='free':
                 reason=reason or 'start_clearance_unconfirmed'
         for i in range(130):
+            if reason=='replan_after_brake':
+                reason=None
+                previous_exit_velocity=None
             if reason:break
             if r['sim_time']>=60-1e-6:reason='limit';break
             st=r['state'];p=np.array(st['position']);yaw=st['euler_deg'][2];v=np.array(st['velocity']);now=mapping.to_native(p,yaw)
@@ -241,6 +262,9 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 info['depth_guard']=safety
                 ds[-1]['proposed_world']=proposed.tolist()
                 ds[-1]['world_target']=target.tolist()
+                if window and stop and safety['choice']!='proposed':
+                    stop=passing=False
+                    ds[-1]['stopping']=False
                 if safety['choice']=='brake':
                     stop=passing=False
                     ds[-1]['stopping']=False
@@ -249,6 +273,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                     # Brake normally first if moving. Never bypass unknown for translation.
                     before=len(recovery.events)
                     reason=recovery.scan(sim,guard,guard.blockers,scan_step)
+                    if reason=='replan_after_brake':
+                        continue
                     if reason:
                         break
                     if len(recovery.events)>before and r['sim_time']>ds[-1]['t']+1.e-6:
@@ -260,6 +286,8 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                         reason=move_for_view(recovery,sim,guard,guard.blockers,scan_step,goal)
                         if len(recovery.probes)>index:
                             safety['short_step']=index
+                        if reason=='replan_after_brake':
+                            continue
                         if reason:
                             break
                         if r['sim_time']>ds[-1]['t']+1.e-6:
@@ -275,9 +303,9 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 if window:
                     hold_rgb=[]
                     first_box=det['boxes'][0]['xyxy']
-                    mask=servo.memory.instance_mask(np.rint(255*sim.last_rgb).astype(np.uint8),first_box)
-                    tracker=HoldTracker(sim.last_rgb,sim.last_depth,sim.scene,first_box,mask)
-                    attempt=dict(t=r['sim_time'],decision=i,qualified=info['phase']=='terminal_hold')
+                    first=dict(t=r['sim_time'],source=det['source'],xyxy=first_box,
+                               **{key:info[key] for key in ('area','uv','centered','clipped','view_ok','parts_ok')})
+                    attempt=dict(t=r['sim_time'],decision=i,qualified=info['phase']=='terminal_hold',first=first)
                     attempts.append(attempt)
             start_velocity=previous_exit_velocity if passing else None
             end_velocity=(target[:3]-p)/seconds if passing else None
@@ -287,8 +315,10 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
             ds[-1]['reference_velocity_out']=sample(None,seconds)[1][:3].tolist()
             ds[-1]['passing_waypoint']=bool(passing)
             previous_exit_velocity=end_velocity
-            for k in range(round(seconds/CONTROL_DT)):
-                u,_=controller(sim,r,None,(k+.5)*CONTROL_DT,sample=sample)
+            extra_review=1. if window and stop else 0.
+            for k in range(round((seconds+extra_review)/CONTROL_DT)):
+                control_time=min((k+.5)*CONTROL_DT,seconds)
+                u,_=controller(sim,r,None,control_time,sample=sample)
                 if guard is not None:
                     if coordinated and servo.aim is not None:
                         pitch_setpoint=pointing_request(sim.scene,servo.aim)
@@ -300,31 +330,39 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                         # Independent RGB checks during the final hover, at 2 Hz.
                         hold_path=out/(f'attempt_{len(attempts):02d}_{k+1:03d}.png' if window else f'hold_{k+1:03d}.png')
                         Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(hold_path)
-                        boxes=detect_current(hold_path,det['object'])['boxes']
+                        hold_detection=detect_current(hold_path,det['object'])
+                        boxes=hold_detection['boxes']
                         box=boxes[0]['xyxy'] if boxes else None
                         uv=[(box[0]+box[2])/2,(box[1]+box[3])/2] if box else None
                         metrics=servo.hold_metrics(sim.last_rgb,sim.last_depth,sim.scene,box) if coordinated else dict(uv=uv,centered=bool(uv and centered(*uv)))
                         if window:
-                            tracked=tracker.measure(sim.last_rgb,sim.last_depth,sim.scene)
-                            source='detector' if box is not None else 'missing'
-                            if tracked is not None and (box is None or box_iou(box,tracked)<.35):
-                                metrics=servo.hold_metrics(sim.last_rgb,sim.last_depth,sim.scene,tracked)
-                                source='rgbd_track'
-                            metrics.update(source=source,detected_box=box,tracked_box=tracked)
+                            metrics.update(source=hold_detection['source'], tracked_box=hold_detection['tracked_box'],
+                                           detector_boxes=hold_detection['detector_boxes'])
                         hold_rgb.append(dict(t=r['sim_time'],**metrics))
-                if r['terminated'] or r['truncated'] or (room and not inside):
+                if not (r['terminated'] or r['truncated']) and window:
+                    reason=coverage.check(sim,guard,known,advance)
+                    if reason:
+                        break
+                if r['terminated'] or r['truncated'] or (room and not window and not inside):
                     reason=r['reason'] or 'outside_known_space';break
                 if not room and odo.path>=length-1e-6:
                     reason='distance_reached';break
                 if r['sim_time']>=60-1e-6:reason='limit';break
+                if window and stop and (k+1)%10==0 and k+1>=round(seconds/CONTROL_DT):
+                    drift=max(np.linalg.norm(np.subtract(v['xyz'],p)) for v in hold)
+                    verdict=window_verdict([first,*hold_rgb],hold_duration,drift)
+                    if verdict['confirmed'] or hold_rgb[-1]['source']!='missing':
+                        break
             if stop and window:
                 drift=max(np.linalg.norm(np.subtract(v['xyz'],hold[0]['xyz'])) for v in hold)
-                confirmed=bool(not reason and len(hold_rgb)==round(2*hold_duration) and drift<=.12 and
-                               all(row['framing_ok'] and row['view_ok'] and row['parts_ok'] for row in hold_rgb))
-                attempt.update(confirmed=confirmed,max_drift_m=float(drift),checks=hold_rgb)
+                verdict=window_verdict([first,*hold_rgb],hold_duration,drift)
+                confirmed=verdict.pop('confirmed') and not reason
+                attempt.update(confirmed=bool(confirmed),max_drift_m=float(drift),checks=hold_rgb,**verdict)
                 if confirmed:reason='stop'
                 else:servo.ready=0
             elif stop and not reason:reason='stop'
+            if reason=='replan_after_brake':
+                continue
             if reason:break
         Image.fromarray(np.rint(sim.last_rgb*255).astype(np.uint8)).save(out/'end.png')
         for filename,obj in [('frames',frames),('decisions',ds),('episode',dict(case=case,source=source,mode='flight',instruction=text,gate=active,
@@ -336,6 +374,9 @@ def execute(case,switch,inspect,detector,seed=42,room_goal="standoff",record_rgb
                 reason=reason or 'limit',duration=frames[-1]['t'],distance_setpoint=length,altitude_setpoint=height))]:
             common.dump(out/(filename+'.json'),obj)
         if window:
+            common.dump(out/'safety_events.json',dict(coverage=coverage.events,
+                        boundary=int(reason=='out_of_bounds'),collision=int(any(f['collision'] for f in frames)),
+                        explicit_position_bounds_m=bounds))
             common.dump(out/'hold_attempts.json',attempts)
             recovery.track_probe_cells(guard,r['sim_time'])
             for entry in recovery.probes:

@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw
 HERE=Path(__file__).resolve().parent
 sys.path[:0]=[str(HERE.parent),str(HERE.parents[1])]
 from metric_flight.instance_mask import instance_mask
-from metric_flight.observation_window import hold_seconds
+from metric_flight.observation_window import INSPECTION_AREA, hold_seconds, window_verdict
 from metric_flight.view_control import VIEW_BANDS, elevation, framing, view_intent
 from metric_flight.observation_memory import write_json
 
@@ -20,12 +20,12 @@ def read(path):
     return json.loads(path.read_text())
 
 
-def manual_view(folder, step, annotation, view):
+def manual_view(folder, step, annotation, view, area_range=(.20,.60)):
     path=folder/"review_frames"/f"{step:04}.png"
     rgb=np.asarray(Image.open(path))
     h,w=rgb.shape[:2]
     box=np.asarray(annotation["box"],float)/[w,h,w,h]
-    metric=framing(box)
+    metric=framing(box,area_range)
     with np.load(path.with_suffix(".npz")) as calibration:
         depth=calibration["depth_mm"]*.001
         if "part_roi" in annotation:
@@ -76,6 +76,14 @@ def audit(folder, review):
     collision=sum(f["collision"] for f in frames)
     outside=sum(not f["inside"] for f in frames)
     safe=not collision and not outside and survey["after"]["status"]=="free"
+    safety_path=folder/"safety_events.json"
+    safety=read(safety_path) if safety_path.is_file() else None
+    if safety is not None:
+        assert safety["collision"]==int(bool(collision))
+        assert safety["boundary"]==int(ep["reason"]=="out_of_bounds")
+        if outside:
+            assert safety["coverage"] or safety["collision"] or safety["boundary"]
+        safe=not collision and not safety["boundary"] and survey["after"]["status"]=="free" and ep["reason"]!="map_coverage_unresolved"
     seconds=hold_seconds(ep["instruction"])
     confirmed=[a for a in attempts if a["confirmed"]]
     for attempt_number,a in enumerate(attempts,1):
@@ -85,14 +93,20 @@ def audit(folder, review):
         for j,path in enumerate(hold_images(folder,attempt_number,a)):
             pixels=np.asarray(Image.open(path))
             assert hashlib.sha256(pixels.tobytes()).hexdigest()==receipts[start+10*j]["rgb_sha256"]
-        end=start+round(seconds*20)
+        end=start+10*len(a["checks"])
         positions=[np.asarray(f["xyz"]) for f in frames[start:end+1]]
-        assert len(positions)==1+round(20*seconds)
+        assert len(positions)==end-start+1
         measured_drift=max(np.linalg.norm(pos-positions[0]) for pos in positions)
         assert np.isclose(a["max_drift_m"],measured_drift,atol=1e-8)
-        assert np.allclose([r["t"] for r in a["checks"]],np.arange(.5,seconds+.01,.5)+a["t"])
-        assert a["qualified"] and len(a["checks"])==round(2*seconds) and measured_drift<=.12
-        assert all(r["view_ok"] and r["parts_ok"] and r["framing_ok"] for r in a["checks"])
+        assert np.allclose([r["t"] for r in a["checks"]],a["t"]+.5*np.arange(1,len(a["checks"])+1))
+        assert a["qualified"] and measured_drift<=.12
+        if safety is None:
+            assert len(a["checks"])==round(2*seconds)
+            assert all(r["view_ok"] and r["parts_ok"] and r["framing_ok"] for r in a["checks"])
+        else:
+            assert seconds<=.5*len(a["checks"])<=seconds+1
+            checked=window_verdict([a["first"],*a["checks"]],seconds,measured_drift)
+            assert checked["confirmed"] and np.isclose(a["median_area"],checked["median_area"])
     stop_signal=bool(safe and ep["reason"]=="stop" and confirmed)
     observed=False
     checks=[]
@@ -106,14 +120,21 @@ def audit(folder, review):
         stop=start+round(20*seconds)
         assert stop<len(frames)
         drift=max(np.linalg.norm(np.subtract(f["xyz"],frames[start]["xyz"])) for f in frames[start:stop+1])
-        checks=[manual_view(folder,start+10*j,row,view_intent(ep["instruction"])) for j,row in enumerate(review["samples"])]
-        observed=bool(safe and review["identity_ok"] and drift<=.12 and all(r["valid"] for r in checks))
+        checks=[manual_view(folder,start+10*j,row,view_intent(ep["instruction"]),
+                            INSPECTION_AREA if safety is not None else (.20,.60)) for j,row in enumerate(review["samples"])]
+        valid=all(r["valid"] for r in checks)
+        if safety is not None:
+            samples=[dict(c,t=(start+10*j)/20,source="detector" if c["area"] is not None else "missing") for j,c in enumerate(checks)]
+            valid=window_verdict(samples,seconds,drift)["confirmed"]
+        observed=bool(safe and review["identity_ok"] and drift<=.12 and valid)
     elif review["method"]!="no_eligible_view":
         raise ValueError(review["method"])
     return dict(case=folder.name,observation=observed,autonomous=bool(stop_signal and observed),controller_stop=stop_signal,reason=ep["reason"],
                 visual_method=review["method"],comment=review["comment"],frames=len(frames),
                 path_m=frames[-1]["cumulative_m"],duration_s=ep["duration"],collision_samples=collision,
-                outside_samples=outside,start_check=survey["after"]["status"],attempt_count=len(attempts),
+                map_coverage_events=len(safety["coverage"]) if safety is not None else None,
+                boundary_events=safety["boundary"] if safety is not None else None,
+                collision_events=int(bool(collision)),outside_samples=outside,start_check=survey["after"]["status"],attempt_count=len(attempts),
                 confirmations=[dict(t=a["t"],max_drift_m=a["max_drift_m"],checks=a["checks"]) for a in confirmed],
                 manual_drift_m=drift,manual_samples=checks,
                 first_association=(decisions[0]["detection"].get("association") if decisions else None))
@@ -138,11 +159,11 @@ def evidence_sheets(folders, annotations, rows, out):
                 start=round(20*a["t"])
                 decision=read(folder/"decisions.json")[a["decision"]]
                 boxes=[decision["detection"]["boxes"][0]["xyxy"],*[c["xyxy"] for c in a["checks"]]]
-                boxes=[(np.asarray(b)*[640,480,640,480]).tolist() for b in boxes]
+                boxes=[(np.asarray(b)*[640,480,640,480]).tolist() if b is not None else None for b in boxes]
             for k,b in enumerate(boxes[:3]):
                 step=start+10*k
                 im=Image.open(paths[k]).convert("RGB")
-                ImageDraw.Draw(im).rectangle(b,outline="yellow" if note["method"]=="offline_boxes" else "#43e798",width=2)
+                if b is not None:ImageDraw.Draw(im).rectangle(b,outline="yellow" if note["method"]=="offline_boxes" else "#43e798",width=2)
                 x=k*270;y=j*230
                 sheet.paste(im.resize((270,202),Image.Resampling.LANCZOS),(x,y))
                 draw.text((x+4,y+206),f"{folder.name}  {step/20:.1f}s",fill="black")
@@ -157,7 +178,7 @@ def evidence_sheets(folders, annotations, rows, out):
             boxes=decisions[0]["detection"]["boxes"] if decisions else []
             if boxes:
                 b=(np.asarray(boxes[0]["xyxy"])*[640,480,640,480]).tolist()
-                ImageDraw.Draw(im).rectangle(b,outline="#43e798",width=3)
+                if b is not None:ImageDraw.Draw(im).rectangle(b,outline="#43e798",width=3)
             x=(j%2)*400;y=(j//2)*330
             sheet.paste(im.resize((400,300),Image.Resampling.LANCZOS),(x,y))
             status=("matched" if boxes else "unmatched") if decisions else "not run (launch blocked)"

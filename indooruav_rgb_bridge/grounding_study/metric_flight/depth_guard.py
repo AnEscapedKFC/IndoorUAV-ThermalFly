@@ -15,6 +15,7 @@ class DepthGuard:
         self.half=np.asarray(half)
         self.evidence=np.zeros((185,185,94),np.int8)
         self.offsets=np.indices((63,63,41),dtype=np.int16).reshape(3,-1).T-[31,31,20]
+        self.launch_fringe=set()
         self.stalled=0
         self.slide_sign=1
 
@@ -47,8 +48,8 @@ class DepthGuard:
             if delta>0:updated=np.maximum(updated,1)
             self.evidence[key]=np.clip(updated,-12,24)
 
-    def body(self,p,R):
-        half=self.half+.025
+    def body(self,p,R,*,extra=.025):
+        half=self.half+extra
         extent=abs(R)@half
         low=np.floor((p-extent-self.origin)/self.cell).astype(int)
         high=np.floor((p+extent-self.origin)/self.cell).astype(int)
@@ -56,7 +57,27 @@ class DepthGuard:
         ids=np.indices(high-low+1).reshape(3,-1).T+low
         delta=(self.origin+(ids+.5)*self.cell-p)@R
         touches=(np.abs(delta)<=half+.5*self.cell*abs(R).sum(axis=0)).all(1)
-        return tuple(ids[touches].T)
+        ids = ids[touches]
+        if self.launch_fringe and extra>0:
+            positive=np.flatnonzero(self.evidence[tuple(ids.T)]>0)
+            keep=np.ones(len(ids),bool)
+            for j in positive:
+                if tuple(ids[j]) in self.launch_fringe:
+                    d=(self.origin+(ids[j]+.5)*self.cell-p)@R
+                    keep[j]=np.all(np.abs(d)<=self.half+.5*self.cell*abs(R).sum(axis=0))
+            ids=ids[keep]
+        return tuple(ids.T)
+
+    def recheck_launch_fringe(self,state):
+        p=np.asarray(state['position'])
+        rot=Rotation.from_quat(np.asarray(state['quaternion_wxyz'])[[1,2,3,0]]).as_matrix()
+        outer=self.body(p,rot)
+        core=self.body(p,rot,extra=0.)
+        if core is None or outer is None or np.any(self.evidence[core]>=0):
+            return False
+        cells=np.column_stack(outer)[self.evidence[outer]>0]
+        self.launch_fringe.update(tuple(row) for row in cells)
+        return self.stationary(state)[0]['status']=='free'
 
     def seed_body(self,p,R):
         idx=self.body(p,R)

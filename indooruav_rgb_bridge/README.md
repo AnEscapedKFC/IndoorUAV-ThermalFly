@@ -1,5 +1,7 @@
 # IndoorUAV-Agent 在会议室与走廊的 RGB 飞行验证
 
+会议室观察任务可从首次目标检测开始跟踪 RGB-D，在一秒悬停窗口用有效框占比中位数 10%–50% 确认。地图覆盖告警会触发制动复核，显式边界和碰撞独立计数。[当前协议与复跑入口](grounding_study/metric_flight/OBSERVATION_WINDOW.md)
+
 会议室空调和笔记本的新实验使用语言指定观察方向、机体与云台协同控制、20%–60% 检测框面积及起点深度包络复查。[协同控制实验与复跑命令](grounding_study/metric_flight/COORDINATED_INSPECTION.md)
 
 会议室空调任务沿用冻结观察策略，当前评分分为严格完成（距空调 0.4–0.8 米且居中）和大致完成（0.5–1.5 米）。[空调任务入口与评分说明](grounding_study/README.md)

@@ -21,7 +21,7 @@ def view_intent(instruction):
     return "unconstrained"
 
 
-def framing(box):
+def framing(box, area_range=(.20, .60)):
     if box is None:
         return dict(area=None, uv=None, centered=False, clipped=False, framing_ok=False)
     left, top, right, bottom = np.clip(box, 0., 1.)
@@ -29,7 +29,7 @@ def framing(box):
     area = float((right - left) * (bottom - top))
     clipped = min(left, top, 1 - right, 1 - bottom) < .009
     return dict(area=area, uv=uv, centered=centered(*uv), clipped=bool(clipped),
-                framing_ok=bool(.20 - 1e-12 <= area <= .60 + 1e-12 and centered(*uv) and not clipped))
+                framing_ok=bool(area_range[0] - 1e-12 <= area <= area_range[1] + 1e-12 and centered(*uv) and not clipped))
 
 
 def elevation(direction):
@@ -69,7 +69,8 @@ class CoordinatedInspection:
         self.surface = None
 
     def inspect(self, point, parts, box, rig):
-        frame = framing(box)
+        from metric_flight.observation_window import INSPECTION_AREA
+        frame = framing(box, INSPECTION_AREA) if self.single_frame else framing(box)
         counts = np.array([part["pixels"] for part in parts])
         both = bool(counts.min() >= max(32, .04 * counts.sum()))
         landmark = parts[self.part - 2]["world"] if self.part else None
