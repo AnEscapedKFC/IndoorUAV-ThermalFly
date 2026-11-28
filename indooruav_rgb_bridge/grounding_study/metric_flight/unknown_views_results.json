@@ -1,0 +1,1127 @@
+{
+  "flight_code": "28ab81f",
+  "map_sha256": "0dec30b75412d749b4354ea3f37444834244051a547d3a7beb1fab55a95dfd7f",
+  "summary": {
+    "cases": 13,
+    "baseline_observation": 3,
+    "observations": 3,
+    "autonomous": 0,
+    "collision_episodes": 0,
+    "outside_episodes": 2,
+    "scans": 36,
+    "outward_yaw_scans": 27,
+    "historical_releases": 0,
+    "rgbt_pairs": 4642,
+    "decoded_streams": 39,
+    "sims_with_scan": 5,
+    "base_stalled_mean_s": 3.4999999999999956,
+    "new_stalled_mean_s": 31.44000000000014,
+    "base_stalled_recovered": 0,
+    "full_cell_visible_scan_events": 0,
+    "expanded_cell_visible_scan_events": 0,
+    "identical_frame_and_state_episodes": 8
+  },
+  "baseline_summary": {
+    "observation": 3,
+    "autonomous": 0,
+    "collision": 0,
+    "outside": 2,
+    "n": 13
+  },
+  "positive_control": {
+    "case": "level_diagonal",
+    "review_times_s": [
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5,
+      5.0
+    ],
+    "first_frame_only": 0,
+    "after_history": 3,
+    "query_count": 9,
+    "retained": 11,
+    "queries": [
+      {
+        "uv": [
+          160,
+          120
+        ],
+        "first_surface_depth": 2.099,
+        "query_z": 0.8396000000000001,
+        "cell": [
+          85,
+          104,
+          53
+        ]
+      },
+      {
+        "uv": [
+          320,
+          120
+        ],
+        "first_surface_depth": 2.2520000000000002,
+        "query_z": 0.9008000000000002,
+        "cell": [
+          89,
+          106,
+          54
+        ]
+      },
+      {
+        "uv": [
+          480,
+          120
+        ],
+        "first_surface_depth": 2.203,
+        "query_z": 0.8812,
+        "cell": [
+          94,
+          106,
+          54
+        ]
+      },
+      {
+        "uv": [
+          160,
+          240
+        ],
+        "first_surface_depth": 3.9450000000000003,
+        "query_z": 1.5780000000000003,
+        "cell": [
+          80,
+          115,
+          55
+        ]
+      },
+      {
+        "uv": [
+          320,
+          240
+        ],
+        "first_surface_depth": 3.712,
+        "query_z": 1.4848000000000001,
+        "cell": [
+          88,
+          115,
+          54
+        ]
+      },
+      {
+        "uv": [
+          480,
+          240
+        ],
+        "first_surface_depth": 3.7,
+        "query_z": 1.4800000000000002,
+        "cell": [
+          95,
+          116,
+          54
+        ]
+      },
+      {
+        "uv": [
+          160,
+          360
+        ],
+        "first_surface_depth": 3.622,
+        "query_z": 1.4488,
+        "cell": [
+          81,
+          116,
+          49
+        ]
+      },
+      {
+        "uv": [
+          320,
+          360
+        ],
+        "first_surface_depth": 3.612,
+        "query_z": 1.4448,
+        "cell": [
+          88,
+          116,
+          49
+        ]
+      },
+      {
+        "uv": [
+          480,
+          360
+        ],
+        "first_surface_depth": 3.428,
+        "query_z": 1.3712,
+        "cell": [
+          95,
+          116,
+          49
+        ]
+      }
+    ],
+    "witnesses": [
+      {
+        "cell": [
+          81,
+          116,
+          49
+        ],
+        "world": [
+          0.027500000000000746,
+          0.7525000000000004,
+          1.6775000000000002
+        ],
+        "witnesses": [
+          11,
+          10
+        ]
+      },
+      {
+        "cell": [
+          88,
+          116,
+          49
+        ],
+        "world": [
+          0.4825000000000008,
+          0.7525000000000004,
+          1.6775000000000002
+        ],
+        "witnesses": [
+          11,
+          2
+        ]
+      },
+      {
+        "cell": [
+          95,
+          116,
+          49
+        ],
+        "world": [
+          0.9375000000000009,
+          0.7525000000000004,
+          1.6775000000000002
+        ],
+        "witnesses": [
+          5,
+          4
+        ]
+      }
+    ],
+    "source": "offline positive control; initial grid unknown, no flight feedback"
+  },
+  "cases": [
+    {
+      "case": "chair_far",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "start_clearance_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 0.0
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "Stationary envelope remained in conflict after preflight; no navigation decision was executed."
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "start_clearance_unconfirmed",
+      "base_reason": "start_clearance_unconfirmed",
+      "duration": 0.0,
+      "path_m": 0.0,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 1,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 171,
+      "scan_coverage": []
+    },
+    {
+      "case": "chair_north",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "depth_path_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 3.4999999999999956
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "逐半秒检查补看和返回时的 RGB 画面。门旁黑椅一直偏小，其他视角朝向地面或天花板。整个回合没有平移，未形成居中且占比达标的持续观察窗口。"
+      },
+      "identical_visual": false,
+      "identical_states": false,
+      "reason": "depth_path_unconfirmed",
+      "base_reason": "depth_path_unconfirmed",
+      "duration": 30.050000000000292,
+      "path_m": 0.0,
+      "scans": 6,
+      "body_turns": 5,
+      "frames": 602,
+      "history_releases": 0,
+      "scan_duration": 29.550000000000285,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 60.32622180339081,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 289,
+      "scan_coverage": [
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 16,
+          "remaining": 16,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 16,
+          "remaining": 16,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "case": "desk_fresh",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "depth_path_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 3.4999999999999956
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "补看期间先后扫过顶面、地面和桌边。返回任务视角时打开的笔记本仍只占画面很小一部分，未形成合格的一秒窗口。"
+      },
+      "identical_visual": false,
+      "identical_states": false,
+      "reason": "depth_path_unconfirmed",
+      "base_reason": "depth_path_unconfirmed",
+      "duration": 38.44999999999995,
+      "path_m": 0.0,
+      "scans": 8,
+      "body_turns": 6,
+      "frames": 770,
+      "history_releases": 0,
+      "scan_duration": 38.44999999999995,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 60.32622088877315,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 324,
+      "scan_coverage": [
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "case": "desk_new",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "depth_path_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 3.4999999999999956
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "补看时笔记本间歇出画，返回任务视角时屏幕与键盘仍很小，未在居中状态下达到画面 20%。无平移。"
+      },
+      "identical_visual": false,
+      "identical_states": false,
+      "reason": "depth_path_unconfirmed",
+      "base_reason": "depth_path_unconfirmed",
+      "duration": 37.6,
+      "path_m": 0.0,
+      "scans": 8,
+      "body_turns": 6,
+      "frames": 753,
+      "history_releases": 0,
+      "scan_duration": 37.6,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 60.32621946292031,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 321,
+      "scan_coverage": [
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "case": "level_diagonal",
+      "baseline": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "path_m": 4.053243344291949,
+        "duration_s": 17.500000000000114
+      },
+      "observation": true,
+      "autonomous": false,
+      "visual_review": {
+        "method": "offline_boxes",
+        "identity_ok": true,
+        "start_step": 330,
+        "samples": [
+          {
+            "box": [
+              91,
+              159,
+              548,
+              319
+            ],
+            "parts_visible": true
+          },
+          {
+            "box": [
+              91,
+              159,
+              549,
+              319
+            ],
+            "parts_visible": true
+          },
+          {
+            "box": [
+              91,
+              159,
+              548,
+              319
+            ],
+            "parts_visible": true
+          }
+        ],
+        "comment": "Frontal panel and outlet remain visible on all three RGB images. Top edge is diffuse. Boxes exclude the cable and wall."
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "target_lost",
+      "base_reason": "target_lost",
+      "duration": 17.500000000000114,
+      "path_m": 4.053243344291949,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 351,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 228,
+      "scan_coverage": []
+    },
+    {
+      "case": "level_east",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "depth_path_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 3.4999999999999956
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "东侧远处空调在部分水平视图中可辨，但框过小。补看朝向地板、沙发或顶面，未取得居中且达到面积下限的正面视图。"
+      },
+      "identical_visual": false,
+      "identical_states": false,
+      "reason": "depth_path_unconfirmed",
+      "base_reason": "depth_path_unconfirmed",
+      "duration": 25.550000000000228,
+      "path_m": 0.0,
+      "scans": 7,
+      "body_turns": 5,
+      "frames": 512,
+      "history_releases": 0,
+      "scan_duration": 25.550000000000228,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 45.376722635466734,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 266,
+      "scan_coverage": [
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "case": "level_fresh",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "outside_known_space",
+        "path_m": 1.3468110806707536,
+        "duration_s": 6.5999999999999845
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "Exited the known-space envelope before task completion."
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "outside_known_space",
+      "base_reason": "outside_known_space",
+      "duration": 6.5999999999999845,
+      "path_m": 1.3468110806707536,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 133,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 1,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 184,
+      "scan_coverage": []
+    },
+    {
+      "case": "level_new",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "target_lost",
+        "path_m": 3.1080396046352745,
+        "duration_s": 15.000000000000078
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "offline_boxes",
+        "identity_ok": true,
+        "start_step": 280,
+        "comment": "Stable level view, but full housing is visibly too small; wall and hanging cable excluded.",
+        "samples": [
+          {
+            "box": [
+              177,
+              150,
+              474,
+              266
+            ],
+            "parts_visible": true
+          },
+          {
+            "box": [
+              177,
+              150,
+              474,
+              266
+            ],
+            "parts_visible": true
+          },
+          {
+            "box": [
+              178,
+              150,
+              474,
+              266
+            ],
+            "parts_visible": true
+          }
+        ]
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "target_lost",
+      "base_reason": "target_lost",
+      "duration": 15.000000000000078,
+      "path_m": 3.1080396046352745,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 301,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 211,
+      "scan_coverage": []
+    },
+    {
+      "case": "level_west",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "outside_known_space",
+        "path_m": 0.4561041899553687,
+        "duration_s": 2.6499999999999986
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "Simulator known-space envelope exited during lateral adjustment. No qualifying window."
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "outside_known_space",
+      "base_reason": "outside_known_space",
+      "duration": 2.6499999999999986,
+      "path_m": 0.4561041899553687,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 54,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 1,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 164,
+      "scan_coverage": []
+    },
+    {
+      "case": "outlet_east",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "depth_path_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 3.4999999999999956
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "东侧起点扫视期间空调仍很小或完全出画，没有取得占比达标且出风口可辨的一秒仰视窗口。"
+      },
+      "identical_visual": false,
+      "identical_states": false,
+      "reason": "depth_path_unconfirmed",
+      "base_reason": "depth_path_unconfirmed",
+      "duration": 25.550000000000228,
+      "path_m": 0.0,
+      "scans": 7,
+      "body_turns": 5,
+      "frames": 512,
+      "history_releases": 0,
+      "scan_duration": 25.550000000000228,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 45.376722635466734,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 266,
+      "scan_coverage": [
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        },
+        {
+          "blocking_cells": 17,
+          "remaining": 17,
+          "nominal_full": 0,
+          "center_visible": 0,
+          "uncertainty_expanded_full": 0,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "case": "outlet_fresh",
+      "baseline": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "path_m": 3.314087453243602,
+        "duration_s": 14.500000000000071
+      },
+      "observation": true,
+      "autonomous": false,
+      "visual_review": {
+        "method": "offline_boxes",
+        "identity_ok": true,
+        "start_step": 270,
+        "comment": "Outlet survives dropout in the final second. Whole housing is close to the 20% lower bound; alternate blurred boundaries may change the area verdict.",
+        "samples": [
+          {
+            "box": [
+              119,
+              160,
+              509,
+              325
+            ],
+            "parts_visible": true,
+            "part_roi": [
+              310,
+              274,
+              330,
+              283
+            ]
+          },
+          {
+            "box": [
+              119,
+              160,
+              509,
+              325
+            ],
+            "parts_visible": true,
+            "part_roi": [
+              310,
+              274,
+              330,
+              283
+            ]
+          },
+          {
+            "box": [
+              119,
+              160,
+              509,
+              325
+            ],
+            "parts_visible": true,
+            "part_roi": [
+              310,
+              274,
+              330,
+              283
+            ]
+          }
+        ]
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "target_lost",
+      "base_reason": "target_lost",
+      "duration": 14.500000000000071,
+      "path_m": 3.314087453243602,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 291,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 212,
+      "scan_coverage": []
+    },
+    {
+      "case": "outlet_west",
+      "baseline": {
+        "observation": true,
+        "autonomous": false,
+        "reason": "target_lost",
+        "path_m": 3.513778802231803,
+        "duration_s": 18.00000000000012
+      },
+      "observation": true,
+      "autonomous": false,
+      "visual_review": {
+        "method": "offline_boxes",
+        "identity_ok": true,
+        "start_step": 340,
+        "comment": "Front housing and lower louver visible in final second. Independent boxes exclude the cable; depth sampled on central outlet band.",
+        "samples": [
+          {
+            "box": [
+              122,
+              169,
+              514,
+              353
+            ],
+            "parts_visible": true,
+            "part_roi": [
+              319,
+              303,
+              337,
+              313
+            ]
+          },
+          {
+            "box": [
+              122,
+              169,
+              514,
+              353
+            ],
+            "parts_visible": true,
+            "part_roi": [
+              319,
+              303,
+              337,
+              313
+            ]
+          },
+          {
+            "box": [
+              122,
+              169,
+              514,
+              353
+            ],
+            "parts_visible": true,
+            "part_roi": [
+              319,
+              303,
+              337,
+              313
+            ]
+          }
+        ]
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "target_lost",
+      "base_reason": "target_lost",
+      "duration": 18.00000000000012,
+      "path_m": 3.513778802231803,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 361,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 220,
+      "scan_coverage": []
+    },
+    {
+      "case": "overview_east",
+      "baseline": {
+        "observation": false,
+        "autonomous": false,
+        "reason": "start_clearance_unconfirmed",
+        "path_m": 0.0,
+        "duration_s": 0.0
+      },
+      "observation": false,
+      "autonomous": false,
+      "visual_review": {
+        "method": "no_eligible_view",
+        "identity_ok": true,
+        "comment": "Static launch envelope still contained a surface after rescan. No navigation request issued."
+      },
+      "identical_visual": true,
+      "identical_states": true,
+      "reason": "start_clearance_unconfirmed",
+      "base_reason": "start_clearance_unconfirmed",
+      "duration": 0.0,
+      "path_m": 0.0,
+      "scans": 0,
+      "body_turns": 0,
+      "frames": 1,
+      "history_releases": 0,
+      "scan_duration": 0,
+      "collision_samples": 0,
+      "outside_samples": 0,
+      "history_cells": 0,
+      "peak_turn": 0,
+      "clear_by_scan": 0,
+      "rgbd_keyframes_seen": 155,
+      "scan_coverage": []
+    }
+  ]
+}
